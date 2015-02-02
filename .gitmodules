@@ -1,0 +1,3 @@
+[submodule "submodules/PerformanceBezier"]
+	path = submodules/PerformanceBezier
+	url = git@github.com:adamwulf/PerformanceBezier.git

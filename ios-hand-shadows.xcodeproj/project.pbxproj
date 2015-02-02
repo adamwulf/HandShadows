@@ -1,0 +1,529 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		660E0FBB1A8001F100F19D8A /* MMDrawingGestureShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FB61A8001F100F19D8A /* MMDrawingGestureShadow.m */; };
+		660E0FBC1A8001F100F19D8A /* MMTwoFingerPanShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FB81A8001F100F19D8A /* MMTwoFingerPanShadow.m */; };
+		660E0FBD1A8001F100F19D8A /* MMThumbAndIndexShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FBA1A8001F100F19D8A /* MMThumbAndIndexShadow.m */; };
+		660E0FC21A8001F800F19D8A /* MMShadowHand.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FBF1A8001F800F19D8A /* MMShadowHand.m */; };
+		660E0FC31A8001F800F19D8A /* MMShadowHandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FC11A8001F800F19D8A /* MMShadowHandView.m */; };
+		660E0FC61A80020D00F19D8A /* MMVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FC51A80020D00F19D8A /* MMVector.m */; };
+		660E0FC91A80021E00F19D8A /* UITouch+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FC81A80021E00F19D8A /* UITouch+Distance.m */; };
+		660E0FCC1A80022700F19D8A /* NSArray+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FCB1A80022700F19D8A /* NSArray+Extras.m */; };
+		660E0FCF1A8002BB00F19D8A /* NSThread+BlockAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FCE1A8002BB00F19D8A /* NSThread+BlockAdditions.m */; };
+		660E0FD21A8002C700F19D8A /* UIBezierPath+Center.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FD11A8002C700F19D8A /* UIBezierPath+Center.m */; };
+		660E0FD41A8003FD00F19D8A /* PerformanceBezier.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660E0FD31A8003FD00F19D8A /* PerformanceBezier.framework */; };
+		6692196E1A7FFF850025C4FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6692196D1A7FFF850025C4FB /* main.m */; };
+		669219711A7FFF850025C4FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 669219701A7FFF850025C4FB /* AppDelegate.m */; };
+		669219741A7FFF850025C4FB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669219731A7FFF850025C4FB /* ViewController.m */; };
+		669219771A7FFF850025C4FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 669219751A7FFF850025C4FB /* Main.storyboard */; };
+		669219791A7FFF850025C4FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 669219781A7FFF850025C4FB /* Images.xcassets */; };
+		6692197C1A7FFF850025C4FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6692197A1A7FFF850025C4FB /* LaunchScreen.xib */; };
+		669219881A7FFF850025C4FB /* ios_hand_shadowsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 669219871A7FFF850025C4FB /* ios_hand_shadowsTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		669219821A7FFF850025C4FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 669219601A7FFF840025C4FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 669219671A7FFF840025C4FB;
+			remoteInfo = "ios-hand-shadows";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		660E0FB51A8001F100F19D8A /* MMDrawingGestureShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawingGestureShadow.h; sourceTree = "<group>"; };
+		660E0FB61A8001F100F19D8A /* MMDrawingGestureShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawingGestureShadow.m; sourceTree = "<group>"; };
+		660E0FB71A8001F100F19D8A /* MMTwoFingerPanShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTwoFingerPanShadow.h; sourceTree = "<group>"; };
+		660E0FB81A8001F100F19D8A /* MMTwoFingerPanShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTwoFingerPanShadow.m; sourceTree = "<group>"; };
+		660E0FB91A8001F100F19D8A /* MMThumbAndIndexShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMThumbAndIndexShadow.h; sourceTree = "<group>"; };
+		660E0FBA1A8001F100F19D8A /* MMThumbAndIndexShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMThumbAndIndexShadow.m; sourceTree = "<group>"; };
+		660E0FBE1A8001F800F19D8A /* MMShadowHand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMShadowHand.h; sourceTree = "<group>"; };
+		660E0FBF1A8001F800F19D8A /* MMShadowHand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMShadowHand.m; sourceTree = "<group>"; };
+		660E0FC01A8001F800F19D8A /* MMShadowHandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMShadowHandView.h; sourceTree = "<group>"; };
+		660E0FC11A8001F800F19D8A /* MMShadowHandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMShadowHandView.m; sourceTree = "<group>"; };
+		660E0FC41A80020D00F19D8A /* MMVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMVector.h; sourceTree = "<group>"; };
+		660E0FC51A80020D00F19D8A /* MMVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMVector.m; sourceTree = "<group>"; };
+		660E0FC71A80021E00F19D8A /* UITouch+Distance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch+Distance.h"; sourceTree = "<group>"; };
+		660E0FC81A80021E00F19D8A /* UITouch+Distance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+Distance.m"; sourceTree = "<group>"; };
+		660E0FCA1A80022700F19D8A /* NSArray+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extras.h"; sourceTree = "<group>"; };
+		660E0FCB1A80022700F19D8A /* NSArray+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extras.m"; sourceTree = "<group>"; };
+		660E0FCD1A8002BB00F19D8A /* NSThread+BlockAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSThread+BlockAdditions.h"; sourceTree = "<group>"; };
+		660E0FCE1A8002BB00F19D8A /* NSThread+BlockAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSThread+BlockAdditions.m"; sourceTree = "<group>"; };
+		660E0FD01A8002C700F19D8A /* UIBezierPath+Center.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+Center.h"; sourceTree = "<group>"; };
+		660E0FD11A8002C700F19D8A /* UIBezierPath+Center.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+Center.m"; sourceTree = "<group>"; };
+		660E0FD31A8003FD00F19D8A /* PerformanceBezier.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PerformanceBezier.framework; path = "submodules/PerformanceBezier/build/Debug-iphoneos/PerformanceBezier.framework"; sourceTree = "<group>"; };
+		669219681A7FFF850025C4FB /* ios-hand-shadows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-hand-shadows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6692196C1A7FFF850025C4FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6692196D1A7FFF850025C4FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6692196F1A7FFF850025C4FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		669219701A7FFF850025C4FB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		669219721A7FFF850025C4FB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		669219731A7FFF850025C4FB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		669219761A7FFF850025C4FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		669219781A7FFF850025C4FB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6692197B1A7FFF850025C4FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		669219811A7FFF850025C4FB /* ios-hand-shadowsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-hand-shadowsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		669219861A7FFF850025C4FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		669219871A7FFF850025C4FB /* ios_hand_shadowsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ios_hand_shadowsTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		669219651A7FFF840025C4FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				660E0FD41A8003FD00F19D8A /* PerformanceBezier.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6692197E1A7FFF850025C4FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		660E0FB31A8001C900F19D8A /* Shadow Views */ = {
+			isa = PBXGroup;
+			children = (
+				660E0FC01A8001F800F19D8A /* MMShadowHandView.h */,
+				660E0FC11A8001F800F19D8A /* MMShadowHandView.m */,
+			);
+			name = "Shadow Views";
+			sourceTree = "<group>";
+		};
+		660E0FB41A8001E700F19D8A /* Path Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				660E0FBE1A8001F800F19D8A /* MMShadowHand.h */,
+				660E0FBF1A8001F800F19D8A /* MMShadowHand.m */,
+				660E0FB51A8001F100F19D8A /* MMDrawingGestureShadow.h */,
+				660E0FB61A8001F100F19D8A /* MMDrawingGestureShadow.m */,
+				660E0FB71A8001F100F19D8A /* MMTwoFingerPanShadow.h */,
+				660E0FB81A8001F100F19D8A /* MMTwoFingerPanShadow.m */,
+				660E0FB91A8001F100F19D8A /* MMThumbAndIndexShadow.h */,
+				660E0FBA1A8001F100F19D8A /* MMThumbAndIndexShadow.m */,
+			);
+			name = "Path Helpers";
+			sourceTree = "<group>";
+		};
+		660E0FD51A80046500F19D8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				660E0FD31A8003FD00F19D8A /* PerformanceBezier.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6692195F1A7FFF840025C4FB = {
+			isa = PBXGroup;
+			children = (
+				6692196A1A7FFF850025C4FB /* ios-hand-shadows */,
+				669219841A7FFF850025C4FB /* ios-hand-shadowsTests */,
+				660E0FD51A80046500F19D8A /* Frameworks */,
+				669219691A7FFF850025C4FB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		669219691A7FFF850025C4FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				669219681A7FFF850025C4FB /* ios-hand-shadows.app */,
+				669219811A7FFF850025C4FB /* ios-hand-shadowsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6692196A1A7FFF850025C4FB /* ios-hand-shadows */ = {
+			isa = PBXGroup;
+			children = (
+				660E0FCD1A8002BB00F19D8A /* NSThread+BlockAdditions.h */,
+				660E0FCE1A8002BB00F19D8A /* NSThread+BlockAdditions.m */,
+				660E0FC71A80021E00F19D8A /* UITouch+Distance.h */,
+				660E0FC81A80021E00F19D8A /* UITouch+Distance.m */,
+				660E0FCA1A80022700F19D8A /* NSArray+Extras.h */,
+				660E0FCB1A80022700F19D8A /* NSArray+Extras.m */,
+				660E0FC41A80020D00F19D8A /* MMVector.h */,
+				660E0FC51A80020D00F19D8A /* MMVector.m */,
+				660E0FB41A8001E700F19D8A /* Path Helpers */,
+				660E0FB31A8001C900F19D8A /* Shadow Views */,
+				6692196F1A7FFF850025C4FB /* AppDelegate.h */,
+				669219701A7FFF850025C4FB /* AppDelegate.m */,
+				669219721A7FFF850025C4FB /* ViewController.h */,
+				669219731A7FFF850025C4FB /* ViewController.m */,
+				669219751A7FFF850025C4FB /* Main.storyboard */,
+				669219781A7FFF850025C4FB /* Images.xcassets */,
+				6692197A1A7FFF850025C4FB /* LaunchScreen.xib */,
+				6692196B1A7FFF850025C4FB /* Supporting Files */,
+				660E0FD01A8002C700F19D8A /* UIBezierPath+Center.h */,
+				660E0FD11A8002C700F19D8A /* UIBezierPath+Center.m */,
+			);
+			path = "ios-hand-shadows";
+			sourceTree = "<group>";
+		};
+		6692196B1A7FFF850025C4FB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6692196C1A7FFF850025C4FB /* Info.plist */,
+				6692196D1A7FFF850025C4FB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		669219841A7FFF850025C4FB /* ios-hand-shadowsTests */ = {
+			isa = PBXGroup;
+			children = (
+				669219871A7FFF850025C4FB /* ios_hand_shadowsTests.m */,
+				669219851A7FFF850025C4FB /* Supporting Files */,
+			);
+			path = "ios-hand-shadowsTests";
+			sourceTree = "<group>";
+		};
+		669219851A7FFF850025C4FB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				669219861A7FFF850025C4FB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		669219671A7FFF840025C4FB /* ios-hand-shadows */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6692198B1A7FFF850025C4FB /* Build configuration list for PBXNativeTarget "ios-hand-shadows" */;
+			buildPhases = (
+				669219641A7FFF840025C4FB /* Sources */,
+				669219651A7FFF840025C4FB /* Frameworks */,
+				669219661A7FFF840025C4FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ios-hand-shadows";
+			productName = "ios-hand-shadows";
+			productReference = 669219681A7FFF850025C4FB /* ios-hand-shadows.app */;
+			productType = "com.apple.product-type.application";
+		};
+		669219801A7FFF850025C4FB /* ios-hand-shadowsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6692198E1A7FFF850025C4FB /* Build configuration list for PBXNativeTarget "ios-hand-shadowsTests" */;
+			buildPhases = (
+				6692197D1A7FFF850025C4FB /* Sources */,
+				6692197E1A7FFF850025C4FB /* Frameworks */,
+				6692197F1A7FFF850025C4FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				669219831A7FFF850025C4FB /* PBXTargetDependency */,
+			);
+			name = "ios-hand-shadowsTests";
+			productName = "ios-hand-shadowsTests";
+			productReference = 669219811A7FFF850025C4FB /* ios-hand-shadowsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		669219601A7FFF840025C4FB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Milestone Made";
+				TargetAttributes = {
+					669219671A7FFF840025C4FB = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					669219801A7FFF850025C4FB = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 669219671A7FFF840025C4FB;
+					};
+				};
+			};
+			buildConfigurationList = 669219631A7FFF840025C4FB /* Build configuration list for PBXProject "ios-hand-shadows" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6692195F1A7FFF840025C4FB;
+			productRefGroup = 669219691A7FFF850025C4FB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				669219671A7FFF840025C4FB /* ios-hand-shadows */,
+				669219801A7FFF850025C4FB /* ios-hand-shadowsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		669219661A7FFF840025C4FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				669219771A7FFF850025C4FB /* Main.storyboard in Resources */,
+				6692197C1A7FFF850025C4FB /* LaunchScreen.xib in Resources */,
+				669219791A7FFF850025C4FB /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6692197F1A7FFF850025C4FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		669219641A7FFF840025C4FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				660E0FCC1A80022700F19D8A /* NSArray+Extras.m in Sources */,
+				660E0FC91A80021E00F19D8A /* UITouch+Distance.m in Sources */,
+				669219741A7FFF850025C4FB /* ViewController.m in Sources */,
+				660E0FBC1A8001F100F19D8A /* MMTwoFingerPanShadow.m in Sources */,
+				669219711A7FFF850025C4FB /* AppDelegate.m in Sources */,
+				660E0FC31A8001F800F19D8A /* MMShadowHandView.m in Sources */,
+				660E0FD21A8002C700F19D8A /* UIBezierPath+Center.m in Sources */,
+				660E0FCF1A8002BB00F19D8A /* NSThread+BlockAdditions.m in Sources */,
+				660E0FBD1A8001F100F19D8A /* MMThumbAndIndexShadow.m in Sources */,
+				660E0FC21A8001F800F19D8A /* MMShadowHand.m in Sources */,
+				660E0FBB1A8001F100F19D8A /* MMDrawingGestureShadow.m in Sources */,
+				6692196E1A7FFF850025C4FB /* main.m in Sources */,
+				660E0FC61A80020D00F19D8A /* MMVector.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6692197D1A7FFF850025C4FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				669219881A7FFF850025C4FB /* ios_hand_shadowsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		669219831A7FFF850025C4FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 669219671A7FFF840025C4FB /* ios-hand-shadows */;
+			targetProxy = 669219821A7FFF850025C4FB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		669219751A7FFF850025C4FB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				669219761A7FFF850025C4FB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6692197A1A7FFF850025C4FB /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6692197B1A7FFF850025C4FB /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		669219891A7FFF850025C4FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		6692198A1A7FFF850025C4FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6692198C1A7FFF850025C4FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "ios-hand-shadows/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC++",
+					"-lstdc++",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6692198D1A7FFF850025C4FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "ios-hand-shadows/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC++",
+					"-lstdc++",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6692198F1A7FFF850025C4FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ios-hand-shadowsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-hand-shadows.app/ios-hand-shadows";
+			};
+			name = Debug;
+		};
+		669219901A7FFF850025C4FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ios-hand-shadowsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-hand-shadows.app/ios-hand-shadows";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		669219631A7FFF840025C4FB /* Build configuration list for PBXProject "ios-hand-shadows" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				669219891A7FFF850025C4FB /* Debug */,
+				6692198A1A7FFF850025C4FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6692198B1A7FFF850025C4FB /* Build configuration list for PBXNativeTarget "ios-hand-shadows" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6692198C1A7FFF850025C4FB /* Debug */,
+				6692198D1A7FFF850025C4FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6692198E1A7FFF850025C4FB /* Build configuration list for PBXNativeTarget "ios-hand-shadowsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6692198F1A7FFF850025C4FB /* Debug */,
+				669219901A7FFF850025C4FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 669219601A7FFF840025C4FB /* Project object */;
+}
