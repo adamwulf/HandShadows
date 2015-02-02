@@ -146,16 +146,16 @@
         @throw [NSException exceptionWithName:@"ShadowException" reason:@"Asked to pan different object than what's held." userInfo:nil];
     }
     if([touches count] >= 2){
-        UITouch* indexFingerTouch = [touches firstObject];
-        if(!isRight && [[touches lastObject] locationInView:relativeView].x > [indexFingerTouch locationInView:relativeView].x){
-            indexFingerTouch = [touches lastObject];
-        }else if(isRight && [[touches lastObject] locationInView:relativeView].x < [indexFingerTouch locationInView:relativeView].x){
-            indexFingerTouch = [touches lastObject];
+        CGPoint indexFingerTouch = [[touches firstObject] CGPointValue];
+        if(!isRight && [[touches lastObject] CGPointValue].x > indexFingerTouch.x){
+            indexFingerTouch = [[touches lastObject] CGPointValue];
+        }else if(isRight && [[touches lastObject] CGPointValue].x < indexFingerTouch.x){
+            indexFingerTouch = [[touches lastObject] CGPointValue];
         }
-        UITouch* middleFingerTouch = [touches firstObject] == indexFingerTouch ? [touches lastObject] : [touches firstObject];
+        CGPoint middleFingerTouch = CGPointEqualToPoint([[touches firstObject] CGPointValue], indexFingerTouch) ? [[touches lastObject] CGPointValue] : [[touches firstObject] CGPointValue];
 
-        [self continuePanningWithIndexFinger:[indexFingerTouch locationInView:relativeView]
-                             andMiddleFinger:[middleFingerTouch locationInView:relativeView]];
+        [self continuePanningWithIndexFinger:indexFingerTouch
+                             andMiddleFinger:middleFingerTouch];
     }
 }
 
@@ -190,16 +190,12 @@
         @throw [NSException exceptionWithName:@"ShadowException" reason:@"Asked to pinch different object than what's held." userInfo:nil];
     }
     if([touches count] >= 2){
-        UITouch* indexFingerTouch = [touches firstObject];
-        if([[touches lastObject] locationInView:relativeView].y < [indexFingerTouch locationInView:relativeView].y){
-            indexFingerTouch = [touches lastObject];
+        CGPoint indexFingerLocation = [[touches firstObject] CGPointValue];
+        if([[touches lastObject] CGPointValue].y < indexFingerLocation.y){
+            indexFingerLocation = [[touches lastObject] CGPointValue];
         }
-        UITouch* thumbTouch = [touches firstObject] == indexFingerTouch ? [touches lastObject] : [touches firstObject];
+        CGPoint middleFingerLocation = CGPointEqualToPoint([[touches firstObject] CGPointValue], indexFingerLocation) ? [[touches lastObject] CGPointValue] : [[touches firstObject] CGPointValue];
         
-        
-        
-        CGPoint indexFingerLocation = [indexFingerTouch locationInView:relativeView];
-        CGPoint middleFingerLocation = [thumbTouch locationInView:relativeView];
         
         CGFloat distance = [MMShadowHand distanceBetweenPoint:indexFingerLocation andPoint:middleFingerLocation];
     
