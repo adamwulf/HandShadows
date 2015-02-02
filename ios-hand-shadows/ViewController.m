@@ -11,18 +11,28 @@
 
 @implementation ViewController{
     MMShadowHandView* shadowView;
+    UIPanGestureRecognizer* panGesture;
+    UISwitch* pinchGestureSwitch;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    UIPanGestureRecognizer* panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     self.view.userInteractionEnabled = YES;
     [self.view addGestureRecognizer:panGesture];
     
     shadowView = [[MMShadowHandView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:shadowView];
+    
+    pinchGestureSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(100, 100, 60, 40)];
+    UILabel* lbl = [[UILabel alloc] initWithFrame:CGRectMake(160, 100, 200, 40)];
+    lbl.text = @"Pinch Gesture";
+    [self.view addSubview:lbl];
+    pinchGestureSwitch.on = YES;
+    [pinchGestureSwitch addTarget:self action:@selector(toggleGesture:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:pinchGestureSwitch];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,9 +41,11 @@
 }
 
 
+-(void) toggleGesture:(UISwitch*)theSwitch{
+    panGesture.enabled = pinchGestureSwitch.on;
+}
 
-
--(void) pan:(UIPanGestureRecognizer*)panGesture{
+-(void) pan:(UIPanGestureRecognizer*)_panGesture{
     NSLog(@"pan: %d", panGesture.state);
     if(panGesture.numberOfTouches >= 2){
         CGPoint touch1 = [panGesture locationOfTouch:0 inView:self.view];
