@@ -230,33 +230,28 @@
 
 #pragma mark - Drawing Events
 
--(void) startDrawingAtTouch:(UITouch*)touch{
+-(void) startDrawingAtTouch:(CGPoint)touch{
     isDrawing = YES;
-    activeTouches = [NSSet setWithObject:touch];
-    [self continueDrawingAtTouch:touch];
     layer.opacity = .5;
     [self continueDrawingAtTouch:touch];
 }
--(void) continueDrawingAtTouch:(UITouch*)touch{
+-(void) continueDrawingAtTouch:(CGPoint)locationOfTouch{
     if(!isDrawing){
-        [self startDrawingAtTouch:touch];
+        [self startDrawingAtTouch:locationOfTouch];
     }
     [self preventCALayerImplicitAnimation:^{
-        layer.path = [pointerFingerHelper pathForTouch:touch].CGPath;
-        CGPoint locationOfTouch = [touch locationInView:relativeView];
-        CGPoint offset = [pointerFingerHelper locationOfIndexFingerInPathBoundsForTouch:touch];
+        layer.path = [pointerFingerHelper path].CGPath;
+        CGPoint offset = [pointerFingerHelper locationOfIndexFingerInPathBounds];
         CGPoint finalLocation = CGPointMake(locationOfTouch.x - offset.x, locationOfTouch.y - offset.y);
         layer.position = finalLocation;
     }];
 }
--(void) endDrawingAtTouch:(UITouch*)touch{
+-(void) endDrawing{
     if(isDrawing){
-        if(!touch || [activeTouches isEqualToSet:[NSSet setWithObject:touch]]){
-            activeTouches = nil;
-            isDrawing = NO;
-            if(!isPanning && !isBezeling){
-                layer.opacity = 0;
-            }
+        activeTouches = nil;
+        isDrawing = NO;
+        if(!isPanning && !isBezeling){
+            layer.opacity = 0;
         }
     }
 }

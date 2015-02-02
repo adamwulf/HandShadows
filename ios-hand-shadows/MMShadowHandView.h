@@ -20,9 +20,14 @@
 -(void) continuePanningObject:(id)obj withTouches:(NSArray*)touches;
 -(void) endPanningObject:(id)obj;
 
+// pinch a page
+-(void) startPinchingObject:(id)obj withTouches:(NSArray*)touches;
+-(void) continuePinchingObject:(id)obj withTouches:(NSArray*)touches;
+-(void) endPinchingObject:(id)obj;
+
 // drawing
--(void) startDrawingAtTouch:(UITouch*)touch;
--(void) continueDrawingAtTouch:(UITouch*)touch;
--(void) endDrawingAtTouch:(UITouch*)touch;
+-(void) startDrawingAtTouch:(CGPoint)touch;
+-(void) continueDrawingAtTouch:(CGPoint)touch;
+-(void) endDrawing;
 
 @end

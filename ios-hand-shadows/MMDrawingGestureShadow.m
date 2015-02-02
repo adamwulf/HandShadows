@@ -26,11 +26,11 @@
     return self;
 }
 
--(UIBezierPath*) pathForTouch:(UITouch*)touch{
+-(UIBezierPath*) path{
     return pointerFingerPath;
 }
 
--(CGPoint) locationOfIndexFingerInPathBoundsForTouch:(UITouch*)touch{
+-(CGPoint) locationOfIndexFingerInPathBounds{
     return indexFingerTipPath.center;
 }
 

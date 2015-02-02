@@ -41,8 +41,8 @@
 -(void) endPanningObject:(id)obj;
 
 // drawing
--(void) startDrawingAtTouch:(UITouch*)touch;
--(void) continueDrawingAtTouch:(UITouch*)touch;
--(void) endDrawingAtTouch:(UITouch*)touch;
+-(void) startDrawingAtTouch:(CGPoint)touch;
+-(void) continueDrawingAtTouch:(CGPoint)touch;
+-(void) endDrawing;
 
 @end

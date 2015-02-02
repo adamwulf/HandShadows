@@ -76,58 +76,54 @@
 #pragma mark - Panning a Page
 
 -(void) startPanningObject:(id)obj withTouches:(NSArray*)touches{
-    [rightHand startPinchingObject:obj withTouches:touches];
-    return;
-    if(!leftHand.isActive){
-        [leftHand startPanningObject:obj withTouches:touches];
-    }else{
-        [rightHand startPanningObject:obj withTouches:touches];
-    }
+    [leftHand startPanningObject:obj withTouches:touches];
 }
 
 -(void) continuePanningObject:(id)obj withTouches:(NSArray*)touches{
-    [rightHand continuePinchingObject:obj withTouches:touches];
-    return;
-    if(leftHand.heldObject == obj ||
-       (rightHand.heldObject !=obj && leftHand.heldObject == nil)){
-        [leftHand continuePanningObject:obj withTouches:touches];
-    }else{
-        [rightHand continuePanningObject:obj withTouches:touches];
-    }
+    [leftHand continuePanningObject:obj withTouches:touches];
 }
 
 -(void) endPanningObject:(id)obj{
+    [leftHand endPanningObject:obj];
+}
+
+
+#pragma mark - Panning a Page
+
+-(void) startPinchingObject:(id)obj withTouches:(NSArray*)touches{
+    [rightHand startPinchingObject:obj withTouches:touches];
+}
+
+-(void) continuePinchingObject:(id)obj withTouches:(NSArray*)touches{
+    [rightHand continuePinchingObject:obj withTouches:touches];
+}
+
+-(void) endPinchingObject:(id)obj{
     [rightHand endPinchingObject:obj];
-    return;
-    if(leftHand.heldObject == obj){
-        [leftHand endPanningObject:obj];
-    }else{
-        [rightHand endPanningObject:obj];
-    }
 }
 
 #pragma mark - Drawing Events
 
--(void) startDrawingAtTouch:(UITouch*)touch{
+-(void) startDrawingAtTouch:(CGPoint)touch{
     if(!rightHand.isActive){
         [rightHand startDrawingAtTouch:touch];
     }else{
         [leftHand startDrawingAtTouch:touch];
     }
 }
--(void) continueDrawingAtTouch:(UITouch*)touch{
+-(void) continueDrawingAtTouch:(CGPoint)touch{
     if(rightHand.isActive){
         [rightHand continueDrawingAtTouch:touch];
     }else{
         [leftHand continueDrawingAtTouch:touch];
     }
 }
--(void) endDrawingAtTouch:(UITouch*)touch{
+-(void) endDrawing{
     if(rightHand.isDrawing){
-        [rightHand endDrawingAtTouch:touch];
+        [rightHand endDrawing];
     }
     if(leftHand.isDrawing){
-        [leftHand endDrawingAtTouch:touch];
+        [leftHand endDrawing];
     }
 }
 

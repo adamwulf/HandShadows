@@ -22,7 +22,7 @@
 - (instancetype)init NS_UNAVAILABLE;
 -(id) initForRightHand:(BOOL)isRight;
 
--(UIBezierPath*) pathForTouch:(UITouch*)touch;
--(CGPoint) locationOfIndexFingerInPathBoundsForTouch:(UITouch*)touch;
+-(UIBezierPath*) path;
+-(CGPoint) locationOfIndexFingerInPathBounds;
 
 @end
