@@ -10,7 +10,6 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <QuartzCore/QuartzCore.h>
 #import "MMVector.h"
-#import "UIBezierPath+Center.h"
 #import <PerformanceBezier/PerformanceBezier.h>
 
 @implementation MMTwoFingerPanShadow{

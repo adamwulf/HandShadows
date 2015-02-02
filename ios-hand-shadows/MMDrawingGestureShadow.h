@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import <QuartzCore/QuartzCore.h>
-#import "UIBezierPath+Center.h"
 #import <PerformanceBezier/PerformanceBezier.h>
 
 @interface MMDrawingGestureShadow : NSObject{
