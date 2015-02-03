@@ -9,8 +9,7 @@ brings UIBezierPath API closer to its NSBezierPath counterpart.
 This code lets you add hand shadows over your UI during your gestures, which makes
 for immersive tutorial and demo videos.
 
-Example:
-<iframe src="https://vine.co/v/OI2zM3bEIJx/embed/simple" width="300" height="300" frameborder="0"></iframe>
+Example: https://vine.co/v/OI2zM3bEIJx
 
 
 ## Documentation
