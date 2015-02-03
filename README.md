@@ -1,0 +1,56 @@
+iOS UIBezierPath Performance
+=====
+
+This code dramatically improves performance for common UIBezierPath operations, and it also
+brings UIBezierPath API closer to its NSBezierPath counterpart.
+
+## What is this?
+
+This code lets you add hand shadows over your UI during your gestures, which makes
+for immersive tutorial and demo videos.
+
+Example:
+<iframe src="https://vine.co/v/OI2zM3bEIJx/embed/simple" width="300" height="300" frameborder="0"></iframe>
+
+
+## Documentation
+
+Add a MMShadowHandView above all of your other views, and then call its methods
+with arrays of CGPoints wrapped in NSValues. Run the code for a demo of the shadows.
+
+## Building the Code
+
+    git clone git@github.com:adamwulf/ios-hand-shadows.git
+    cd ios-hand-shadows
+    git submodule init
+    git submodule update
+
+
+Open iOSHandShadows.xcworkspace in Xcode
+
+The submodule depends on [IOS-Universal-Framework](https://github.com/kstenerud/iOS-Universal-Framework)
+and is built with the Real Framework option.
+
+## Including in your project
+
+1. Link against the built framework.
+2. Add "-ObjC++ -lstdc++" to the Other Linker Flags in the project's Settings
+3. #import <PerformanceBezier/PerformanceBezier.h>
+
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/3.0/us/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.
+
+For attribution, please include:
+
+1. Mention original author "Adam Wulf for Loose Leaf app"
+2. Link to https://getlooseleaf.com/opensource/
+3. Link to https://github.com/adamwulf/PerformanceBezier
+
+
+
+## Support this framework
+
+This code is created by Adam Wulf ([@adamwulf](https://twitter.com/adamwulf)) as a part of the [Loose Leaf app](https://getlooseleaf.com).
+
+[Buy the app](https://itunes.apple.com/us/app/loose-leaf/id625659452?mt=8&uo=4&at=10lNUI&ct=github) to show your support! :)

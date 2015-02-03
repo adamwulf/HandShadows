@@ -24,6 +24,7 @@
 		669219791A7FFF850025C4FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 669219781A7FFF850025C4FB /* Images.xcassets */; };
 		6692197C1A7FFF850025C4FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6692197A1A7FFF850025C4FB /* LaunchScreen.xib */; };
 		669219881A7FFF850025C4FB /* ios_hand_shadowsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 669219871A7FFF850025C4FB /* ios_hand_shadowsTests.m */; };
+		66A6D9201A805EFD00ACB45F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 66A6D91F1A805EFD00ACB45F /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		669219811A7FFF850025C4FB /* ios-hand-shadowsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-hand-shadowsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		669219861A7FFF850025C4FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		669219871A7FFF850025C4FB /* ios_hand_shadowsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ios_hand_shadowsTests.m; sourceTree = "<group>"; };
+		66A6D91F1A805EFD00ACB45F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 		6692195F1A7FFF840025C4FB = {
 			isa = PBXGroup;
 			children = (
+				66A6D91F1A805EFD00ACB45F /* README.md */,
 				6692196A1A7FFF850025C4FB /* ios-hand-shadows */,
 				669219841A7FFF850025C4FB /* ios-hand-shadowsTests */,
 				660E0FD51A80046500F19D8A /* Frameworks */,
@@ -304,6 +307,7 @@
 				660E0FC91A80021E00F19D8A /* UITouch+Distance.m in Sources */,
 				669219741A7FFF850025C4FB /* ViewController.m in Sources */,
 				660E0FBC1A8001F100F19D8A /* MMTwoFingerPanShadow.m in Sources */,
+				66A6D9201A805EFD00ACB45F /* README.md in Sources */,
 				669219711A7FFF850025C4FB /* AppDelegate.m in Sources */,
 				660E0FC31A8001F800F19D8A /* MMShadowHandView.m in Sources */,
 				660E0FCF1A8002BB00F19D8A /* NSThread+BlockAdditions.m in Sources */,
