@@ -34,7 +34,7 @@ and is built with the Real Framework option.
 
 1. Link against the built framework.
 2. Add "-ObjC++ -lstdc++" to the Other Linker Flags in the project's Settings
-3. #import <PerformanceBezier/PerformanceBezier.h>
+3. #import &lt;PerformanceBezier/PerformanceBezier.h&gt;
 
 ## License
 
