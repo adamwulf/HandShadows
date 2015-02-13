@@ -23,19 +23,8 @@
 		669219771A7FFF850025C4FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 669219751A7FFF850025C4FB /* Main.storyboard */; };
 		669219791A7FFF850025C4FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 669219781A7FFF850025C4FB /* Images.xcassets */; };
 		6692197C1A7FFF850025C4FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6692197A1A7FFF850025C4FB /* LaunchScreen.xib */; };
-		669219881A7FFF850025C4FB /* ios_hand_shadowsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 669219871A7FFF850025C4FB /* ios_hand_shadowsTests.m */; };
 		66A6D9201A805EFD00ACB45F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 66A6D91F1A805EFD00ACB45F /* README.md */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		669219821A7FFF850025C4FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 669219601A7FFF840025C4FB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 669219671A7FFF840025C4FB;
-			remoteInfo = "ios-hand-shadows";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		660E0FB51A8001F100F19D8A /* MMDrawingGestureShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawingGestureShadow.h; sourceTree = "<group>"; };
@@ -67,9 +56,6 @@
 		669219761A7FFF850025C4FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		669219781A7FFF850025C4FB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6692197B1A7FFF850025C4FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		669219811A7FFF850025C4FB /* ios-hand-shadowsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-hand-shadowsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		669219861A7FFF850025C4FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		669219871A7FFF850025C4FB /* ios_hand_shadowsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ios_hand_shadowsTests.m; sourceTree = "<group>"; };
 		66A6D91F1A805EFD00ACB45F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,13 +65,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				660E0FD41A8003FD00F19D8A /* PerformanceBezier.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6692197E1A7FFF850025C4FB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +123,6 @@
 			children = (
 				66A6D91F1A805EFD00ACB45F /* README.md */,
 				6692196A1A7FFF850025C4FB /* ios-hand-shadows */,
-				669219841A7FFF850025C4FB /* ios-hand-shadowsTests */,
 				660E0FD51A80046500F19D8A /* Frameworks */,
 				669219691A7FFF850025C4FB /* Products */,
 			);
@@ -154,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				669219681A7FFF850025C4FB /* ios-hand-shadows.app */,
-				669219811A7FFF850025C4FB /* ios-hand-shadowsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,23 +163,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		669219841A7FFF850025C4FB /* ios-hand-shadowsTests */ = {
-			isa = PBXGroup;
-			children = (
-				669219871A7FFF850025C4FB /* ios_hand_shadowsTests.m */,
-				669219851A7FFF850025C4FB /* Supporting Files */,
-			);
-			path = "ios-hand-shadowsTests";
-			sourceTree = "<group>";
-		};
-		669219851A7FFF850025C4FB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				669219861A7FFF850025C4FB /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -223,24 +183,6 @@
 			productReference = 669219681A7FFF850025C4FB /* ios-hand-shadows.app */;
 			productType = "com.apple.product-type.application";
 		};
-		669219801A7FFF850025C4FB /* ios-hand-shadowsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6692198E1A7FFF850025C4FB /* Build configuration list for PBXNativeTarget "ios-hand-shadowsTests" */;
-			buildPhases = (
-				6692197D1A7FFF850025C4FB /* Sources */,
-				6692197E1A7FFF850025C4FB /* Frameworks */,
-				6692197F1A7FFF850025C4FB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				669219831A7FFF850025C4FB /* PBXTargetDependency */,
-			);
-			name = "ios-hand-shadowsTests";
-			productName = "ios-hand-shadowsTests";
-			productReference = 669219811A7FFF850025C4FB /* ios-hand-shadowsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -252,10 +194,6 @@
 				TargetAttributes = {
 					669219671A7FFF840025C4FB = {
 						CreatedOnToolsVersion = 6.1.1;
-					};
-					669219801A7FFF850025C4FB = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 669219671A7FFF840025C4FB;
 					};
 				};
 			};
@@ -273,7 +211,6 @@
 			projectRoot = "";
 			targets = (
 				669219671A7FFF840025C4FB /* ios-hand-shadows */,
-				669219801A7FFF850025C4FB /* ios-hand-shadowsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -286,13 +223,6 @@
 				669219771A7FFF850025C4FB /* Main.storyboard in Resources */,
 				6692197C1A7FFF850025C4FB /* LaunchScreen.xib in Resources */,
 				669219791A7FFF850025C4FB /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6692197F1A7FFF850025C4FB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,23 +249,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6692197D1A7FFF850025C4FB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				669219881A7FFF850025C4FB /* ios_hand_shadowsTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		669219831A7FFF850025C4FB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 669219671A7FFF840025C4FB /* ios-hand-shadows */;
-			targetProxy = 669219821A7FFF850025C4FB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		669219751A7FFF850025C4FB /* Main.storyboard */ = {
@@ -465,40 +379,6 @@
 			};
 			name = Release;
 		};
-		6692198F1A7FFF850025C4FB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "ios-hand-shadowsTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-hand-shadows.app/ios-hand-shadows";
-			};
-			name = Debug;
-		};
-		669219901A7FFF850025C4FB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "ios-hand-shadowsTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-hand-shadows.app/ios-hand-shadows";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -516,15 +396,6 @@
 			buildConfigurations = (
 				6692198C1A7FFF850025C4FB /* Debug */,
 				6692198D1A7FFF850025C4FB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6692198E1A7FFF850025C4FB /* Build configuration list for PBXNativeTarget "ios-hand-shadowsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6692198F1A7FFF850025C4FB /* Debug */,
-				669219901A7FFF850025C4FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
