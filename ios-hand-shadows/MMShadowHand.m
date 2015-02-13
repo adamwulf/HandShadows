@@ -32,6 +32,7 @@
     BOOL isPinching;
     BOOL isPanning;
     BOOL isDrawing;
+    CGFloat recentTheta;
 }
 
 @synthesize layer;
@@ -135,6 +136,7 @@
     heldObject = obj;
     isPanning = YES;
     layer.opacity = .5;
+    recentTheta = CGFLOAT_MAX;
     [self continuePanningObject:obj withTouches:touches];
 }
 
@@ -179,6 +181,7 @@
     heldObject = obj;
     isPinching = YES;
     layer.opacity = .5;
+    recentTheta = CGFLOAT_MAX;
     [self continuePinchingObject:obj withTouches:touches];
 }
 -(void) continuePinchingObject:(id)obj withTouches:(NSArray*)touches{
@@ -233,6 +236,7 @@
 -(void) startDrawingAtTouch:(CGPoint)touch{
     isDrawing = YES;
     layer.opacity = .5;
+    recentTheta = CGFLOAT_MAX;
     [self continueDrawingAtTouch:touch];
 }
 -(void) continueDrawingAtTouch:(CGPoint)locationOfTouch{
@@ -273,6 +277,23 @@
         CGFloat theta = [[MMVector vectorWithX:1 andY:0] angleBetween:currVector];
         CGPoint offset = [twoFingerHelper locationOfIndexFingerInPathBounds];
         CGPoint finalLocation = CGPointMake(indexFingerLocation.x - offset.x, indexFingerLocation.y - offset.y);
+
+        NSLog(@"isright: %d  recentTheta: %f   theta: %f", isRight, recentTheta, theta);
+        if(recentTheta == CGFLOAT_MAX){
+            if(!isRight && theta < 0 && theta > -M_PI){
+                [self continuePanningWithIndexFinger:middleFingerLocation andMiddleFinger:indexFingerLocation];
+                return;
+            }
+            recentTheta = theta;
+            NSLog(@"isright: %d  setRecentTheta: %f", isRight, recentTheta);
+        }else if(ABS(recentTheta-theta) > M_PI/2 && ABS(recentTheta-theta) < M_PI*3/2){
+            [self continuePanningWithIndexFinger:middleFingerLocation andMiddleFinger:indexFingerLocation];
+            return;
+        }else{
+            recentTheta = theta;
+            NSLog(@"isright: %d  setRecentTheta: %f", isRight, recentTheta);
+        }
+
         layer.position = finalLocation;
         layer.affineTransform = CGAffineTransformTranslate(CGAffineTransformRotate(CGAffineTransformMakeTranslation(offset.x, offset.y), theta), -offset.x, -offset.y);
     }];
