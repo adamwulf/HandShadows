@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum HandType{
+    LEFTHAND,
+    RIGHTHAND
+}HandType;
+
 @interface MMShadowHandView : UIView
 
 // bezel
@@ -16,9 +21,9 @@
 -(void) endBezelingInFromRight:(BOOL)fromRight withTouches:(NSArray*)touches;
 
 // panning a page
--(void) startPanningObject:(id)obj withTouches:(NSArray*)touches;
--(void) continuePanningObject:(id)obj withTouches:(NSArray*)touches;
--(void) endPanningObject:(id)obj;
+-(void) startPanningObject:(id)obj withTouches:(NSArray*)touches forHand:(HandType)hand;
+-(void) continuePanningObject:(id)obj withTouches:(NSArray*)touches forHand:(HandType)hand;
+-(void) endPanningObject:(id)obj forHand:(HandType)hand;
 
 // pinch a page
 -(void) startPinchingObject:(id)obj withTouches:(NSArray*)touches;

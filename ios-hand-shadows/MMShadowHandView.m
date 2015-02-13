@@ -75,16 +75,28 @@
 
 #pragma mark - Panning a Page
 
--(void) startPanningObject:(id)obj withTouches:(NSArray*)touches{
-    [leftHand startPanningObject:obj withTouches:touches];
+-(void) startPanningObject:(id)obj withTouches:(NSArray*)touches forHand:(HandType)hand{
+    if(hand == RIGHTHAND){
+        [rightHand startPanningObject:obj withTouches:touches];
+    }else{
+        [leftHand startPanningObject:obj withTouches:touches];
+    }
 }
 
--(void) continuePanningObject:(id)obj withTouches:(NSArray*)touches{
-    [leftHand continuePanningObject:obj withTouches:touches];
+-(void) continuePanningObject:(id)obj withTouches:(NSArray*)touches forHand:(HandType)hand{
+    if(hand == RIGHTHAND){
+        [rightHand continuePanningObject:obj withTouches:touches];
+    }else{
+        [leftHand continuePanningObject:obj withTouches:touches];
+    }
 }
 
--(void) endPanningObject:(id)obj{
-    [leftHand endPanningObject:obj];
+-(void) endPanningObject:(id)obj forHand:(HandType)hand{
+    if(hand == RIGHTHAND){
+        [rightHand endPanningObject:obj];
+    }else{
+        [leftHand endPanningObject:obj];
+    }
 }
 
 
