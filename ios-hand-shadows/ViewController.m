@@ -90,7 +90,7 @@
 }
 
 -(void) pinch:(UIPanGestureRecognizer*)_panGesture{
-    NSLog(@"pan: %d", _panGesture.state);
+    NSLog(@"pan: %d", (int) _panGesture.state);
     if(_panGesture.numberOfTouches >= 2){
         CGPoint touch1 = [_panGesture locationOfTouch:0 inView:self.view];
         CGPoint touch2 = [_panGesture locationOfTouch:1 inView:self.view];
@@ -111,7 +111,7 @@
 }
 
 -(void) pan:(UIPanGestureRecognizer*)_panGesture{
-    NSLog(@"pan: %d", _panGesture.state);
+    NSLog(@"pan: %d", (int) _panGesture.state);
     if(_panGesture.numberOfTouches >= 2){
         CGPoint touch1 = [_panGesture locationOfTouch:0 inView:self.view];
         CGPoint touch2 = [_panGesture locationOfTouch:1 inView:self.view];
@@ -133,7 +133,7 @@
 
 
 -(void) finger:(UIPanGestureRecognizer*)_panGesture{
-    NSLog(@"pan: %d", _panGesture.state);
+    NSLog(@"pan: %d", (int) _panGesture.state);
     if(_panGesture.numberOfTouches == 1){
         CGPoint touch1 = [_panGesture locationOfTouch:0 inView:self.view];
         

@@ -16,14 +16,13 @@
 		660E0FC91A80021E00F19D8A /* UITouch+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FC81A80021E00F19D8A /* UITouch+Distance.m */; };
 		660E0FCC1A80022700F19D8A /* NSArray+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FCB1A80022700F19D8A /* NSArray+Extras.m */; };
 		660E0FCF1A8002BB00F19D8A /* NSThread+BlockAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FCE1A8002BB00F19D8A /* NSThread+BlockAdditions.m */; };
-		660E0FD41A8003FD00F19D8A /* PerformanceBezier.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660E0FD31A8003FD00F19D8A /* PerformanceBezier.framework */; };
 		6692196E1A7FFF850025C4FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6692196D1A7FFF850025C4FB /* main.m */; };
 		669219711A7FFF850025C4FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 669219701A7FFF850025C4FB /* AppDelegate.m */; };
 		669219741A7FFF850025C4FB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669219731A7FFF850025C4FB /* ViewController.m */; };
 		669219771A7FFF850025C4FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 669219751A7FFF850025C4FB /* Main.storyboard */; };
 		669219791A7FFF850025C4FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 669219781A7FFF850025C4FB /* Images.xcassets */; };
 		6692197C1A7FFF850025C4FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6692197A1A7FFF850025C4FB /* LaunchScreen.xib */; };
-		66A6D9201A805EFD00ACB45F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 66A6D91F1A805EFD00ACB45F /* README.md */; };
+		66AFAD811A8E943000FD0263 /* PerformanceBezier.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AFAD801A8E943000FD0263 /* PerformanceBezier.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +44,6 @@
 		660E0FCB1A80022700F19D8A /* NSArray+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extras.m"; sourceTree = "<group>"; };
 		660E0FCD1A8002BB00F19D8A /* NSThread+BlockAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSThread+BlockAdditions.h"; sourceTree = "<group>"; };
 		660E0FCE1A8002BB00F19D8A /* NSThread+BlockAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSThread+BlockAdditions.m"; sourceTree = "<group>"; };
-		660E0FD31A8003FD00F19D8A /* PerformanceBezier.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PerformanceBezier.framework; path = "submodules/PerformanceBezier/build/Debug-iphoneos/PerformanceBezier.framework"; sourceTree = "<group>"; };
 		669219681A7FFF850025C4FB /* ios-hand-shadows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-hand-shadows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6692196C1A7FFF850025C4FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6692196D1A7FFF850025C4FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -57,6 +55,7 @@
 		669219781A7FFF850025C4FB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6692197B1A7FFF850025C4FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		66A6D91F1A805EFD00ACB45F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		66AFAD801A8E943000FD0263 /* PerformanceBezier.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PerformanceBezier.framework; path = "submodules/PerformanceBezier/build/Debug-iphoneos/PerformanceBezier.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				660E0FD41A8003FD00F19D8A /* PerformanceBezier.framework in Frameworks */,
+				66AFAD811A8E943000FD0263 /* PerformanceBezier.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +97,7 @@
 		660E0FD51A80046500F19D8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				660E0FD31A8003FD00F19D8A /* PerformanceBezier.framework */,
+				66AFAD801A8E943000FD0263 /* PerformanceBezier.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -237,7 +236,6 @@
 				660E0FC91A80021E00F19D8A /* UITouch+Distance.m in Sources */,
 				669219741A7FFF850025C4FB /* ViewController.m in Sources */,
 				660E0FBC1A8001F100F19D8A /* MMTwoFingerPanShadow.m in Sources */,
-				66A6D9201A805EFD00ACB45F /* README.md in Sources */,
 				669219711A7FFF850025C4FB /* AppDelegate.m in Sources */,
 				660E0FC31A8001F800F19D8A /* MMShadowHandView.m in Sources */,
 				660E0FCF1A8002BB00F19D8A /* NSThread+BlockAdditions.m in Sources */,
