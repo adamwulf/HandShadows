@@ -117,8 +117,8 @@
     CGFloat theta = -interpolatedAngle.angle;
     CGFloat openTheta = -openAngle.angle;
     CGFloat closedTheta = -closedAngle.angle;
-    NSLog(@"open:%f   closed: %f   theta: %f", openTheta, closedTheta, theta);
-        
+//    NSLog(@"opactien:%f   closed: %f   theta: %f", openTheta, closedTheta, theta);
+    
     if(isnan(theta)){
         theta = 0;
     }
