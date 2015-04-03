@@ -61,15 +61,18 @@
 #pragma mark - Panning a Page
 
 -(void) startBezelingInFromRight:(BOOL)fromRight withTouches:(NSArray*)touches{
-    [leftHand startBezelingInFromRight:fromRight withTouches:touches];
+    NSLog(@"startBezelingInFromRight");
+    [rightHand startBezelingInFromRight:fromRight withTouches:touches];
 }
 
 -(void) continueBezelingInFromRight:(BOOL)fromRight withTouches:(NSArray*)touches{
-    [leftHand continueBezelingInFromRight:fromRight withTouches:touches];
+    NSLog(@"continueBezelingInFromRight");
+    [rightHand continueBezelingInFromRight:fromRight withTouches:touches];
 }
 
 -(void) endBezelingInFromRight:(BOOL)fromRight withTouches:(NSArray*)touches{
-    [leftHand endBezelingInFromRight:fromRight withTouches:touches];
+    NSLog(@"endBezelingInFromRight");
+    [rightHand endBezelingInFromRight:fromRight withTouches:touches];
 }
 
 
