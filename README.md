@@ -1,8 +1,7 @@
-iOS UIBezierPath Performance
+iOS Hand Shadows
 =====
 
-This code dramatically improves performance for common UIBezierPath operations, and it also
-brings UIBezierPath API closer to its NSBezierPath counterpart.
+This code allows you to quickly and easily integrate hand shadows that follow your app's gestures in real time, allowing you to record more descriptive and intuitive demo videos.
 
 ## What is this?
 
