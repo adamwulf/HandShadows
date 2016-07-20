@@ -10,6 +10,8 @@ for immersive tutorial and demo videos.
 
 Example: https://vine.co/v/OI2zM3bEIJx
 
+![Example image](https://github.com/adamwulf/ios-hand-shadows/raw/master/example.gif)
+
 
 ## Documentation
 
