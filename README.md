@@ -8,8 +8,8 @@ This code allows you to quickly and easily integrate hand shadows that follow yo
 This code lets you add hand shadows over your UI during your gestures, which makes
 for immersive tutorial and demo videos.
 
-Example: https://vine.co/v/OI2zM3bEIJx
-
+Example: 
+[vine url="https://vine.co/v/OI2zM3bEIJx"]
 
 ## Documentation
 
