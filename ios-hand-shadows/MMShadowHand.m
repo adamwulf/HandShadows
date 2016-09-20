@@ -268,12 +268,13 @@
     [twoFingerHelper setFingerDistance:distance];
     [self preventCALayerImplicitAnimation:^{
         layer.path = [twoFingerHelper pathForTouches:nil].CGPath;
-
+        
         MMVector* currVector = [MMVector vectorWithPoint:indexFingerLocation
                                                 andPoint:middleFingerLocation];
         if(!isRight){
             currVector = [currVector flip];
         }
+        
         CGFloat theta = [[MMVector vectorWithX:1 andY:0] angleBetween:currVector];
         CGPoint offset = [twoFingerHelper locationOfIndexFingerInPathBounds];
         CGPoint finalLocation = CGPointMake(indexFingerLocation.x - offset.x, indexFingerLocation.y - offset.y);
