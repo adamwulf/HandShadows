@@ -10,7 +10,8 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <QuartzCore/QuartzCore.h>
 #import "MMVector.h"
-#import <PerformanceBezier/PerformanceBezier.h>
+#import "UITouch+Distance.h"
+@import PerformanceBezier;
 
 @implementation MMThumbAndIndexShadow{
     BOOL isRight;

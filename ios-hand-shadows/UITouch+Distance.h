@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+CGFloat distance(CGPoint p1, CGPoint p2);
+
 @interface UITouch (Distance)
 
 -(CGFloat) distanceToTouch:(UITouch*)otherTouch;

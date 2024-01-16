@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import <QuartzCore/QuartzCore.h>
-#import <PerformanceBezier/PerformanceBezier.h>
+@import PerformanceBezier;
 
 @interface MMDrawingGestureShadow : NSObject{
     CGRect boundingBox;

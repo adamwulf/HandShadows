@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,7 +22,7 @@
 		669219771A7FFF850025C4FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 669219751A7FFF850025C4FB /* Main.storyboard */; };
 		669219791A7FFF850025C4FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 669219781A7FFF850025C4FB /* Images.xcassets */; };
 		6692197C1A7FFF850025C4FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6692197A1A7FFF850025C4FB /* LaunchScreen.xib */; };
-		66AFAD811A8E943000FD0263 /* PerformanceBezier.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AFAD801A8E943000FD0263 /* PerformanceBezier.framework */; };
+		C5E3D10E2B5703F20020B0AC /* PerformanceBezier in Frameworks */ = {isa = PBXBuildFile; productRef = C5E3D10D2B5703F20020B0AC /* PerformanceBezier */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66AFAD811A8E943000FD0263 /* PerformanceBezier.framework in Frameworks */,
+				C5E3D10E2B5703F20020B0AC /* PerformanceBezier in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +178,9 @@
 			dependencies = (
 			);
 			name = "ios-hand-shadows";
+			packageProductDependencies = (
+				C5E3D10D2B5703F20020B0AC /* PerformanceBezier */,
+			);
 			productName = "ios-hand-shadows";
 			productReference = 669219681A7FFF850025C4FB /* ios-hand-shadows.app */;
 			productType = "com.apple.product-type.application";
@@ -201,10 +204,14 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
 			mainGroup = 6692195F1A7FFF840025C4FB;
+			packageReferences = (
+				C5E3D10C2B5703F20020B0AC /* XCRemoteSwiftPackageReference "PerformanceBezier" */,
+			);
 			productRefGroup = 669219691A7FFF850025C4FB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -303,7 +310,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -339,7 +345,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -351,13 +356,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = W622AK4AJ4;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "ios-hand-shadows/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-ObjC++",
-					"-lstdc++",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -366,13 +367,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = W622AK4AJ4;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "ios-hand-shadows/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-ObjC++",
-					"-lstdc++",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -399,6 +396,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C5E3D10C2B5703F20020B0AC /* XCRemoteSwiftPackageReference "PerformanceBezier" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamwulf/PerformanceBezier";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C5E3D10D2B5703F20020B0AC /* PerformanceBezier */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5E3D10C2B5703F20020B0AC /* XCRemoteSwiftPackageReference "PerformanceBezier" */;
+			productName = PerformanceBezier;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 669219601A7FFF840025C4FB /* Project object */;
 }

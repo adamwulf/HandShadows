@@ -120,14 +120,14 @@
                                     [NSValue valueWithCGPoint:touch2]];
         
         if(_panGesture.state == UIGestureRecognizerStateBegan){
-            [shadowView startPanningObject:self.view withTouches:touchLocations];
+            [shadowView startPanningObject:self.view withTouches:touchLocations forHand:LEFTHAND];
         }else if(_panGesture.state == UIGestureRecognizerStateChanged){
-            [shadowView continuePanningObject:self.view withTouches:touchLocations];
+            [shadowView continuePanningObject:self.view withTouches:touchLocations forHand:LEFTHAND];
         }
     }
     if(_panGesture.state == UIGestureRecognizerStateEnded ||
        _panGesture.state == UIGestureRecognizerStateCancelled){
-        [shadowView endPanningObject:self.view];
+        [shadowView endPanningObject:self.view forHand:LEFTHAND];
     }
 }
 
