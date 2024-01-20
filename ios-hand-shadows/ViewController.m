@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "MMShadowHandView.h"
+@import HandShadows;
 
 @implementation ViewController{
     MMShadowHandView* shadowView;
@@ -84,21 +84,25 @@
 }
 
 
--(void) toggleGesture:(UISwitch*)aSwitch{
+-(void) toggleGesture:(UISwitch*)aSwitch {
     pinchGesture.enabled = pinchGestureSwitch.on;
     panGesture.enabled = panGestureSwitch.on;
 }
 
 -(void) pinch:(UIPanGestureRecognizer*)_panGesture{
-    NSLog(@"pan: %d", (int) _panGesture.state);
+    if(_panGesture.state == UIGestureRecognizerStateFailed ||
+       _panGesture.state == UIGestureRecognizerStateBegan ||
+          _panGesture.state == UIGestureRecognizerStateEnded ||
+       _panGesture.state == UIGestureRecognizerStateCancelled){
+        NSLog(@"pinch: %d", (int) _panGesture.state);
+    }
     if(_panGesture.numberOfTouches >= 2){
         CGPoint touch1 = [_panGesture locationOfTouch:0 inView:self.view];
         CGPoint touch2 = [_panGesture locationOfTouch:1 inView:self.view];
         
         NSArray* touchLocations = @[[NSValue valueWithCGPoint:touch1],
                                     [NSValue valueWithCGPoint:touch2]];
-        
-        if(_panGesture.state == UIGestureRecognizerStateBegan){
+        if(_panGesture.state == UIGestureRecognizerStateBegan) {
             [shadowView startPinchingObject:self.view withTouches:touchLocations];
         }else if(_panGesture.state == UIGestureRecognizerStateChanged){
             [shadowView continuePinchingObject:self.view withTouches:touchLocations];
@@ -110,8 +114,14 @@
     }
 }
 
+
 -(void) pan:(UIPanGestureRecognizer*)_panGesture{
-    NSLog(@"pan: %d", (int) _panGesture.state);
+    if(_panGesture.state == UIGestureRecognizerStateFailed ||
+       _panGesture.state == UIGestureRecognizerStateBegan ||
+          _panGesture.state == UIGestureRecognizerStateEnded ||
+       _panGesture.state == UIGestureRecognizerStateCancelled){
+        NSLog(@"pan: %d", (int) _panGesture.state);
+    }
     if(_panGesture.numberOfTouches >= 2){
         CGPoint touch1 = [_panGesture locationOfTouch:0 inView:self.view];
         CGPoint touch2 = [_panGesture locationOfTouch:1 inView:self.view];
@@ -120,20 +130,25 @@
                                     [NSValue valueWithCGPoint:touch2]];
         
         if(_panGesture.state == UIGestureRecognizerStateBegan){
-            [shadowView startPanningObject:self.view withTouches:touchLocations forHand:LEFTHAND];
+            [shadowView startPanningObject:self.view withTouches:touchLocations forHand:HandTypeLeftHand];
         }else if(_panGesture.state == UIGestureRecognizerStateChanged){
-            [shadowView continuePanningObject:self.view withTouches:touchLocations forHand:LEFTHAND];
+            [shadowView continuePanningObject:self.view withTouches:touchLocations forHand:HandTypeLeftHand];
         }
     }
     if(_panGesture.state == UIGestureRecognizerStateEnded ||
        _panGesture.state == UIGestureRecognizerStateCancelled){
-        [shadowView endPanningObject:self.view forHand:LEFTHAND];
+        [shadowView endPanningObject:self.view forHand:HandTypeLeftHand];
     }
 }
 
 
 -(void) finger:(UIPanGestureRecognizer*)_panGesture{
-    NSLog(@"pan: %d", (int) _panGesture.state);
+    if(_panGesture.state == UIGestureRecognizerStateFailed ||
+       _panGesture.state == UIGestureRecognizerStateBegan ||
+          _panGesture.state == UIGestureRecognizerStateEnded ||
+       _panGesture.state == UIGestureRecognizerStateCancelled){
+        NSLog(@"touch: %d", (int) _panGesture.state);
+    }
     if(_panGesture.numberOfTouches == 1){
         CGPoint touch1 = [_panGesture locationOfTouch:0 inView:self.view];
         
@@ -143,8 +158,9 @@
             [shadowView continueDrawingAtTouch:touch1];
         }
     }
-    if(_panGesture.state == UIGestureRecognizerStateEnded ||
-       _panGesture.state == UIGestureRecognizerStateCancelled){
+    if(_panGesture.state == UIGestureRecognizerStateFailed ||
+       _panGesture.state == UIGestureRecognizerStateEnded ||
+          _panGesture.state == UIGestureRecognizerStateCancelled){
         [shadowView endDrawing];
     }
 }

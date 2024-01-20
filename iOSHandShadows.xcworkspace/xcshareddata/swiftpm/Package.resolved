@@ -1,12 +1,30 @@
 {
   "pins" : [
     {
+      "identity" : "handshadows",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adamwulf/HandShadows",
+      "state" : {
+        "branch" : "main",
+        "revision" : "fd93770a7cbcbe3ec2eaabe5e591da0333133e77"
+      }
+    },
+    {
       "identity" : "performancebezier",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/adamwulf/PerformanceBezier",
       "state" : {
-        "revision" : "b3cc82221836a8ce1f0692033d58b1ff836c57f8",
-        "version" : "1.3.2"
+        "branch" : "main",
+        "revision" : "50a19e6f59adcc92d6c6956a0973b7a58ffe7925"
+      }
+    },
+    {
+      "identity" : "swifttoolbox",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adamwulf/SwiftToolbox",
+      "state" : {
+        "branch" : "main",
+        "revision" : "079406725355617d98d416ecc724f5b7116e5b3b"
       }
     }
   ],

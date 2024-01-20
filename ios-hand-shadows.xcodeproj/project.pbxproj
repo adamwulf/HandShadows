@@ -7,37 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		660E0FBB1A8001F100F19D8A /* MMDrawingGestureShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FB61A8001F100F19D8A /* MMDrawingGestureShadow.m */; };
-		660E0FBC1A8001F100F19D8A /* MMTwoFingerPanShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FB81A8001F100F19D8A /* MMTwoFingerPanShadow.m */; };
-		660E0FBD1A8001F100F19D8A /* MMThumbAndIndexShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FBA1A8001F100F19D8A /* MMThumbAndIndexShadow.m */; };
-		660E0FC21A8001F800F19D8A /* MMShadowHand.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FBF1A8001F800F19D8A /* MMShadowHand.m */; };
-		660E0FC31A8001F800F19D8A /* MMShadowHandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FC11A8001F800F19D8A /* MMShadowHandView.m */; };
-		660E0FC61A80020D00F19D8A /* MMVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FC51A80020D00F19D8A /* MMVector.m */; };
-		660E0FC91A80021E00F19D8A /* UITouch+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E0FC81A80021E00F19D8A /* UITouch+Distance.m */; };
 		6692196E1A7FFF850025C4FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6692196D1A7FFF850025C4FB /* main.m */; };
 		669219711A7FFF850025C4FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 669219701A7FFF850025C4FB /* AppDelegate.m */; };
 		669219741A7FFF850025C4FB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669219731A7FFF850025C4FB /* ViewController.m */; };
 		669219771A7FFF850025C4FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 669219751A7FFF850025C4FB /* Main.storyboard */; };
 		669219791A7FFF850025C4FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 669219781A7FFF850025C4FB /* Images.xcassets */; };
 		6692197C1A7FFF850025C4FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6692197A1A7FFF850025C4FB /* LaunchScreen.xib */; };
-		C5E3D10E2B5703F20020B0AC /* PerformanceBezier in Frameworks */ = {isa = PBXBuildFile; productRef = C5E3D10D2B5703F20020B0AC /* PerformanceBezier */; };
+		C5E3D1252B5B89B80020B0AC /* HandShadows in Frameworks */ = {isa = PBXBuildFile; productRef = C5E3D1242B5B89B80020B0AC /* HandShadows */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		660E0FB51A8001F100F19D8A /* MMDrawingGestureShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawingGestureShadow.h; sourceTree = "<group>"; };
-		660E0FB61A8001F100F19D8A /* MMDrawingGestureShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawingGestureShadow.m; sourceTree = "<group>"; };
-		660E0FB71A8001F100F19D8A /* MMTwoFingerPanShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTwoFingerPanShadow.h; sourceTree = "<group>"; };
-		660E0FB81A8001F100F19D8A /* MMTwoFingerPanShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTwoFingerPanShadow.m; sourceTree = "<group>"; };
-		660E0FB91A8001F100F19D8A /* MMThumbAndIndexShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMThumbAndIndexShadow.h; sourceTree = "<group>"; };
-		660E0FBA1A8001F100F19D8A /* MMThumbAndIndexShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMThumbAndIndexShadow.m; sourceTree = "<group>"; };
-		660E0FBE1A8001F800F19D8A /* MMShadowHand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMShadowHand.h; sourceTree = "<group>"; };
-		660E0FBF1A8001F800F19D8A /* MMShadowHand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMShadowHand.m; sourceTree = "<group>"; };
-		660E0FC01A8001F800F19D8A /* MMShadowHandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMShadowHandView.h; sourceTree = "<group>"; };
-		660E0FC11A8001F800F19D8A /* MMShadowHandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMShadowHandView.m; sourceTree = "<group>"; };
-		660E0FC41A80020D00F19D8A /* MMVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMVector.h; sourceTree = "<group>"; };
-		660E0FC51A80020D00F19D8A /* MMVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMVector.m; sourceTree = "<group>"; };
-		660E0FC71A80021E00F19D8A /* UITouch+Distance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch+Distance.h"; sourceTree = "<group>"; };
-		660E0FC81A80021E00F19D8A /* UITouch+Distance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+Distance.m"; sourceTree = "<group>"; };
 		669219681A7FFF850025C4FB /* ios-hand-shadows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-hand-shadows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6692196C1A7FFF850025C4FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6692196D1A7FFF850025C4FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -57,54 +36,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5E3D10E2B5703F20020B0AC /* PerformanceBezier in Frameworks */,
+				C5E3D1252B5B89B80020B0AC /* HandShadows in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		660E0FB31A8001C900F19D8A /* Shadow Views */ = {
-			isa = PBXGroup;
-			children = (
-				660E0FC01A8001F800F19D8A /* MMShadowHandView.h */,
-				660E0FC11A8001F800F19D8A /* MMShadowHandView.m */,
-			);
-			name = "Shadow Views";
-			sourceTree = "<group>";
-		};
-		660E0FB41A8001E700F19D8A /* Path Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				660E0FBE1A8001F800F19D8A /* MMShadowHand.h */,
-				660E0FBF1A8001F800F19D8A /* MMShadowHand.m */,
-				660E0FB51A8001F100F19D8A /* MMDrawingGestureShadow.h */,
-				660E0FB61A8001F100F19D8A /* MMDrawingGestureShadow.m */,
-				660E0FB71A8001F100F19D8A /* MMTwoFingerPanShadow.h */,
-				660E0FB81A8001F100F19D8A /* MMTwoFingerPanShadow.m */,
-				660E0FB91A8001F100F19D8A /* MMThumbAndIndexShadow.h */,
-				660E0FBA1A8001F100F19D8A /* MMThumbAndIndexShadow.m */,
-			);
-			name = "Path Helpers";
-			sourceTree = "<group>";
-		};
 		660E0FD51A80046500F19D8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				66AFAD801A8E943000FD0263 /* PerformanceBezier.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		660E0FD61A80051C00F19D8A /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				660E0FC71A80021E00F19D8A /* UITouch+Distance.h */,
-				660E0FC81A80021E00F19D8A /* UITouch+Distance.m */,
-				660E0FC41A80020D00F19D8A /* MMVector.h */,
-				660E0FC51A80020D00F19D8A /* MMVector.m */,
-			);
-			name = Categories;
 			sourceTree = "<group>";
 		};
 		6692195F1A7FFF840025C4FB = {
@@ -128,9 +72,6 @@
 		6692196A1A7FFF850025C4FB /* ios-hand-shadows */ = {
 			isa = PBXGroup;
 			children = (
-				660E0FD61A80051C00F19D8A /* Categories */,
-				660E0FB41A8001E700F19D8A /* Path Helpers */,
-				660E0FB31A8001C900F19D8A /* Shadow Views */,
 				6692196F1A7FFF850025C4FB /* AppDelegate.h */,
 				669219701A7FFF850025C4FB /* AppDelegate.m */,
 				669219721A7FFF850025C4FB /* ViewController.h */,
@@ -169,7 +110,7 @@
 			);
 			name = "ios-hand-shadows";
 			packageProductDependencies = (
-				C5E3D10D2B5703F20020B0AC /* PerformanceBezier */,
+				C5E3D1242B5B89B80020B0AC /* HandShadows */,
 			);
 			productName = "ios-hand-shadows";
 			productReference = 669219681A7FFF850025C4FB /* ios-hand-shadows.app */;
@@ -200,7 +141,7 @@
 			);
 			mainGroup = 6692195F1A7FFF840025C4FB;
 			packageReferences = (
-				C5E3D10C2B5703F20020B0AC /* XCRemoteSwiftPackageReference "PerformanceBezier" */,
+				C5E3D1232B5B89B80020B0AC /* XCRemoteSwiftPackageReference "HandShadows" */,
 			);
 			productRefGroup = 669219691A7FFF850025C4FB /* Products */;
 			projectDirPath = "";
@@ -229,16 +170,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				660E0FC91A80021E00F19D8A /* UITouch+Distance.m in Sources */,
 				669219741A7FFF850025C4FB /* ViewController.m in Sources */,
-				660E0FBC1A8001F100F19D8A /* MMTwoFingerPanShadow.m in Sources */,
 				669219711A7FFF850025C4FB /* AppDelegate.m in Sources */,
-				660E0FC31A8001F800F19D8A /* MMShadowHandView.m in Sources */,
-				660E0FBD1A8001F100F19D8A /* MMThumbAndIndexShadow.m in Sources */,
-				660E0FC21A8001F800F19D8A /* MMShadowHand.m in Sources */,
-				660E0FBB1A8001F100F19D8A /* MMDrawingGestureShadow.m in Sources */,
 				6692196E1A7FFF850025C4FB /* main.m in Sources */,
-				660E0FC61A80020D00F19D8A /* MMVector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,21 +320,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C5E3D10C2B5703F20020B0AC /* XCRemoteSwiftPackageReference "PerformanceBezier" */ = {
+		C5E3D1232B5B89B80020B0AC /* XCRemoteSwiftPackageReference "HandShadows" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/adamwulf/PerformanceBezier";
+			repositoryURL = "https://github.com/adamwulf/HandShadows";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.2;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C5E3D10D2B5703F20020B0AC /* PerformanceBezier */ = {
+		C5E3D1242B5B89B80020B0AC /* HandShadows */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C5E3D10C2B5703F20020B0AC /* XCRemoteSwiftPackageReference "PerformanceBezier" */;
-			productName = PerformanceBezier;
+			package = C5E3D1232B5B89B80020B0AC /* XCRemoteSwiftPackageReference "HandShadows" */;
+			productName = HandShadows;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
