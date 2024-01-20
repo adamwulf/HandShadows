@@ -75,11 +75,11 @@ public class MMShadowHandView: UIView {
 
     // Pinch
 
-    @objc public func startPinchingObject(_ obj: Any, withTouches touches: [UITouch]) {
+    @objc public func startPinchingObject(_ obj: Any, withTouches touches: [CGPoint]) {
         rightHand?.startPinchingObject(obj, withTouches: touches)
     }
 
-    @objc public func continuePinchingObject(_ obj: Any, withTouches touches: [UITouch]) {
+    @objc public func continuePinchingObject(_ obj: Any, withTouches touches: [CGPoint]) {
         rightHand?.continuePinchingObject(obj, withTouches: touches)
     }
 
