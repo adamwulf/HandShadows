@@ -13,7 +13,6 @@
 #import "MMTwoFingerPanShadow.h"
 #import "MMDrawingGestureShadow.h"
 #import "MMThumbAndIndexShadow.h"
-#import "NSArray+Extras.h"
 
 @implementation MMShadowHand{
     UIView* relativeView;
@@ -72,7 +71,7 @@
 #pragma mark - Bezeling Pages
 
 -(void) startBezelingInFromRight:(BOOL)fromRight withTouches:(NSArray*)touches{
-    activeTouches = [[touches asSet] copy];
+    activeTouches = [[NSSet setWithArray:touches] copy];
     isBezeling = YES;
     layer.opacity = .5;
     [self continueBezelingInFromRight:fromRight withTouches:touches];
@@ -121,7 +120,7 @@
 
 -(void) endBezelingInFromRight:(BOOL)fromRight withTouches:(NSArray*)touches{
     if(isBezeling){
-        if(![touches count] || [activeTouches isEqualToSet:[touches asSet]]){
+        if(![touches count] || [activeTouches isEqualToSet:[NSSet setWithArray:touches]]){
             activeTouches = nil;
             layer.opacity = 0;
             isBezeling = NO;

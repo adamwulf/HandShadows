@@ -11,7 +11,6 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <QuartzCore/QuartzCore.h>
 #import "MMTwoFingerPanShadow.h"
-#import "NSThread+BlockAdditions.h"
 #import "UITouch+Distance.h"
 #import "MMVector.h"
 #import "MMShadowHand.h"

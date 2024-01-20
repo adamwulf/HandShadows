@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "performancebezier",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adamwulf/PerformanceBezier",
+      "state" : {
+        "revision" : "b3cc82221836a8ce1f0692033d58b1ff836c57f8",
+        "version" : "1.3.2"
+      }
+    }
+  ],
+  "version" : 2
+}
