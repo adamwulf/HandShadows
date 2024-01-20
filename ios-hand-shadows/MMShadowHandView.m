@@ -18,7 +18,6 @@
 
 @implementation MMShadowHandView{
     MMDrawingGestureShadow* pointerFingerHelper;
-//    UISlider* slider;
     MMShadowHand* rightHand;
     MMShadowHand* leftHand;
 }
@@ -32,29 +31,13 @@
         
         leftHand = [[MMShadowHand alloc] initForRightHand:NO forView:self];
         rightHand = [[MMShadowHand alloc] initForRightHand:YES forView:self];
-        
-        
-//        slider = [[UISlider alloc] initWithFrame:CGRectMake(450, 50, 200, 40)];
-//        slider.value = 1;
-//        slider.minimumValue = 0;
-//        slider.maximumValue = 1;
-//        [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-//        
-//        [[NSThread mainThread] performBlock:^{
-//            [self.window addSubview:slider];
-//            [leftHand startPinchingObject:nil withTouches:nil];
-//        } afterDelay:.3];
-        
+
         
         [self.layer addSublayer:leftHand.layer];
         [self.layer addSublayer:rightHand.layer];
     }
     return self;
 }
-
-//-(void) sliderValueChanged:(UISlider*)_slider{
-//    [leftHand continuePinchingObject:nil withTouches:nil andDistance:_slider.value *400+40];
-//}
 
 
 
