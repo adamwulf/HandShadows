@@ -137,10 +137,8 @@ public class MMThumbAndIndexShadow: NSObject {
         }
 
         var theta = -interpolatedAngle.theta
-        let openTheta = -openAngle.theta
-        let closedTheta = -closedAngle.theta
-
-        print("open: \(openTheta)   closed: \(closedTheta)   theta: \(theta)")
+//        let openTheta = -openAngle.theta
+//        let closedTheta = -closedAngle.theta
 
         if theta.isNaN {
             theta = 0
