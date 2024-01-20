@@ -49,7 +49,7 @@ public class MMShadowHandView: UIView {
 
     // MARK: - Pan
 
-    @objc public func startPanningObject(_ obj: Any, withTouches touches: [UITouch], forHand hand: HandType) {
+    @objc public func startPanningObject(_ obj: Any, withTouches touches: [CGPoint], forHand hand: HandType) {
         if hand == .rightHand {
             rightHand?.startPanningObject(obj, withTouches: touches)
         } else {
@@ -57,7 +57,7 @@ public class MMShadowHandView: UIView {
         }
     }
 
-    @objc public func continuePanningObject(_ obj: Any, withTouches touches: [UITouch], forHand hand: HandType) {
+    @objc public func continuePanningObject(_ obj: Any, withTouches touches: [CGPoint], forHand hand: HandType) {
         if hand == .rightHand {
             rightHand?.continuePanningObject(obj, withTouches: touches)
         } else {
