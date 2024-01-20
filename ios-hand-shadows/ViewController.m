@@ -87,6 +87,7 @@
 -(void) toggleGesture:(UISwitch*)aSwitch {
     pinchGesture.enabled = pinchGestureSwitch.on;
     panGesture.enabled = panGestureSwitch.on;
+    indexGesture.enabled = indexGestureSwitch.on;
 }
 
 -(void) pinch:(UIPanGestureRecognizer*)_panGesture{
