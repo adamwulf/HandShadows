@@ -7,9 +7,9 @@
 
 import UIKit
 
-public enum HandType {
-    case leftHand
-    case rightHand
+@objc public enum HandType: Int {
+    case leftHand = 0
+    case rightHand = 1
 }
 
 public class MMShadowHandView: UIView {
@@ -35,21 +35,21 @@ public class MMShadowHandView: UIView {
 
     // MARK: - Right Bezel
 
-    public func startBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
+    @objc public func startBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
         rightHand?.startBezelingIn(fromRight: fromRight, withTouches: touches)
     }
 
-    public func continueBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
+    @objc public func continueBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
         rightHand?.continueBezelingIn(fromRight: fromRight, withTouches: touches)
     }
 
-    public func endBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
+    @objc public func endBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
         rightHand?.endBezelingIn(fromRight: fromRight, withTouches: touches)
     }
 
     // MARK: - Pan
 
-    public func startPanningObject(_ obj: Any, withTouches touches: [UITouch], forHand hand: HandType) {
+    @objc public func startPanningObject(_ obj: Any, withTouches touches: [UITouch], forHand hand: HandType) {
         if hand == .rightHand {
             rightHand?.startPanningObject(obj, withTouches: touches)
         } else {
@@ -57,7 +57,7 @@ public class MMShadowHandView: UIView {
         }
     }
 
-    public func continuePanningObject(_ obj: Any, withTouches touches: [UITouch], forHand hand: HandType) {
+    @objc public func continuePanningObject(_ obj: Any, withTouches touches: [UITouch], forHand hand: HandType) {
         if hand == .rightHand {
             rightHand?.continuePanningObject(obj, withTouches: touches)
         } else {
@@ -65,7 +65,7 @@ public class MMShadowHandView: UIView {
         }
     }
 
-    public func endPanningObject(_ obj: Any, forHand hand: HandType) {
+    @objc public func endPanningObject(_ obj: Any, forHand hand: HandType) {
         if hand == .rightHand {
             rightHand?.endPanningObject(obj)
         } else {
@@ -75,21 +75,21 @@ public class MMShadowHandView: UIView {
 
     // Pinch
 
-    public func startPinchingObject(_ obj: Any, withTouches touches: [UITouch]) {
+    @objc public func startPinchingObject(_ obj: Any, withTouches touches: [UITouch]) {
         rightHand?.startPinchingObject(obj, withTouches: touches)
     }
 
-    public func continuePinchingObject(_ obj: Any, withTouches touches: [UITouch]) {
+    @objc public func continuePinchingObject(_ obj: Any, withTouches touches: [UITouch]) {
         rightHand?.continuePinchingObject(obj, withTouches: touches)
     }
 
-    public func endPinchingObject(_ obj: Any) {
+    @objc public func endPinchingObject(_ obj: Any) {
         rightHand?.endPinchingObject(obj)
     }
 
     // MARK: - Touch
 
-    public func startDrawingAtTouch(_ touch: CGPoint) {
+    @objc public func startDrawingAtTouch(_ touch: CGPoint) {
         if !(rightHand?.isActive ?? false) {
             rightHand?.startDrawingAtTouch(touch)
         } else {
@@ -97,7 +97,7 @@ public class MMShadowHandView: UIView {
         }
     }
 
-    public func continueDrawingAtTouch(_ touch: CGPoint) {
+    @objc public func continueDrawingAtTouch(_ touch: CGPoint) {
         if rightHand?.isActive ?? false {
             rightHand?.continueDrawingAtTouch(touch)
         } else {
@@ -105,7 +105,7 @@ public class MMShadowHandView: UIView {
         }
     }
 
-    public func endDrawing() {
+    @objc public func endDrawing() {
         if rightHand?.isDrawing ?? false {
             rightHand?.endDrawing()
         }
