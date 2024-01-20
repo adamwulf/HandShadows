@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "performancebezier",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adamwulf/PerformanceBezier",
+      "state" : {
+        "branch" : "main",
+        "revision" : "50a19e6f59adcc92d6c6956a0973b7a58ffe7925"
+      }
+    },
+    {
+      "identity" : "swifttoolbox",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adamwulf/SwiftToolbox",
+      "state" : {
+        "branch" : "main",
+        "revision" : "079406725355617d98d416ecc724f5b7116e5b3b"
+      }
+    }
+  ],
+  "version" : 2
+}

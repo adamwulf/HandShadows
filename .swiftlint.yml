@@ -1,0 +1,40 @@
+child_config: .swiftlint_deprecated.yml
+disabled_rules: # rule identifiers to exclude from running
+  - notification_center_detachment
+  - large_tuple
+  - blanket_disable_command
+  - shorthand_operator
+  - trailing_comma
+  - force_cast
+  - identifier_name
+  - multiple_closures_with_trailing_closure
+  - cyclomatic_complexity
+  - function_body_length
+  - type_body_length
+  - file_length
+  - function_parameter_count
+  - weak_delegate
+  - xctfail_message
+  - force_try
+  - closure_parameter_position
+  - nesting
+  - type_name
+ 
+opt_in_rules: # some rules are only opt-in
+  - empty_count
+  - operator_usage_whitespace
+  - fatal_error_message
+  - first_where
+  - modifier_order
+
+line_length:
+  warning: 140
+  error: 500
+  ignores_comments: true
+  ignores_interpolated_strings: true
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+  - NetworkModel
+
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji, sonarqube, markdown)
