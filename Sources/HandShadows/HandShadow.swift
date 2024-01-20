@@ -170,20 +170,19 @@ public class HandShadow: NSObject {
             let distance = HandShadow.distanceBetweenPoint(indexFingerLocation, andPoint: middleFingerLocation)
 
             thumbAndIndexHelper.setFingerDistance(idealDistance: distance)
-            CATransaction.begin()
-            CATransaction.setDisableActions(true)
-            _layer.path = thumbAndIndexHelper.pathForTouches().cgPath
+            CATransaction.preventImplicitAnimation {
+                _layer.path = thumbAndIndexHelper.pathForTouches().cgPath
 
-            var currVector = CGVector(start: indexFingerLocation, end: middleFingerLocation)
-            if !isRight {
-                currVector = currVector.flipped()
+                var currVector = CGVector(start: indexFingerLocation, end: middleFingerLocation)
+                if !isRight {
+                    currVector.flip()
+                }
+                let theta = CGVector(dx: 1, dy: 0).angleBetween(currVector)
+                let offset = thumbAndIndexHelper.locationOfIndexFingerInPathBounds()
+                let finalLocation = CGPoint(x: indexFingerLocation.x - offset.x, y: indexFingerLocation.y - offset.y)
+                _layer.position = finalLocation
+                _layer.setAffineTransform(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
             }
-            let theta = CGVector(dx: 1, dy: 0).angleBetween(currVector)
-            let offset = thumbAndIndexHelper.locationOfIndexFingerInPathBounds()
-            let finalLocation = CGPoint(x: indexFingerLocation.x - offset.x, y: indexFingerLocation.y - offset.y)
-            _layer.position = finalLocation
-            _layer.setAffineTransform(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
-            CATransaction.commit()
         }
     }
 
@@ -214,14 +213,13 @@ public class HandShadow: NSObject {
         if !isDrawing {
             startDrawingAtTouch(locationOfTouch)
         }
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        _layer.path = pointerFingerHelper.path.cgPath
-        let offset = pointerFingerHelper.locationOfIndexFingerInPathBounds
-        let finalLocation = CGPoint(x: locationOfTouch.x - offset.x, y: locationOfTouch.y - offset.y)
-        _layer.position = finalLocation
-        _layer.setAffineTransform(.identity)
-        CATransaction.commit()
+        CATransaction.preventImplicitAnimation {
+            _layer.path = pointerFingerHelper.path.cgPath
+            let offset = pointerFingerHelper.locationOfIndexFingerInPathBounds
+            let finalLocation = CGPoint(x: locationOfTouch.x - offset.x, y: locationOfTouch.y - offset.y)
+            _layer.position = finalLocation
+            _layer.setAffineTransform(.identity)
+        }
     }
 
     public func endDrawing() {
@@ -240,42 +238,34 @@ public class HandShadow: NSObject {
     private func continuePanningWithIndexFinger(_ indexFingerLocation: CGPoint, andMiddleFinger middleFingerLocation: CGPoint) {
         let distance = HandShadow.distanceBetweenPoint(indexFingerLocation, andPoint: middleFingerLocation)
         twoFingerHelper.setFingerDistance(idealDistance: distance)
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        _layer.path = twoFingerHelper.pathForTouches().cgPath
+        CATransaction.preventImplicitAnimation {
+            _layer.path = twoFingerHelper.pathForTouches().cgPath
 
-        var currVector = CGVector(start: indexFingerLocation, end: middleFingerLocation)
-        if !isRight {
-            currVector = currVector.flipped()
-        }
+            var currVector = CGVector(start: indexFingerLocation, end: middleFingerLocation)
+            if !isRight {
+                currVector.flip()
+            }
 
-        let theta = CGVector(dx: 1, dy: 0).angleBetween(currVector)
-        let offset = twoFingerHelper.locationOfIndexFingerInPathBounds
-        let finalLocation = CGPoint(x: indexFingerLocation.x - offset.x, y: indexFingerLocation.y - offset.y)
+            let theta = CGVector(dx: 1, dy: 0).angleBetween(currVector)
+            let offset = twoFingerHelper.locationOfIndexFingerInPathBounds
+            let finalLocation = CGPoint(x: indexFingerLocation.x - offset.x, y: indexFingerLocation.y - offset.y)
 
-        if recentTheta == CGFloat.greatestFiniteMagnitude {
-            if !isRight && theta < 0 && theta > -CGFloat.pi {
+            if recentTheta == CGFloat.greatestFiniteMagnitude {
+                if !isRight && theta < 0 && theta > -CGFloat.pi {
+                    continuePanningWithIndexFinger(middleFingerLocation, andMiddleFinger: indexFingerLocation)
+                    return
+                }
+                recentTheta = theta
+            } else if abs(recentTheta-theta) > CGFloat.pi/2 && abs(recentTheta-theta) < CGFloat.pi*3/2 {
                 continuePanningWithIndexFinger(middleFingerLocation, andMiddleFinger: indexFingerLocation)
                 return
+            } else {
+                recentTheta = theta
             }
-            recentTheta = theta
-        } else if abs(recentTheta-theta) > CGFloat.pi/2 && abs(recentTheta-theta) < CGFloat.pi*3/2 {
-            continuePanningWithIndexFinger(middleFingerLocation, andMiddleFinger: indexFingerLocation)
-            return
-        } else {
-            recentTheta = theta
+
+            _layer.position = finalLocation
+            _layer.setAffineTransform(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
         }
-
-        _layer.position = finalLocation
-        _layer.setAffineTransform(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
-        CATransaction.commit()
-    }
-
-    func preventCALayerImplicitAnimation(_ block: () -> Void) {
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        block()
-        CATransaction.commit()
     }
 
     static func distanceBetweenPoint(_ p1: CGPoint, andPoint p2: CGPoint) -> CGFloat {

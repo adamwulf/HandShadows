@@ -123,13 +123,4 @@ public class MMShadowHandView: UIView {
     public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         return false
     }
-
-    // MARK: - CALayer Helper
-
-    private func preventCALayerImplicitAnimation(_ block: @escaping () -> Void) {
-        CATransaction.begin()
-        CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-        block()
-        CATransaction.commit()
-    }
 }

@@ -131,9 +131,9 @@ public class MMThumbAndIndexShadow: NSObject {
         var interpolatedAngle = CGVector(start: lastInterpolatedIndexFinger, end: lastInterpolatedThumb)
 
         if !isRight {
-            openAngle = openAngle.flipped()
-            closedAngle = closedAngle.flipped()
-            interpolatedAngle = interpolatedAngle.flipped()
+            openAngle.flip()
+            closedAngle.flip()
+            interpolatedAngle.flip()
         }
 
         var theta = -interpolatedAngle.theta
@@ -257,13 +257,6 @@ public class MMThumbAndIndexShadow: NSObject {
     }
 
     // MARK: - CALayer Helper
-
-    func preventCALayerImplicitAnimation(block: () -> Void) {
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        block()
-        CATransaction.commit()
-    }
 
     func flipPathAroundYAxis(path: UIBezierPath) {
         path.apply(CGAffineTransform(translationX: -boundingBox.size.width/2 - boundingBox.origin.x, y: 0))

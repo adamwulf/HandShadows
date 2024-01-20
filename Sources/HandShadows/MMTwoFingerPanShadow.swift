@@ -37,7 +37,6 @@ public class MMTwoFingerPanShadow: NSObject {
         self.closedMiddleFingerTipPath = paths.closedMiddleFingerTipPath
         self.openPath = paths.openPath
         self.closedPath = paths.closedPath
-        self.lastInterpolatedPath = self.openPath
 
         lastInterpolatedPath = openPath
         lastInterpolatedIndexFinger = openIndexFingerTipPath.center()
@@ -78,6 +77,7 @@ public class MMTwoFingerPanShadow: NSObject {
     // MARK: - Debug
 
     public func openTo(openPercent: CGFloat) {
+        assert(openPercent <= 1, "must be less than 1")
         lastInterpolatedPath = UIBezierPath()
 
         lastInterpolatedIndexFinger = CGPoint(x: openPercent * openIndexFingerTipPath.center().x + (1-openPercent) * closedIndexFingerTipPath.center().x,
