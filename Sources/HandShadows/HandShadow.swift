@@ -181,8 +181,8 @@ public class HandShadow: NSObject {
             let theta = CGVector(dx: 1, dy: 0).angleBetween(currVector)
             let offset = thumbAndIndexHelper.locationOfIndexFingerInPathBounds()
             let finalLocation = CGPoint(x: indexFingerLocation.x - offset.x, y: indexFingerLocation.y - offset.y)
-            layer.position = finalLocation
-            layer.setAffineTransform(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
+            _layer.position = finalLocation
+            _layer.setAffineTransform(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
             CATransaction.commit()
         }
     }
@@ -219,7 +219,8 @@ public class HandShadow: NSObject {
         _layer.path = pointerFingerHelper.path.cgPath
         let offset = pointerFingerHelper.locationOfIndexFingerInPathBounds
         let finalLocation = CGPoint(x: locationOfTouch.x - offset.x, y: locationOfTouch.y - offset.y)
-        layer.position = finalLocation
+        _layer.position = finalLocation
+        _layer.setAffineTransform(.identity)
         CATransaction.commit()
     }
 
