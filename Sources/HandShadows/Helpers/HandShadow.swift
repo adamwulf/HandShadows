@@ -162,9 +162,9 @@ class HandShadow: NSObject {
 
     private func continuePanningWithIndexFinger(_ indexFingerLocation: CGPoint, andMiddleFinger middleFingerLocation: CGPoint) {
         let distance = indexFingerLocation.distance(to: middleFingerLocation)
-        twoFingerPanHelper.setFingerDistance(idealDistance: distance)
+        let result = twoFingerPanHelper.setFingerDistance(idealDistance: distance)
         CATransaction.preventImplicitAnimation {
-            shapeLayer.path = twoFingerPanHelper.pathForTouches().cgPath
+            shapeLayer.path = result.path.cgPath
 
             var currVector = CGVector(start: indexFingerLocation, end: middleFingerLocation)
             if handType.isLeft {
@@ -172,7 +172,7 @@ class HandShadow: NSObject {
             }
 
             let theta = CGVector(dx: 1, dy: 0).angleBetween(currVector)
-            let offset = twoFingerPanHelper.locationOfIndexFingerInPathBounds
+            let offset = result.indexFinger
             let finalLocation = CGPoint(x: indexFingerLocation.x - offset.x, y: indexFingerLocation.y - offset.y)
 
             if recentTheta == CGFloat.greatestFiniteMagnitude {
