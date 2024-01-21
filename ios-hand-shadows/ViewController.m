@@ -7,10 +7,10 @@
 //
 
 #import "ViewController.h"
-#import "MMShadowHandView.h"
+@import HandShadows;
 
 @implementation ViewController{
-    MMShadowHandView* shadowView;
+    HandShadowView* shadowView;
     
     // index finger and thumb
     UIPanGestureRecognizer* pinchGesture;
@@ -31,10 +31,8 @@
     
     self.view.userInteractionEnabled = YES;
     
-    shadowView = [[MMShadowHandView alloc] initWithFrame:self.view.bounds];
+    shadowView = [[HandShadowView alloc] initForHand:HandTypeLeftHand];
     [self.view addSubview:shadowView];
-    
-    
     
     pinchGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
     pinchGesture.minimumNumberOfTouches = 2;
@@ -47,8 +45,6 @@
     [pinchGestureSwitch addTarget:self action:@selector(toggleGesture:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:pinchGestureSwitch];
     
-    
-    
     panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     panGesture.minimumNumberOfTouches = 2;
     [self.view addGestureRecognizer:panGesture];
@@ -59,8 +55,7 @@
     panGestureSwitch.on = NO;
     [panGestureSwitch addTarget:self action:@selector(toggleGesture:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:panGestureSwitch];
-    
-    
+
     indexGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(finger:)];
     indexGesture.maximumNumberOfTouches = 1;
     [self.view addGestureRecognizer:indexGesture];
@@ -71,10 +66,7 @@
     indexGestureSwitch.on = NO;
     [indexGestureSwitch addTarget:self action:@selector(toggleGesture:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:indexGestureSwitch];
-    
-    
-   
-    
+
     [self toggleGesture:nil];
 }
 
@@ -84,68 +76,62 @@
 }
 
 
--(void) toggleGesture:(UISwitch*)aSwitch{
+-(void) toggleGesture:(UISwitch*)aSwitch {
     pinchGesture.enabled = pinchGestureSwitch.on;
     panGesture.enabled = panGestureSwitch.on;
+    indexGesture.enabled = indexGestureSwitch.on;
 }
 
 -(void) pinch:(UIPanGestureRecognizer*)_panGesture{
-    NSLog(@"pan: %d", (int) _panGesture.state);
     if(_panGesture.numberOfTouches >= 2){
         CGPoint touch1 = [_panGesture locationOfTouch:0 inView:self.view];
         CGPoint touch2 = [_panGesture locationOfTouch:1 inView:self.view];
-        
-        NSArray* touchLocations = @[[NSValue valueWithCGPoint:touch1],
-                                    [NSValue valueWithCGPoint:touch2]];
-        
-        if(_panGesture.state == UIGestureRecognizerStateBegan){
-            [shadowView startPinchingObject:self.view withTouches:touchLocations];
+
+        if(_panGesture.state == UIGestureRecognizerStateBegan) {
+            [shadowView startPinchWith:touch1 and:touch2];
         }else if(_panGesture.state == UIGestureRecognizerStateChanged){
-            [shadowView continuePinchingObject:self.view withTouches:touchLocations];
+            [shadowView continuePinchWith:touch1 and:touch2];
         }
     }
     if(_panGesture.state == UIGestureRecognizerStateEnded ||
        _panGesture.state == UIGestureRecognizerStateCancelled){
-        [shadowView endPinchingObject:self.view];
+        [shadowView endPinch];
     }
 }
 
+
 -(void) pan:(UIPanGestureRecognizer*)_panGesture{
-    NSLog(@"pan: %d", (int) _panGesture.state);
     if(_panGesture.numberOfTouches >= 2){
         CGPoint touch1 = [_panGesture locationOfTouch:0 inView:self.view];
         CGPoint touch2 = [_panGesture locationOfTouch:1 inView:self.view];
         
-        NSArray* touchLocations = @[[NSValue valueWithCGPoint:touch1],
-                                    [NSValue valueWithCGPoint:touch2]];
-        
         if(_panGesture.state == UIGestureRecognizerStateBegan){
-            [shadowView startPanningObject:self.view withTouches:touchLocations];
+            [shadowView startTwoFingerPanWith:touch1 and:touch2];
         }else if(_panGesture.state == UIGestureRecognizerStateChanged){
-            [shadowView continuePanningObject:self.view withTouches:touchLocations];
+            [shadowView continueTwoFingerPanWith:touch1 and:touch2];
         }
     }
     if(_panGesture.state == UIGestureRecognizerStateEnded ||
        _panGesture.state == UIGestureRecognizerStateCancelled){
-        [shadowView endPanningObject:self.view];
+        [shadowView endTwoFingerPan];
     }
 }
 
 
 -(void) finger:(UIPanGestureRecognizer*)_panGesture{
-    NSLog(@"pan: %d", (int) _panGesture.state);
     if(_panGesture.numberOfTouches == 1){
-        CGPoint touch1 = [_panGesture locationOfTouch:0 inView:self.view];
+        CGPoint point = [_panGesture locationOfTouch:0 inView:self.view];
         
         if(_panGesture.state == UIGestureRecognizerStateBegan){
-            [shadowView startDrawingAtTouch:touch1];
+            [shadowView startPointingAt:point];
         }else if(_panGesture.state == UIGestureRecognizerStateChanged){
-            [shadowView continueDrawingAtTouch:touch1];
+            [shadowView continuePointingAt:point];
         }
     }
-    if(_panGesture.state == UIGestureRecognizerStateEnded ||
-       _panGesture.state == UIGestureRecognizerStateCancelled){
-        [shadowView endDrawing];
+    if(_panGesture.state == UIGestureRecognizerStateFailed ||
+       _panGesture.state == UIGestureRecognizerStateEnded ||
+          _panGesture.state == UIGestureRecognizerStateCancelled){
+        [shadowView endPointing];
     }
 }
 
