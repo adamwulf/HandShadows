@@ -32,14 +32,14 @@ public class HandShadowView: UIView {
 
     // MARK: - Pan
 
-    @objc public func startTwoFingerPan(withTouches touches: [CGPoint]) {
+    @objc public func startTwoFingerPan(with firstTouch: CGPoint, and secondTouch: CGPoint) {
         assert(!handShadow.isActive, "shadow already active")
-        handShadow.startTwoFingerPan(withTouches: touches)
+        handShadow.startTwoFingerPan(with: firstTouch, and: secondTouch)
     }
 
-    @objc public func continueTwoFingerPan(withTouches touches: [CGPoint]) {
+    @objc public func continueTwoFingerPan(with firstTouch: CGPoint, and secondTouch: CGPoint) {
         assert(handShadow.isPanning, "shadow is not panning")
-        handShadow.continueTwoFingerPan(withTouches: touches)
+        handShadow.continueTwoFingerPan(with: firstTouch, and: secondTouch)
     }
 
     @objc public func endTwoFingerPan() {

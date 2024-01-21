@@ -36,33 +36,29 @@ class HandShadow: NSObject {
 
     // MARK: - Panning a Page
 
-    func startTwoFingerPan(withTouches touches: [CGPoint]) {
+    func startTwoFingerPan(with firstPoint: CGPoint, and secondPoint: CGPoint) {
         assert(!isActive, "shadow must be inactive")
         guard !isActive else { return }
 
         isPanning = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
-        continueTwoFingerPan(withTouches: touches)
+        continueTwoFingerPan(with: firstPoint, and: secondPoint)
     }
 
-    func continueTwoFingerPan(withTouches touches: [CGPoint]) {
+    func continueTwoFingerPan(with firstPoint: CGPoint, and secondPoint: CGPoint) {
         assert(isPanning, "shadow must be panning")
         guard isPanning else { return }
 
-        if touches.count >= 2,
-           let firstTouch = touches.first,
-           let lastTouch = touches.last {
-            var indexFingerTouch = firstTouch
-            if handType.isLeft, lastTouch.x > indexFingerTouch.x {
-                indexFingerTouch = (touches.last as? NSValue)?.cgPointValue ?? CGPoint.zero
-            } else if handType.isRight, lastTouch.x < indexFingerTouch.x {
-                indexFingerTouch = (touches.last as? NSValue)?.cgPointValue ?? CGPoint.zero
-            }
-            let middleFingerTouch = CGPointEqualToPoint(firstTouch, indexFingerTouch) ? lastTouch : firstTouch
-
-            continuePanningWithIndexFinger(indexFingerTouch, andMiddleFinger: middleFingerTouch)
+        var indexFingerPoint = firstPoint
+        if handType.isLeft, secondPoint.x > indexFingerPoint.x {
+            indexFingerPoint = secondPoint
+        } else if handType.isRight, secondPoint.x < indexFingerPoint.x {
+            indexFingerPoint = secondPoint
         }
+        let middleFingerPoint = CGPointEqualToPoint(firstPoint, indexFingerPoint) ? secondPoint : firstPoint
+
+        continuePanningWithIndexFinger(indexFingerPoint, andMiddleFinger: middleFingerPoint)
     }
 
     func endTwoFingerPan() {
