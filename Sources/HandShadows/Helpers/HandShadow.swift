@@ -38,6 +38,8 @@ class HandShadow: NSObject {
 
     func startTwoFingerPan(withTouches touches: [CGPoint]) {
         assert(!isActive, "shadow must be inactive")
+        guard !isActive else { return }
+
         isPanning = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
@@ -46,10 +48,11 @@ class HandShadow: NSObject {
 
     func continueTwoFingerPan(withTouches touches: [CGPoint]) {
         assert(isPanning, "shadow must be panning")
+        guard isPanning else { return }
+
         if touches.count >= 2,
            let firstTouch = touches.first,
-           let lastTouch = touches.last
-        {
+           let lastTouch = touches.last {
             var indexFingerTouch = firstTouch
             if handType.isLeft, lastTouch.x > indexFingerTouch.x {
                 indexFingerTouch = (touches.last as? NSValue)?.cgPointValue ?? CGPoint.zero
@@ -64,6 +67,8 @@ class HandShadow: NSObject {
 
     func endTwoFingerPan() {
         assert(isPanning, "shadow must be panning")
+        guard isPanning else { return }
+
         isPanning = false
         layer.opacity = 0
     }
@@ -74,6 +79,8 @@ class HandShadow: NSObject {
 
     func startPinch(withTouches touches: [CGPoint]) {
         assert(!isActive, "shadow must be inactive")
+        guard !isActive else { return }
+
         isPinching = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
@@ -82,13 +89,16 @@ class HandShadow: NSObject {
 
     func continuePinch(withTouches touches: [CGPoint]) {
         assert(isPinching, "shadow must be pinching")
-        if touches.count >= 2 {
-            var indexFingerLocation = (touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero
-            if let lastTouch = (touches.last as? NSValue)?.cgPointValue, lastTouch.y < indexFingerLocation.y {
+        guard isPinching else { return }
+
+        if touches.count >= 2,
+           let firstTouch = touches.first,
+           let lastTouch = touches.last {
+            var indexFingerLocation = firstTouch
+            if lastTouch.y < indexFingerLocation.y {
                 indexFingerLocation = lastTouch
             }
-            let middleFingerLocation = CGPointEqualToPoint((touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero, indexFingerLocation) ? (touches.last as? NSValue)?.cgPointValue ?? CGPoint.zero : (touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero
-
+            let middleFingerLocation = CGPointEqualToPoint(firstTouch, indexFingerLocation) ? lastTouch : firstTouch
             let distance = indexFingerLocation.distance(to: middleFingerLocation)
 
             pinchHelper.setFingerDistance(idealDistance: distance)
@@ -110,6 +120,8 @@ class HandShadow: NSObject {
 
     func endPinch() {
         assert(isPinching, "shadow must be pinching")
+        guard isPinching else { return }
+
         isPinching = false
         layer.opacity = 0
     }
@@ -118,6 +130,8 @@ class HandShadow: NSObject {
 
     func startPointing(at point: CGPoint) {
         assert(!isActive, "shadow must be inactive")
+        guard !isActive else { return }
+
         isPointing = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
@@ -126,6 +140,8 @@ class HandShadow: NSObject {
 
     func continuePointing(at point: CGPoint) {
         assert(isPointing, "shadow must be pointing")
+        guard isPointing else { return }
+
         CATransaction.preventImplicitAnimation {
             shapeLayer.path = pointerFingerHelper.path.cgPath
             let offset = pointerFingerHelper.locationOfIndexFingerInPathBounds
@@ -137,6 +153,8 @@ class HandShadow: NSObject {
 
     func endPointing() {
         assert(isPointing, "shadow must be pointing")
+        guard isPointing else { return }
+
         isPointing = false
         layer.opacity = 0
     }
