@@ -2,21 +2,18 @@ import SwiftToolbox
 import UIKit
 
 class HandShadow: NSObject {
-    let handType: HandType
+    private(set) var isPinching: Bool = false
+    private(set) var isPanning: Bool = false
+    private(set) var isPointing: Bool = false
 
-    var pointerFingerHelper: IndexFingerShadow
-    var twoFingerHelper: IndexMiddleFingerShadow
-    var thumbAndIndexHelper: ThumbAndIndexShadow
+    private let pointerFingerHelper: IndexFingerShadow
+    private let twoFingerHelper: IndexMiddleFingerShadow
+    private let thumbAndIndexHelper: ThumbAndIndexShadow
+    private var recentTheta: CGFloat = 0.0
 
-    var isPinching: Bool = false
-    var isPanning: Bool = false
-    private(set) var isDrawing: Bool = false
-    var recentTheta: CGFloat = 0.0
-
-    private var _layer: CAShapeLayer
+    private let _layer: CAShapeLayer
     var layer: CALayer { _layer }
-
-    var heldObject: Any?
+    let handType: HandType
 
     init(for hand: HandType) {
         handType = hand
@@ -34,25 +31,21 @@ class HandShadow: NSObject {
     }
 
     var isActive: Bool {
-        return isPanning || isDrawing || isPinching
+        return isPanning || isPointing || isPinching
     }
 
     // MARK: - Panning a Page
 
-    func startPanningObject(_ obj: Any?, withTouches touches: [CGPoint]) {
-        heldObject = obj
+    func startPanningObject(withTouches touches: [CGPoint]) {
         isPanning = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
-        continuePanningObject(obj, withTouches: touches)
+        continuePanningObject(withTouches: touches)
     }
 
-    func continuePanningObject(_ obj: Any?, withTouches touches: [CGPoint]) {
+    func continuePanningObject(withTouches touches: [CGPoint]) {
         if !isPanning {
-            startPanningObject(obj, withTouches: touches)
-        }
-        if obj as AnyObject? !== heldObject as AnyObject? {
-            fatalError("ShadowException: Asked to pan different object than what's held.")
+            startPanningObject(withTouches: touches)
         }
         if touches.count >= 2,
            let firstTouch = touches.first,
@@ -70,13 +63,9 @@ class HandShadow: NSObject {
         }
     }
 
-    func endPanningObject(_ obj: Any?) {
-        if obj as AnyObject? !== heldObject as AnyObject? {
-            fatalError("ShadowException: Asked to stop holding different object than what's held.")
-        }
+    func endPanningObject() {
         if isPanning {
             isPanning = false
-            heldObject = nil
             layer.opacity = 0
         }
     }
@@ -85,20 +74,16 @@ class HandShadow: NSObject {
 
     // Pinching a Page
 
-    func startPinchingObject(_ obj: Any?, withTouches touches: [CGPoint]) {
-        heldObject = obj
+    func startPinchingObject(withTouches touches: [CGPoint]) {
         isPinching = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
-        continuePinchingObject(obj, withTouches: touches)
+        continuePinchingObject(withTouches: touches)
     }
 
-    func continuePinchingObject(_ obj: Any?, withTouches touches: [CGPoint]) {
+    func continuePinchingObject(withTouches touches: [CGPoint]) {
         guard isPinching else {
             return
-        }
-        guard obj as? NSObject == heldObject as? NSObject else {
-            fatalError("ShadowException: Asked to pinch different object than what's held.")
         }
         if touches.count >= 2 {
             var indexFingerLocation = (touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero
@@ -126,13 +111,9 @@ class HandShadow: NSObject {
         }
     }
 
-    func endPinchingObject(_ obj: Any?) {
-        guard obj as? NSObject == heldObject as? NSObject else {
-            fatalError("ShadowException: Asked to stop holding different object than what's held.")
-        }
+    func endPinchingObject() {
         if isPinching {
             isPinching = false
-            heldObject = nil
             layer.opacity = 0
         }
     }
@@ -140,14 +121,14 @@ class HandShadow: NSObject {
     // MARK: - Drawing Events
 
     func startDrawingAtTouch(_ touch: CGPoint) {
-        isDrawing = true
+        isPointing = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
         continueDrawingAtTouch(touch)
     }
 
     func continueDrawingAtTouch(_ locationOfTouch: CGPoint) {
-        if !isDrawing {
+        if !isPointing {
             startDrawingAtTouch(locationOfTouch)
         }
         CATransaction.preventImplicitAnimation {
@@ -160,8 +141,8 @@ class HandShadow: NSObject {
     }
 
     func endDrawing() {
-        if isDrawing {
-            isDrawing = false
+        if isPointing {
+            isPointing = false
             if !isPanning {
                 layer.opacity = 0
             }

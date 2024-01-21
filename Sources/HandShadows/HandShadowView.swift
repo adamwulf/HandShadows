@@ -30,42 +30,42 @@ public class HandShadowView: UIView {
 
     // MARK: - Pan
 
-    @objc public func startPanningObject(_ obj: Any, withTouches touches: [CGPoint], forHand hand: HandType) {
+    @objc public func startPanningObject(withTouches touches: [CGPoint], forHand hand: HandType) {
         if hand.isRight {
-            rightHand.startPanningObject(obj, withTouches: touches)
+            rightHand.startPanningObject(withTouches: touches)
         } else {
-            leftHand.startPanningObject(obj, withTouches: touches)
+            leftHand.startPanningObject(withTouches: touches)
         }
     }
 
-    @objc public func continuePanningObject(_ obj: Any, withTouches touches: [CGPoint], forHand hand: HandType) {
+    @objc public func continuePanningObject(withTouches touches: [CGPoint], forHand hand: HandType) {
         if hand.isRight {
-            rightHand.continuePanningObject(obj, withTouches: touches)
+            rightHand.continuePanningObject(withTouches: touches)
         } else {
-            leftHand.continuePanningObject(obj, withTouches: touches)
+            leftHand.continuePanningObject(withTouches: touches)
         }
     }
 
-    @objc public func endPanningObject(_ obj: Any, forHand hand: HandType) {
+    @objc public func endPanningObject(forHand hand: HandType) {
         if hand.isRight {
-            rightHand.endPanningObject(obj)
+            rightHand.endPanningObject()
         } else {
-            leftHand.endPanningObject(obj)
+            leftHand.endPanningObject()
         }
     }
 
     // Pinch
 
-    @objc public func startPinchingObject(_ obj: Any, withTouches touches: [CGPoint]) {
-        rightHand.startPinchingObject(obj, withTouches: touches)
+    @objc public func startPinchingObject(withTouches touches: [CGPoint]) {
+        rightHand.startPinchingObject(withTouches: touches)
     }
 
-    @objc public func continuePinchingObject(_ obj: Any, withTouches touches: [CGPoint]) {
-        rightHand.continuePinchingObject(obj, withTouches: touches)
+    @objc public func continuePinchingObject(withTouches touches: [CGPoint]) {
+        rightHand.continuePinchingObject(withTouches: touches)
     }
 
-    @objc public func endPinchingObject(_ obj: Any) {
-        rightHand.endPinchingObject(obj)
+    @objc public func endPinchingObject() {
+        rightHand.endPinchingObject()
     }
 
     // MARK: - Touch
@@ -87,10 +87,10 @@ public class HandShadowView: UIView {
     }
 
     @objc public func endDrawing() {
-        if rightHand.isDrawing {
+        if rightHand.isPointing {
             rightHand.endDrawing()
         }
-        if leftHand.isDrawing {
+        if leftHand.isPointing {
             leftHand.endDrawing()
         }
     }
