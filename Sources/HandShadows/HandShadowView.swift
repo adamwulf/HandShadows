@@ -7,11 +7,6 @@
 
 import UIKit
 
-@objc public enum HandType: Int {
-    case leftHand = 0
-    case rightHand = 1
-}
-
 public class HandShadowView: UIView {
     let rightHand: HandShadow
     let leftHand: HandShadow
@@ -36,7 +31,7 @@ public class HandShadowView: UIView {
     // MARK: - Pan
 
     @objc public func startPanningObject(_ obj: Any, withTouches touches: [CGPoint], forHand hand: HandType) {
-        if hand == .rightHand {
+        if hand.isRight {
             rightHand.startPanningObject(obj, withTouches: touches)
         } else {
             leftHand.startPanningObject(obj, withTouches: touches)
@@ -44,7 +39,7 @@ public class HandShadowView: UIView {
     }
 
     @objc public func continuePanningObject(_ obj: Any, withTouches touches: [CGPoint], forHand hand: HandType) {
-        if hand == .rightHand {
+        if hand.isRight {
             rightHand.continuePanningObject(obj, withTouches: touches)
         } else {
             leftHand.continuePanningObject(obj, withTouches: touches)
@@ -52,7 +47,7 @@ public class HandShadowView: UIView {
     }
 
     @objc public func endPanningObject(_ obj: Any, forHand hand: HandType) {
-        if hand == .rightHand {
+        if hand.isRight {
             rightHand.endPanningObject(obj)
         } else {
             leftHand.endPanningObject(obj)

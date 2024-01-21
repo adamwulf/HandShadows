@@ -43,7 +43,7 @@ class ThumbAndIndexShadow: NSObject {
 
         super.init()
 
-        if handType == .rightHand {
+        if handType.isRight {
             flipPathAroundYAxis(path: openPath)
             flipPathAroundYAxis(path: closedPath)
             flipPathAroundYAxis(path: openThumbTipPath)
@@ -110,7 +110,7 @@ class ThumbAndIndexShadow: NSObject {
 
         var interpolatedAngle = CGVector(start: lastInterpolatedIndexFinger, end: lastInterpolatedThumb)
 
-        if handType == .leftHand {
+        if handType.isLeft {
             openAngle.flip()
             closedAngle.flip()
             interpolatedAngle.flip()

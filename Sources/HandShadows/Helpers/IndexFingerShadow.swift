@@ -28,7 +28,7 @@ class IndexFingerShadow: NSObject {
 
         super.init()
 
-        if handType == .leftHand {
+        if handType.isLeft {
             flipPathAroundYAxis(pointerFingerPath)
             flipPathAroundYAxis(indexFingerTipPath)
         }

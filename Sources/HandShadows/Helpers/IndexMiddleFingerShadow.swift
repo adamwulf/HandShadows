@@ -43,7 +43,7 @@ class IndexMiddleFingerShadow: NSObject {
 
         super.init()
 
-        if hand == .rightHand {
+        if hand.isRight {
             flipPathAroundYAxis(openPath)
             flipPathAroundYAxis(closedPath)
 
@@ -107,7 +107,7 @@ class IndexMiddleFingerShadow: NSObject {
         }
 
         var initialFingerAngle = CGVector(start: lastInterpolatedIndexFinger, end: lastInterpolatedMiddleFinger)
-        if handType == .leftHand {
+        if handType.isLeft {
             initialFingerAngle.flip()
         }
         let theta = -initialFingerAngle.theta
