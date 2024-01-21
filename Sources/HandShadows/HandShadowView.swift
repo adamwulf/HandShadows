@@ -32,43 +32,52 @@ public class HandShadowView: UIView {
 
     // MARK: - Pan
 
-    @objc public func startPanningObject(withTouches touches: [CGPoint]) {
+    @objc public func startTwoFingerPan(withTouches touches: [CGPoint]) {
+        assert(!handShadow.isActive, "shadow already active")
         handShadow.startPanningObject(withTouches: touches)
     }
 
-    @objc public func continuePanningObject(withTouches touches: [CGPoint]) {
+    @objc public func continueTwoFingerPan(withTouches touches: [CGPoint]) {
+        assert(handShadow.isPanning, "shadow is not panning")
         handShadow.continuePanningObject(withTouches: touches)
     }
 
-    @objc public func endPanningObject() {
+    @objc public func endTwoFingerPan() {
+        assert(handShadow.isPanning, "shadow is not panning")
         handShadow.endPanningObject()
     }
 
     // MARK: - Pinch
 
-    @objc public func startPinchingObject(withTouches touches: [CGPoint]) {
+    @objc public func startPinch(withTouches touches: [CGPoint]) {
+        assert(!handShadow.isActive, "shadow already active")
         handShadow.startPinchingObject(withTouches: touches)
     }
 
-    @objc public func continuePinchingObject(withTouches touches: [CGPoint]) {
+    @objc public func continuePinch(withTouches touches: [CGPoint]) {
+        assert(handShadow.isPinching, "shadow is not pinching")
         handShadow.continuePinchingObject(withTouches: touches)
     }
 
-    @objc public func endPinchingObject() {
+    @objc public func endPinch() {
+        assert(handShadow.isPinching, "shadow is not pinching")
         handShadow.endPinchingObject()
     }
 
     // MARK: - Index Finger Pointing
 
     @objc public func startPointing(at touch: CGPoint) {
+        assert(!handShadow.isActive, "shadow already active")
         handShadow.startDrawing(at: touch)
     }
 
     @objc public func continuePointing(at touch: CGPoint) {
+        assert(handShadow.isPointing, "shadow is not pointing")
         handShadow.continueDrawing(at: touch)
     }
 
     @objc public func endPointing() {
+        assert(handShadow.isPointing, "shadow is not pointing")
         handShadow.endDrawing()
     }
 
