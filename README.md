@@ -9,4 +9,4 @@ You can find the Swift package for hand shadows at https://github.com/adamwulf/H
 
 ## Example
 
-![Example image](https://github.com/adamwulf/ios-hand-shadows/raw/master/example.gif)
+![Example image](https://github.com/adamwulf/ios-hand-shadows/raw/main/example.gif)
