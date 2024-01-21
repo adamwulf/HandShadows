@@ -1,7 +1,7 @@
-import UIKit
 import SwiftToolbox
+import UIKit
 
-public class HandShadow: NSObject {
+class HandShadow: NSObject {
     var relativeView: UIView
 
     var isRight: Bool = false
@@ -15,14 +15,13 @@ public class HandShadow: NSObject {
     var isBezeling: Bool = false
     var isPinching: Bool = false
     var isPanning: Bool = false
-    public private(set) var isDrawing: Bool = false
+    private(set) var isDrawing: Bool = false
     var recentTheta: CGFloat = 0.0
 
     private var _layer: CAShapeLayer
-    public var layer: CALayer {
-        get { _layer }
-    }
-    public var heldObject: Any?
+    var layer: CALayer { _layer }
+
+    var heldObject: Any?
 
     init(isRight: Bool, relativeView: UIView) {
         self.isRight = isRight
@@ -40,21 +39,20 @@ public class HandShadow: NSObject {
         super.init()
     }
 
-    public var isActive: Bool {
+    var isActive: Bool {
         return isBezeling || isPanning || isDrawing || isPinching
     }
 
     // MARK: - Bezeling Pages
 
-    public func startBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
-        print("start bezel")
+    func startBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
         activeTouches = Set(touches)
         isBezeling = true
         layer.opacity = 0.5
         continueBezelingIn(fromRight: fromRight, withTouches: touches)
     }
 
-    public func continueBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
+    func continueBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
         if !isBezeling {
             startBezelingIn(fromRight: fromRight, withTouches: touches)
             return
@@ -87,8 +85,7 @@ public class HandShadow: NSObject {
         continuePanningWithIndexFinger(indexFingerLocation, andMiddleFinger: middleFingerLocation)
     }
 
-    public func endBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
-        print("end bezel")
+    func endBezelingIn(fromRight _: Bool, withTouches touches: [UITouch]) {
         if isBezeling {
             if touches.isEmpty || activeTouches == Set(touches) {
                 activeTouches = nil
@@ -101,7 +98,6 @@ public class HandShadow: NSObject {
     // MARK: - Panning a Page
 
     func startPanningObject(_ obj: Any?, withTouches touches: [Any]?) {
-        print("start pan")
         heldObject = obj
         isPanning = true
         layer.opacity = 0.5
@@ -130,7 +126,6 @@ public class HandShadow: NSObject {
     }
 
     func endPanningObject(_ obj: Any?) {
-        print("end pan")
         if obj as AnyObject? !== heldObject as AnyObject? {
             fatalError("ShadowException: Asked to stop holding different object than what's held.")
         }
@@ -141,11 +136,12 @@ public class HandShadow: NSObject {
             layer.opacity = 0
         }
     }
+
     // MARK: - Pinching a Page
+
     // Pinching a Page
 
     func startPinchingObject(_ obj: Any?, withTouches touches: [Any]?) {
-        print("start pinch")
         heldObject = obj
         isPinching = true
         layer.opacity = 0.5
@@ -187,7 +183,6 @@ public class HandShadow: NSObject {
     }
 
     func endPinchingObject(_ obj: Any?) {
-        print("end pinch")
         guard obj as? NSObject == heldObject as? NSObject else {
             fatalError("ShadowException: Asked to stop holding different object than what's held.")
         }
@@ -201,15 +196,14 @@ public class HandShadow: NSObject {
 
     // MARK: - Drawing Events
 
-    public func startDrawingAtTouch(_ touch: CGPoint) {
-        print("start draw")
+    func startDrawingAtTouch(_ touch: CGPoint) {
         isDrawing = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
         continueDrawingAtTouch(touch)
     }
 
-    public func continueDrawingAtTouch(_ locationOfTouch: CGPoint) {
+    func continueDrawingAtTouch(_ locationOfTouch: CGPoint) {
         if !isDrawing {
             startDrawingAtTouch(locationOfTouch)
         }
@@ -222,8 +216,7 @@ public class HandShadow: NSObject {
         }
     }
 
-    public func endDrawing() {
-        print("end draw")
+    func endDrawing() {
         if isDrawing {
             activeTouches = nil
             isDrawing = false
@@ -256,7 +249,7 @@ public class HandShadow: NSObject {
                     return
                 }
                 recentTheta = theta
-            } else if abs(recentTheta-theta) > CGFloat.pi/2 && abs(recentTheta-theta) < CGFloat.pi*3/2 {
+            } else if abs(recentTheta - theta) > CGFloat.pi / 2 && abs(recentTheta - theta) < CGFloat.pi * 3 / 2 {
                 continuePanningWithIndexFinger(middleFingerLocation, andMiddleFinger: indexFingerLocation)
                 return
             } else {

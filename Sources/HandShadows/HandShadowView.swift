@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  HandShadowView.swift
+//
 //
 //  Created by Adam Wulf on 1/19/24.
 //
@@ -17,19 +17,20 @@ public class HandShadowView: UIView {
     var rightHand: HandShadow?
     var leftHand: HandShadow?
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         leftHand = HandShadow(isRight: false, relativeView: self)
         rightHand = HandShadow(isRight: true, relativeView: self)
 
-        self.backgroundColor = .clear
-        self.isOpaque = false
+        backgroundColor = .clear
+        isOpaque = false
 
-        self.layer.addSublayer(leftHand!.layer)
-        self.layer.addSublayer(rightHand!.layer)
+        layer.addSublayer(leftHand!.layer)
+        layer.addSublayer(rightHand!.layer)
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -116,11 +117,11 @@ public class HandShadowView: UIView {
 
     // MARK: - Ignore Touches
 
-    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    override public func hitTest(_: CGPoint, with _: UIEvent?) -> UIView? {
         return nil
     }
 
-    public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    override public func point(inside _: CGPoint, with _: UIEvent?) -> Bool {
         return false
     }
 }

@@ -1,23 +1,23 @@
 //
-//  File.swift
-//  
+//  IndexFingerShadow.swift
+//
 //
 //  Created by Adam Wulf on 1/19/24.
 //
 
-import UIKit
 import PerformanceBezier
+import UIKit
 
-public class IndexFingerShadow: NSObject {
+class IndexFingerShadow: NSObject {
     var boundingBox: CGRect
     let indexFingerTipPath: UIBezierPath
-    public let pointerFingerPath: UIBezierPath
+    let pointerFingerPath: UIBezierPath
 
-    private override init() {
+    override private init() {
         fatalError("This initializer is not available")
     }
 
-    public init(forRightHand isRight: Bool) {
+    init(forRightHand isRight: Bool) {
         boundingBox = CGRect(x: 0, y: 0, width: 100, height: 227)
         boundingBox = boundingBox.applying(CGAffineTransform(scaleX: 4, y: 4))
         let paths = Self.scaledPaths(for: boundingBox.size)
@@ -32,11 +32,11 @@ public class IndexFingerShadow: NSObject {
         }
     }
 
-    public var path: UIBezierPath {
+    var path: UIBezierPath {
         return pointerFingerPath
     }
 
-    public var locationOfIndexFingerInPathBounds: CGPoint {
+    var locationOfIndexFingerInPathBounds: CGPoint {
         return indexFingerTipPath.center()
     }
 
@@ -81,8 +81,8 @@ public class IndexFingerShadow: NSObject {
     }
 
     func flipPathAroundYAxis(_ path: UIBezierPath) {
-        path.apply(CGAffineTransform(translationX: -boundingBox.size.width/2 - boundingBox.origin.x, y: 0))
+        path.apply(CGAffineTransform(translationX: -boundingBox.size.width / 2 - boundingBox.origin.x, y: 0))
         path.apply(CGAffineTransform(scaleX: -1, y: 1))
-        path.apply(CGAffineTransform(translationX: boundingBox.size.width/2 + boundingBox.origin.x, y: 0))
+        path.apply(CGAffineTransform(translationX: boundingBox.size.width / 2 + boundingBox.origin.x, y: 0))
     }
 }

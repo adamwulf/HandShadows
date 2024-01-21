@@ -10,7 +10,8 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "HandShadows",
-            targets: ["HandShadows"])
+            targets: ["HandShadows"]
+        ),
     ],
     dependencies: [.package(url: "https://github.com/adamwulf/SwiftToolbox", branch: "main"),
                    .package(url: "https://github.com/adamwulf/PerformanceBezier", branch: "main")],
@@ -18,9 +19,11 @@ let package = Package(
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "HandShadows", dependencies: ["SwiftToolbox", "PerformanceBezier"]),
+            name: "HandShadows", dependencies: ["SwiftToolbox", "PerformanceBezier"]
+        ),
         .testTarget(
             name: "HandShadowsTests",
-            dependencies: ["HandShadows"])
+            dependencies: ["HandShadows"]
+        ),
     ]
 )

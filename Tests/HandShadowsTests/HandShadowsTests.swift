@@ -1,5 +1,5 @@
-import XCTest
 @testable import HandShadows
+import XCTest
 
 final class HandShadowsTests: XCTestCase {
     func testExample() throws {

@@ -1,13 +1,13 @@
 //
-//  File.swift
-//  
+//  IndexMiddleFingerShadow.swift
+//
 //
 //  Created by Adam Wulf on 1/19/24.
 //
 
 import UIKit
 
-public class IndexMiddleFingerShadow: NSObject {
+class IndexMiddleFingerShadow: NSObject {
     var isRight: Bool
     var lastInterpolatedPath: UIBezierPath
     var lastInterpolatedIndexFinger: CGPoint
@@ -31,12 +31,12 @@ public class IndexMiddleFingerShadow: NSObject {
         boundingBox = boundingBox.applying(CGAffineTransform(scaleX: 4, y: 4))
 
         let paths = Self.initPaths(for: boundingBox)
-        self.openIndexFingerTipPath = paths.openIndexFingerTipPath
-        self.openMiddleFingerTipPath = paths.openMiddleFingerTipPath
-        self.closedIndexFingerTipPath = paths.closedIndexFingerTipPath
-        self.closedMiddleFingerTipPath = paths.closedMiddleFingerTipPath
-        self.openPath = paths.openPath
-        self.closedPath = paths.closedPath
+        openIndexFingerTipPath = paths.openIndexFingerTipPath
+        openMiddleFingerTipPath = paths.openMiddleFingerTipPath
+        closedIndexFingerTipPath = paths.closedIndexFingerTipPath
+        closedMiddleFingerTipPath = paths.closedMiddleFingerTipPath
+        openPath = paths.openPath
+        closedPath = paths.closedPath
 
         lastInterpolatedPath = openPath
         lastInterpolatedIndexFinger = openIndexFingerTipPath.center()
@@ -54,34 +54,34 @@ public class IndexMiddleFingerShadow: NSObject {
         }
     }
 
-    public func pathForTouches() -> UIBezierPath {
+    func pathForTouches() -> UIBezierPath {
         return lastInterpolatedPath
     }
 
-    public var locationOfIndexFingerInPathBounds: CGPoint {
+    var locationOfIndexFingerInPathBounds: CGPoint {
         return lastInterpolatedIndexFinger
     }
 
-    public func setFingerDistance(idealDistance: CGFloat) {
+    func setFingerDistance(idealDistance: CGFloat) {
         let idealDistance = idealDistance - 80
-        let openDist = distance(p1: openMiddleFingerTipPath.center(), p2: openIndexFingerTipPath.center())
-        let closedDist = distance(p1: closedMiddleFingerTipPath.center(), p2: closedIndexFingerTipPath.center())
+        let openDist = openMiddleFingerTipPath.center().distance(to: openIndexFingerTipPath.center())
+        let closedDist = closedMiddleFingerTipPath.center().distance(to: closedIndexFingerTipPath.center())
         let perc = idealDistance / (openDist - closedDist)
         openTo(openPercent: perc > 1 ? 1.0 : perc)
     }
 
     // MARK: - Debug
 
-    public func openTo(openPercent: CGFloat) {
+    func openTo(openPercent: CGFloat) {
         assert(openPercent <= 1, "must be less than 1")
         lastInterpolatedPath = UIBezierPath()
 
-        lastInterpolatedIndexFinger = CGPoint(x: openPercent * openIndexFingerTipPath.center().x + (1-openPercent) * closedIndexFingerTipPath.center().x,
-                                              y: openPercent * openIndexFingerTipPath.center().y + (1-openPercent) * closedIndexFingerTipPath.center().y)
-        let lastInterpolatedMiddleFinger = CGPoint(x: openPercent * openMiddleFingerTipPath.center().x + (1-openPercent) * closedMiddleFingerTipPath.center().x,
-                                                   y: openPercent * openMiddleFingerTipPath.center().y + (1-openPercent) * closedMiddleFingerTipPath.center().y)
+        lastInterpolatedIndexFinger = CGPoint(x: openPercent * openIndexFingerTipPath.center().x + (1 - openPercent) * closedIndexFingerTipPath.center().x,
+                                              y: openPercent * openIndexFingerTipPath.center().y + (1 - openPercent) * closedIndexFingerTipPath.center().y)
+        let lastInterpolatedMiddleFinger = CGPoint(x: openPercent * openMiddleFingerTipPath.center().x + (1 - openPercent) * closedMiddleFingerTipPath.center().x,
+                                                   y: openPercent * openMiddleFingerTipPath.center().y + (1 - openPercent) * closedMiddleFingerTipPath.center().y)
 
-        for i in 0..<openPath.elementCount {
+        for i in 0 ..< openPath.elementCount {
             let openElement = openPath.element(at: i)
             let closedElement = closedPath.element(at: i)
 
@@ -206,8 +206,8 @@ public class IndexMiddleFingerShadow: NSObject {
     }
 
     func flipPathAroundYAxis(_ path: UIBezierPath) {
-        path.apply(CGAffineTransform(translationX: -boundingBox.size.width/2 - boundingBox.origin.x, y: 0))
+        path.apply(CGAffineTransform(translationX: -boundingBox.size.width / 2 - boundingBox.origin.x, y: 0))
         path.apply(CGAffineTransform(scaleX: -1, y: 1))
-        path.apply(CGAffineTransform(translationX: boundingBox.size.width/2 + boundingBox.origin.x, y: 0))
+        path.apply(CGAffineTransform(translationX: boundingBox.size.width / 2 + boundingBox.origin.x, y: 0))
     }
 }
