@@ -9,7 +9,7 @@ descriptive and intuitive demo videos.
 This code lets you add hand shadows over your UI during your gestures, which makes
 for immersive tutorial and demo videos.
 
-![Example image](https://github.com/adamwulf/ios-hand-shadows/raw/master/example.gif)
+<img src="https://github.com/adamwulf/HandShadows/raw/main/example.gif" width="600" />
 
 ## Swift Package Manager
 
