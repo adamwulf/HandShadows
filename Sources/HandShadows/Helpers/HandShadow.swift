@@ -2,7 +2,7 @@ import SwiftToolbox
 import UIKit
 
 class HandShadow: NSObject {
-    var isRight: Bool = false
+    let handType: HandType
 
     var pointerFingerHelper: IndexFingerShadow
     var twoFingerHelper: IndexMiddleFingerShadow
@@ -18,8 +18,8 @@ class HandShadow: NSObject {
 
     var heldObject: Any?
 
-    init(isRight: Bool) {
-        self.isRight = isRight
+    init(for hand: HandType) {
+        handType = hand
 
         _layer = CAShapeLayer()
         _layer.opacity = 0.5
@@ -27,9 +27,9 @@ class HandShadow: NSObject {
         _layer.position = CGPoint.zero
         _layer.backgroundColor = UIColor.black.cgColor
 
-        pointerFingerHelper = IndexFingerShadow(forRightHand: isRight)
-        twoFingerHelper = IndexMiddleFingerShadow(forRightHand: isRight)
-        thumbAndIndexHelper = ThumbAndIndexShadow(isRight: isRight)
+        pointerFingerHelper = IndexFingerShadow(for: handType)
+        twoFingerHelper = IndexMiddleFingerShadow(for: handType)
+        thumbAndIndexHelper = ThumbAndIndexShadow(for: handType)
         super.init()
     }
 
@@ -56,9 +56,9 @@ class HandShadow: NSObject {
         }
         if touches.count >= 2 {
             var indexFingerTouch = (touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero
-            if !isRight && (touches.last as? NSValue)?.cgPointValue.x ?? 0 > indexFingerTouch.x {
+            if handType == .leftHand && (touches.last as? NSValue)?.cgPointValue.x ?? 0 > indexFingerTouch.x {
                 indexFingerTouch = (touches.last as? NSValue)?.cgPointValue ?? CGPoint.zero
-            } else if isRight && (touches.last as? NSValue)?.cgPointValue.x ?? 0 < indexFingerTouch.x {
+            } else if handType == .rightHand && (touches.last as? NSValue)?.cgPointValue.x ?? 0 < indexFingerTouch.x {
                 indexFingerTouch = (touches.last as? NSValue)?.cgPointValue ?? CGPoint.zero
             }
             let middleFingerTouch = CGPointEqualToPoint((touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero, indexFingerTouch) ? (touches.last as? NSValue)?.cgPointValue ?? CGPoint.zero : (touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero
@@ -111,7 +111,7 @@ class HandShadow: NSObject {
                 _layer.path = thumbAndIndexHelper.pathForTouches().cgPath
 
                 var currVector = CGVector(start: indexFingerLocation, end: middleFingerLocation)
-                if !isRight {
+                if handType == .leftHand {
                     currVector.flip()
                 }
                 let theta = CGVector(dx: 1, dy: 0).angleBetween(currVector)
@@ -174,7 +174,7 @@ class HandShadow: NSObject {
             _layer.path = twoFingerHelper.pathForTouches().cgPath
 
             var currVector = CGVector(start: indexFingerLocation, end: middleFingerLocation)
-            if !isRight {
+            if handType == .leftHand {
                 currVector.flip()
             }
 
@@ -183,7 +183,7 @@ class HandShadow: NSObject {
             let finalLocation = CGPoint(x: indexFingerLocation.x - offset.x, y: indexFingerLocation.y - offset.y)
 
             if recentTheta == CGFloat.greatestFiniteMagnitude {
-                if !isRight && theta < 0 && theta > -CGFloat.pi {
+                if handType == .leftHand && theta < 0 && theta > -CGFloat.pi {
                     continuePanningWithIndexFinger(middleFingerLocation, andMiddleFinger: indexFingerLocation)
                     return
                 }

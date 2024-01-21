@@ -8,7 +8,7 @@
 import UIKit
 
 class IndexMiddleFingerShadow: NSObject {
-    var isRight: Bool
+    let handType: HandType
     var lastInterpolatedPath: UIBezierPath
     var lastInterpolatedIndexFinger: CGPoint
 
@@ -25,8 +25,8 @@ class IndexMiddleFingerShadow: NSObject {
         fatalError("This initializer is not available.")
     }
 
-    init(forRightHand _isRight: Bool) {
-        isRight = _isRight
+    init(for hand: HandType) {
+        handType = hand
         boundingBox = CGRect(x: 0, y: 0, width: 100, height: 300)
         boundingBox = boundingBox.applying(CGAffineTransform(scaleX: 4, y: 4))
 
@@ -43,7 +43,7 @@ class IndexMiddleFingerShadow: NSObject {
 
         super.init()
 
-        if isRight {
+        if hand == .rightHand {
             flipPathAroundYAxis(openPath)
             flipPathAroundYAxis(closedPath)
 
@@ -107,7 +107,7 @@ class IndexMiddleFingerShadow: NSObject {
         }
 
         var initialFingerAngle = CGVector(start: lastInterpolatedIndexFinger, end: lastInterpolatedMiddleFinger)
-        if !isRight {
+        if handType == .leftHand {
             initialFingerAngle.flip()
         }
         let theta = -initialFingerAngle.theta

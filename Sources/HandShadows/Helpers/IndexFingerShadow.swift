@@ -9,6 +9,7 @@ import PerformanceBezier
 import UIKit
 
 class IndexFingerShadow: NSObject {
+    let handType: HandType
     var boundingBox: CGRect
     let indexFingerTipPath: UIBezierPath
     let pointerFingerPath: UIBezierPath
@@ -17,7 +18,8 @@ class IndexFingerShadow: NSObject {
         fatalError("This initializer is not available")
     }
 
-    init(forRightHand isRight: Bool) {
+    init(for hand: HandType) {
+        handType = hand
         boundingBox = CGRect(x: 0, y: 0, width: 100, height: 227)
         boundingBox = boundingBox.applying(CGAffineTransform(scaleX: 4, y: 4))
         let paths = Self.scaledPaths(for: boundingBox.size)
@@ -26,7 +28,7 @@ class IndexFingerShadow: NSObject {
 
         super.init()
 
-        if !isRight {
+        if handType == .leftHand {
             flipPathAroundYAxis(pointerFingerPath)
             flipPathAroundYAxis(indexFingerTipPath)
         }

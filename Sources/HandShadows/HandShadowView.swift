@@ -17,8 +17,8 @@ public class HandShadowView: UIView {
     let leftHand: HandShadow
 
     override public init(frame: CGRect) {
-        leftHand = HandShadow(isRight: false)
-        rightHand = HandShadow(isRight: true)
+        leftHand = HandShadow(for: .leftHand)
+        rightHand = HandShadow(for: .rightHand)
         super.init(frame: frame)
 
         backgroundColor = .clear

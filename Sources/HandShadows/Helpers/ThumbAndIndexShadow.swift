@@ -9,7 +9,7 @@ import PerformanceBezier
 import UIKit
 
 class ThumbAndIndexShadow: NSObject {
-    var isRight: Bool
+    let handType: HandType
     var lastInterpolatedPath: UIBezierPath
     var lastInterpolatedIndexFinger: CGPoint
 
@@ -26,8 +26,8 @@ class ThumbAndIndexShadow: NSObject {
         fatalError("This initializer is not available")
     }
 
-    init(isRight: Bool) {
-        self.isRight = isRight
+    init(for hand: HandType) {
+        handType = hand
         boundingBox = CGRect(x: 0, y: 0, width: 200, height: 300)
         boundingBox = boundingBox.applying(CGAffineTransform(scaleX: 4, y: 4))
 
@@ -43,7 +43,7 @@ class ThumbAndIndexShadow: NSObject {
 
         super.init()
 
-        if self.isRight {
+        if handType == .rightHand {
             flipPathAroundYAxis(path: openPath)
             flipPathAroundYAxis(path: closedPath)
             flipPathAroundYAxis(path: openThumbTipPath)
@@ -110,7 +110,7 @@ class ThumbAndIndexShadow: NSObject {
 
         var interpolatedAngle = CGVector(start: lastInterpolatedIndexFinger, end: lastInterpolatedThumb)
 
-        if !isRight {
+        if handType == .leftHand {
             openAngle.flip()
             closedAngle.flip()
             interpolatedAngle.flip()
