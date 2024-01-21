@@ -2,10 +2,7 @@ import SwiftToolbox
 import UIKit
 
 class HandShadow: NSObject {
-    var relativeView: UIView
-
     var isRight: Bool = false
-    var initialVector: CGVector?
 
     var pointerFingerHelper: IndexFingerShadow
     var twoFingerHelper: IndexMiddleFingerShadow
@@ -21,9 +18,8 @@ class HandShadow: NSObject {
 
     var heldObject: Any?
 
-    init(isRight: Bool, relativeView: UIView) {
+    init(isRight: Bool) {
         self.isRight = isRight
-        self.relativeView = relativeView
 
         _layer = CAShapeLayer()
         _layer.opacity = 0.5
