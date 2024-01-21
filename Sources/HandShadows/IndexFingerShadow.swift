@@ -8,7 +8,7 @@
 import UIKit
 import PerformanceBezier
 
-public class MMDrawingGestureShadow: NSObject {
+public class IndexFingerShadow: NSObject {
     var boundingBox: CGRect
     let indexFingerTipPath: UIBezierPath
     public let pointerFingerPath: UIBezierPath

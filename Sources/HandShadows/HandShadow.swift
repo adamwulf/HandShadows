@@ -7,9 +7,9 @@ public class HandShadow: NSObject {
     var isRight: Bool = false
     var initialVector: CGVector?
 
-    var pointerFingerHelper: MMDrawingGestureShadow
-    var twoFingerHelper: MMTwoFingerPanShadow
-    var thumbAndIndexHelper: MMThumbAndIndexShadow
+    var pointerFingerHelper: IndexFingerShadow
+    var twoFingerHelper: IndexMiddleFingerShadow
+    var thumbAndIndexHelper: ThumbAndIndexShadow
 
     var activeTouches: Set<UITouch>?
     var isBezeling: Bool = false
@@ -34,9 +34,9 @@ public class HandShadow: NSObject {
         _layer.position = CGPoint.zero
         _layer.backgroundColor = UIColor.black.cgColor
 
-        pointerFingerHelper = MMDrawingGestureShadow(forRightHand: isRight)
-        twoFingerHelper = MMTwoFingerPanShadow(forRightHand: isRight)
-        thumbAndIndexHelper = MMThumbAndIndexShadow(isRight: isRight)
+        pointerFingerHelper = IndexFingerShadow(forRightHand: isRight)
+        twoFingerHelper = IndexMiddleFingerShadow(forRightHand: isRight)
+        thumbAndIndexHelper = ThumbAndIndexShadow(isRight: isRight)
         super.init()
     }
 

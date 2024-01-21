@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class MMTwoFingerPanShadow: NSObject {
+public class IndexMiddleFingerShadow: NSObject {
     var isRight: Bool
     var lastInterpolatedPath: UIBezierPath
     var lastInterpolatedIndexFinger: CGPoint
@@ -54,10 +54,6 @@ public class MMTwoFingerPanShadow: NSObject {
         }
     }
 
-    func avgPoint(p1: CGPoint, withPoint p2: CGPoint, weight: CGFloat) -> CGPoint {
-        return CGPoint(x: p1.x*weight + p2.x*(1-weight), y: p1.y*weight + p2.y*(1-weight))
-    }
-
     public func pathForTouches() -> UIBezierPath {
         return lastInterpolatedPath
     }
@@ -91,17 +87,17 @@ public class MMTwoFingerPanShadow: NSObject {
 
             switch openElement.type {
             case .moveToPoint:
-                lastInterpolatedPath.move(to: avgPoint(p1: openElement.points[0], withPoint: closedElement.points[0], weight: openPercent))
+                lastInterpolatedPath.move(to: openElement.points[0].average(with: closedElement.points[0], weight: openPercent))
             case .addLineToPoint:
-                lastInterpolatedPath.addLine(to: avgPoint(p1: openElement.points[0], withPoint: closedElement.points[0], weight: openPercent))
+                lastInterpolatedPath.addLine(to: openElement.points[0].average(with: closedElement.points[0], weight: openPercent))
             case .addQuadCurveToPoint:
-                let endPt = avgPoint(p1: openElement.points[1], withPoint: closedElement.points[1], weight: openPercent)
-                let ctrlPt = avgPoint(p1: openElement.points[0], withPoint: closedElement.points[0], weight: openPercent)
+                let endPt = openElement.points[1].average(with: closedElement.points[1], weight: openPercent)
+                let ctrlPt = openElement.points[0].average(with: closedElement.points[0], weight: openPercent)
                 lastInterpolatedPath.addQuadCurve(to: endPt, controlPoint: ctrlPt)
             case .addCurveToPoint:
-                let endPt = avgPoint(p1: openElement.points[2], withPoint: closedElement.points[2], weight: openPercent)
-                let ctrlPt1 = avgPoint(p1: openElement.points[0], withPoint: closedElement.points[0], weight: openPercent)
-                let ctrlPt2 = avgPoint(p1: openElement.points[1], withPoint: closedElement.points[1], weight: openPercent)
+                let endPt = openElement.points[2].average(with: closedElement.points[2], weight: openPercent)
+                let ctrlPt1 = openElement.points[0].average(with: closedElement.points[0], weight: openPercent)
+                let ctrlPt2 = openElement.points[1].average(with: closedElement.points[1], weight: openPercent)
                 lastInterpolatedPath.addCurve(to: endPt, controlPoint1: ctrlPt1, controlPoint2: ctrlPt2)
             case .closeSubpath:
                 lastInterpolatedPath.close()

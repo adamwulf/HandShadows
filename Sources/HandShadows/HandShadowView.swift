@@ -12,8 +12,8 @@ import UIKit
     case rightHand = 1
 }
 
-public class MMShadowHandView: UIView {
-    var pointerFingerHelper: MMDrawingGestureShadow?
+public class HandShadowView: UIView {
+    var pointerFingerHelper: IndexFingerShadow?
     var rightHand: HandShadow?
     var leftHand: HandShadow?
 
