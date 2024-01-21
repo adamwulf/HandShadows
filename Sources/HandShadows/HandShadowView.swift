@@ -8,19 +8,21 @@
 import UIKit
 
 public class HandShadowView: UIView {
-    let rightHand: HandShadow
-    let leftHand: HandShadow
+    let handShadow: HandShadow
 
-    override public init(frame: CGRect) {
-        leftHand = HandShadow(for: .leftHand)
-        rightHand = HandShadow(for: .rightHand)
-        super.init(frame: frame)
+    @objc public required init(forHand hand: HandType) {
+        handShadow = HandShadow(for: hand)
+        super.init(frame: .zero)
 
         backgroundColor = .clear
         isOpaque = false
 
-        layer.addSublayer(leftHand.layer)
-        layer.addSublayer(rightHand.layer)
+        layer.addSublayer(handShadow.layer)
+    }
+
+    @available(*, unavailable)
+    override required init(frame _: CGRect) {
+        fatalError("init(frame:) is unavailable")
     }
 
     @available(*, unavailable)
@@ -30,69 +32,44 @@ public class HandShadowView: UIView {
 
     // MARK: - Pan
 
-    @objc public func startPanningObject(withTouches touches: [CGPoint], forHand hand: HandType) {
-        if hand.isRight {
-            rightHand.startPanningObject(withTouches: touches)
-        } else {
-            leftHand.startPanningObject(withTouches: touches)
-        }
+    @objc public func startPanningObject(withTouches touches: [CGPoint]) {
+        handShadow.startPanningObject(withTouches: touches)
     }
 
-    @objc public func continuePanningObject(withTouches touches: [CGPoint], forHand hand: HandType) {
-        if hand.isRight {
-            rightHand.continuePanningObject(withTouches: touches)
-        } else {
-            leftHand.continuePanningObject(withTouches: touches)
-        }
+    @objc public func continuePanningObject(withTouches touches: [CGPoint]) {
+        handShadow.continuePanningObject(withTouches: touches)
     }
 
-    @objc public func endPanningObject(forHand hand: HandType) {
-        if hand.isRight {
-            rightHand.endPanningObject()
-        } else {
-            leftHand.endPanningObject()
-        }
+    @objc public func endPanningObject() {
+        handShadow.endPanningObject()
     }
 
-    // Pinch
+    // MARK: - Pinch
 
     @objc public func startPinchingObject(withTouches touches: [CGPoint]) {
-        rightHand.startPinchingObject(withTouches: touches)
+        handShadow.startPinchingObject(withTouches: touches)
     }
 
     @objc public func continuePinchingObject(withTouches touches: [CGPoint]) {
-        rightHand.continuePinchingObject(withTouches: touches)
+        handShadow.continuePinchingObject(withTouches: touches)
     }
 
     @objc public func endPinchingObject() {
-        rightHand.endPinchingObject()
+        handShadow.endPinchingObject()
     }
 
-    // MARK: - Touch
+    // MARK: - Index Finger Pointing
 
-    @objc public func startDrawingAtTouch(_ touch: CGPoint) {
-        if !(rightHand.isActive) {
-            rightHand.startDrawingAtTouch(touch)
-        } else {
-            leftHand.startDrawingAtTouch(touch)
-        }
+    @objc public func startPointing(at touch: CGPoint) {
+        handShadow.startDrawing(at: touch)
     }
 
-    @objc public func continueDrawingAtTouch(_ touch: CGPoint) {
-        if rightHand.isActive {
-            rightHand.continueDrawingAtTouch(touch)
-        } else {
-            leftHand.continueDrawingAtTouch(touch)
-        }
+    @objc public func continuePointing(at touch: CGPoint) {
+        handShadow.continueDrawing(at: touch)
     }
 
-    @objc public func endDrawing() {
-        if rightHand.isPointing {
-            rightHand.endDrawing()
-        }
-        if leftHand.isPointing {
-            leftHand.endDrawing()
-        }
+    @objc public func endPointing() {
+        handShadow.endDrawing()
     }
 
     // MARK: - Ignore Touches

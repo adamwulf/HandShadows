@@ -120,21 +120,21 @@ class HandShadow: NSObject {
 
     // MARK: - Drawing Events
 
-    func startDrawingAtTouch(_ touch: CGPoint) {
+    func startDrawing(at point: CGPoint) {
         isPointing = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
-        continueDrawingAtTouch(touch)
+        continueDrawing(at: point)
     }
 
-    func continueDrawingAtTouch(_ locationOfTouch: CGPoint) {
+    func continueDrawing(at point: CGPoint) {
         if !isPointing {
-            startDrawingAtTouch(locationOfTouch)
+            startDrawing(at: point)
         }
         CATransaction.preventImplicitAnimation {
             _layer.path = pointerFingerHelper.path.cgPath
             let offset = pointerFingerHelper.locationOfIndexFingerInPathBounds
-            let finalLocation = CGPoint(x: locationOfTouch.x - offset.x, y: locationOfTouch.y - offset.y)
+            let finalLocation = CGPoint(x: point.x - offset.x, y: point.y - offset.y)
             _layer.position = finalLocation
             _layer.setAffineTransform(.identity)
         }
