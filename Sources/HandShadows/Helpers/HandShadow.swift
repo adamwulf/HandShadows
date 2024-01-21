@@ -7,26 +7,26 @@ class HandShadow: NSObject {
     private(set) var isPointing: Bool = false
 
     private let pointerFingerHelper: IndexFingerShadow
-    private let twoFingerHelper: IndexMiddleFingerShadow
-    private let thumbAndIndexHelper: ThumbAndIndexShadow
+    private let twoFingerPanHelper: IndexMiddleFingerShadow
+    private let pinchHelper: ThumbAndIndexShadow
     private var recentTheta: CGFloat = 0.0
 
-    private let _layer: CAShapeLayer
-    var layer: CALayer { _layer }
+    private let shapeLayer: CAShapeLayer
+    var layer: CALayer { shapeLayer }
     let handType: HandType
 
     init(for hand: HandType) {
         handType = hand
 
-        _layer = CAShapeLayer()
-        _layer.opacity = 0.5
-        _layer.anchorPoint = CGPoint.zero
-        _layer.position = CGPoint.zero
-        _layer.backgroundColor = UIColor.black.cgColor
+        shapeLayer = CAShapeLayer()
+        shapeLayer.opacity = 0.5
+        shapeLayer.anchorPoint = CGPoint.zero
+        shapeLayer.position = CGPoint.zero
+        shapeLayer.backgroundColor = UIColor.black.cgColor
 
         pointerFingerHelper = IndexFingerShadow(for: handType)
-        twoFingerHelper = IndexMiddleFingerShadow(for: handType)
-        thumbAndIndexHelper = ThumbAndIndexShadow(for: handType)
+        twoFingerPanHelper = IndexMiddleFingerShadow(for: handType)
+        pinchHelper = ThumbAndIndexShadow(for: handType)
         super.init()
     }
 
@@ -37,6 +37,7 @@ class HandShadow: NSObject {
     // MARK: - Panning a Page
 
     func startTwoFingerPan(withTouches touches: [CGPoint]) {
+        assert(!isActive, "shadow must be inactive")
         isPanning = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
@@ -44,9 +45,7 @@ class HandShadow: NSObject {
     }
 
     func continueTwoFingerPan(withTouches touches: [CGPoint]) {
-        if !isPanning {
-            startTwoFingerPan(withTouches: touches)
-        }
+        assert(isPanning, "shadow must be panning")
         if touches.count >= 2,
            let firstTouch = touches.first,
            let lastTouch = touches.last
@@ -64,10 +63,9 @@ class HandShadow: NSObject {
     }
 
     func endTwoFingerPan() {
-        if isPanning {
-            isPanning = false
-            layer.opacity = 0
-        }
+        assert(isPanning, "shadow must be panning")
+        isPanning = false
+        layer.opacity = 0
     }
 
     // MARK: - Pinching a Page
@@ -75,6 +73,7 @@ class HandShadow: NSObject {
     // Pinching a Page
 
     func startPinch(withTouches touches: [CGPoint]) {
+        assert(!isActive, "shadow must be inactive")
         isPinching = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
@@ -82,9 +81,7 @@ class HandShadow: NSObject {
     }
 
     func continuePinch(withTouches touches: [CGPoint]) {
-        guard isPinching else {
-            return
-        }
+        assert(isPinching, "shadow must be pinching")
         if touches.count >= 2 {
             var indexFingerLocation = (touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero
             if let lastTouch = (touches.last as? NSValue)?.cgPointValue, lastTouch.y < indexFingerLocation.y {
@@ -92,35 +89,35 @@ class HandShadow: NSObject {
             }
             let middleFingerLocation = CGPointEqualToPoint((touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero, indexFingerLocation) ? (touches.last as? NSValue)?.cgPointValue ?? CGPoint.zero : (touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero
 
-            let distance = HandShadow.distanceBetweenPoint(indexFingerLocation, andPoint: middleFingerLocation)
+            let distance = indexFingerLocation.distance(to: middleFingerLocation)
 
-            thumbAndIndexHelper.setFingerDistance(idealDistance: distance)
+            pinchHelper.setFingerDistance(idealDistance: distance)
             CATransaction.preventImplicitAnimation {
-                _layer.path = thumbAndIndexHelper.pathForTouches().cgPath
+                shapeLayer.path = pinchHelper.pathForTouches().cgPath
 
                 var currVector = CGVector(start: indexFingerLocation, end: middleFingerLocation)
                 if handType.isLeft {
                     currVector.flip()
                 }
                 let theta = CGVector(dx: 1, dy: 0).angleBetween(currVector)
-                let offset = thumbAndIndexHelper.locationOfIndexFingerInPathBounds()
+                let offset = pinchHelper.locationOfIndexFingerInPathBounds()
                 let finalLocation = CGPoint(x: indexFingerLocation.x - offset.x, y: indexFingerLocation.y - offset.y)
-                _layer.position = finalLocation
-                _layer.setAffineTransform(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
+                shapeLayer.position = finalLocation
+                shapeLayer.setAffineTransform(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
             }
         }
     }
 
     func endPinch() {
-        if isPinching {
-            isPinching = false
-            layer.opacity = 0
-        }
+        assert(isPinching, "shadow must be pinching")
+        isPinching = false
+        layer.opacity = 0
     }
 
     // MARK: - Drawing Events
 
     func startPointing(at point: CGPoint) {
+        assert(!isActive, "shadow must be inactive")
         isPointing = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
@@ -128,34 +125,29 @@ class HandShadow: NSObject {
     }
 
     func continuePointing(at point: CGPoint) {
-        if !isPointing {
-            startPointing(at: point)
-        }
+        assert(isPointing, "shadow must be pointing")
         CATransaction.preventImplicitAnimation {
-            _layer.path = pointerFingerHelper.path.cgPath
+            shapeLayer.path = pointerFingerHelper.path.cgPath
             let offset = pointerFingerHelper.locationOfIndexFingerInPathBounds
             let finalLocation = CGPoint(x: point.x - offset.x, y: point.y - offset.y)
-            _layer.position = finalLocation
-            _layer.setAffineTransform(.identity)
+            shapeLayer.position = finalLocation
+            shapeLayer.setAffineTransform(.identity)
         }
     }
 
     func endPointing() {
-        if isPointing {
-            isPointing = false
-            if !isPanning {
-                layer.opacity = 0
-            }
-        }
+        assert(isPointing, "shadow must be pointing")
+        isPointing = false
+        layer.opacity = 0
     }
 
     // MARK: - Private
 
     private func continuePanningWithIndexFinger(_ indexFingerLocation: CGPoint, andMiddleFinger middleFingerLocation: CGPoint) {
-        let distance = HandShadow.distanceBetweenPoint(indexFingerLocation, andPoint: middleFingerLocation)
-        twoFingerHelper.setFingerDistance(idealDistance: distance)
+        let distance = indexFingerLocation.distance(to: middleFingerLocation)
+        twoFingerPanHelper.setFingerDistance(idealDistance: distance)
         CATransaction.preventImplicitAnimation {
-            _layer.path = twoFingerHelper.pathForTouches().cgPath
+            shapeLayer.path = twoFingerPanHelper.pathForTouches().cgPath
 
             var currVector = CGVector(start: indexFingerLocation, end: middleFingerLocation)
             if handType.isLeft {
@@ -163,7 +155,7 @@ class HandShadow: NSObject {
             }
 
             let theta = CGVector(dx: 1, dy: 0).angleBetween(currVector)
-            let offset = twoFingerHelper.locationOfIndexFingerInPathBounds
+            let offset = twoFingerPanHelper.locationOfIndexFingerInPathBounds
             let finalLocation = CGPoint(x: indexFingerLocation.x - offset.x, y: indexFingerLocation.y - offset.y)
 
             if recentTheta == CGFloat.greatestFiniteMagnitude {
@@ -179,12 +171,8 @@ class HandShadow: NSObject {
                 recentTheta = theta
             }
 
-            _layer.position = finalLocation
-            _layer.setAffineTransform(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
+            shapeLayer.position = finalLocation
+            shapeLayer.setAffineTransform(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
         }
-    }
-
-    static func distanceBetweenPoint(_ p1: CGPoint, andPoint p2: CGPoint) -> CGFloat {
-        return sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2))
     }
 }
