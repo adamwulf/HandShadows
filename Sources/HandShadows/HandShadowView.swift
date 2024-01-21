@@ -34,51 +34,51 @@ public class HandShadowView: UIView {
 
     @objc public func startTwoFingerPan(withTouches touches: [CGPoint]) {
         assert(!handShadow.isActive, "shadow already active")
-        handShadow.startPanningObject(withTouches: touches)
+        handShadow.startTwoFingerPan(withTouches: touches)
     }
 
     @objc public func continueTwoFingerPan(withTouches touches: [CGPoint]) {
         assert(handShadow.isPanning, "shadow is not panning")
-        handShadow.continuePanningObject(withTouches: touches)
+        handShadow.continueTwoFingerPan(withTouches: touches)
     }
 
     @objc public func endTwoFingerPan() {
         assert(handShadow.isPanning, "shadow is not panning")
-        handShadow.endPanningObject()
+        handShadow.endTwoFingerPan()
     }
 
     // MARK: - Pinch
 
     @objc public func startPinch(withTouches touches: [CGPoint]) {
         assert(!handShadow.isActive, "shadow already active")
-        handShadow.startPinchingObject(withTouches: touches)
+        handShadow.startPinch(withTouches: touches)
     }
 
     @objc public func continuePinch(withTouches touches: [CGPoint]) {
         assert(handShadow.isPinching, "shadow is not pinching")
-        handShadow.continuePinchingObject(withTouches: touches)
+        handShadow.continuePinch(withTouches: touches)
     }
 
     @objc public func endPinch() {
         assert(handShadow.isPinching, "shadow is not pinching")
-        handShadow.endPinchingObject()
+        handShadow.endPinch()
     }
 
     // MARK: - Index Finger Pointing
 
     @objc public func startPointing(at touch: CGPoint) {
         assert(!handShadow.isActive, "shadow already active")
-        handShadow.startDrawing(at: touch)
+        handShadow.startPointing(at: touch)
     }
 
     @objc public func continuePointing(at touch: CGPoint) {
         assert(handShadow.isPointing, "shadow is not pointing")
-        handShadow.continueDrawing(at: touch)
+        handShadow.continuePointing(at: touch)
     }
 
     @objc public func endPointing() {
         assert(handShadow.isPointing, "shadow is not pointing")
-        handShadow.endDrawing()
+        handShadow.endPointing()
     }
 
     // MARK: - Ignore Touches

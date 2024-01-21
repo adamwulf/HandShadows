@@ -36,16 +36,16 @@ class HandShadow: NSObject {
 
     // MARK: - Panning a Page
 
-    func startPanningObject(withTouches touches: [CGPoint]) {
+    func startTwoFingerPan(withTouches touches: [CGPoint]) {
         isPanning = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
-        continuePanningObject(withTouches: touches)
+        continueTwoFingerPan(withTouches: touches)
     }
 
-    func continuePanningObject(withTouches touches: [CGPoint]) {
+    func continueTwoFingerPan(withTouches touches: [CGPoint]) {
         if !isPanning {
-            startPanningObject(withTouches: touches)
+            startTwoFingerPan(withTouches: touches)
         }
         if touches.count >= 2,
            let firstTouch = touches.first,
@@ -63,7 +63,7 @@ class HandShadow: NSObject {
         }
     }
 
-    func endPanningObject() {
+    func endTwoFingerPan() {
         if isPanning {
             isPanning = false
             layer.opacity = 0
@@ -74,14 +74,14 @@ class HandShadow: NSObject {
 
     // Pinching a Page
 
-    func startPinchingObject(withTouches touches: [CGPoint]) {
+    func startPinch(withTouches touches: [CGPoint]) {
         isPinching = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
-        continuePinchingObject(withTouches: touches)
+        continuePinch(withTouches: touches)
     }
 
-    func continuePinchingObject(withTouches touches: [CGPoint]) {
+    func continuePinch(withTouches touches: [CGPoint]) {
         guard isPinching else {
             return
         }
@@ -111,7 +111,7 @@ class HandShadow: NSObject {
         }
     }
 
-    func endPinchingObject() {
+    func endPinch() {
         if isPinching {
             isPinching = false
             layer.opacity = 0
@@ -120,16 +120,16 @@ class HandShadow: NSObject {
 
     // MARK: - Drawing Events
 
-    func startDrawing(at point: CGPoint) {
+    func startPointing(at point: CGPoint) {
         isPointing = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
-        continueDrawing(at: point)
+        continuePointing(at: point)
     }
 
-    func continueDrawing(at point: CGPoint) {
+    func continuePointing(at point: CGPoint) {
         if !isPointing {
-            startDrawing(at: point)
+            startPointing(at: point)
         }
         CATransaction.preventImplicitAnimation {
             _layer.path = pointerFingerHelper.path.cgPath
@@ -140,7 +140,7 @@ class HandShadow: NSObject {
         }
     }
 
-    func endDrawing() {
+    func endPointing() {
         if isPointing {
             isPointing = false
             if !isPanning {
