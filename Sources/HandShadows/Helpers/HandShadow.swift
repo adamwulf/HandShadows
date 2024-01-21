@@ -54,14 +54,17 @@ class HandShadow: NSObject {
         if obj as AnyObject? !== heldObject as AnyObject? {
             fatalError("ShadowException: Asked to pan different object than what's held.")
         }
-        if touches.count >= 2 {
-            var indexFingerTouch = (touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero
-            if handType.isLeft && (touches.last as? NSValue)?.cgPointValue.x ?? 0 > indexFingerTouch.x {
+        if touches.count >= 2,
+           let firstTouch = touches.first,
+           let lastTouch = touches.last
+        {
+            var indexFingerTouch = firstTouch
+            if handType.isLeft, lastTouch.x > indexFingerTouch.x {
                 indexFingerTouch = (touches.last as? NSValue)?.cgPointValue ?? CGPoint.zero
-            } else if handType.isRight && (touches.last as? NSValue)?.cgPointValue.x ?? 0 < indexFingerTouch.x {
+            } else if handType.isRight, lastTouch.x < indexFingerTouch.x {
                 indexFingerTouch = (touches.last as? NSValue)?.cgPointValue ?? CGPoint.zero
             }
-            let middleFingerTouch = CGPointEqualToPoint((touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero, indexFingerTouch) ? (touches.last as? NSValue)?.cgPointValue ?? CGPoint.zero : (touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero
+            let middleFingerTouch = CGPointEqualToPoint(firstTouch, indexFingerTouch) ? lastTouch : firstTouch
 
             continuePanningWithIndexFinger(indexFingerTouch, andMiddleFinger: middleFingerTouch)
         }
