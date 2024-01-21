@@ -186,12 +186,12 @@ class HandShadow: NSObject {
             let finalLocation = CGPoint(x: indexFingerLocation.x - offset.x, y: indexFingerLocation.y - offset.y)
 
             if recentTheta == CGFloat.greatestFiniteMagnitude {
-                if handType.isLeft && theta < 0 && theta > -CGFloat.pi {
+                if handType.isLeft, theta < 0, theta > -CGFloat.pi {
                     continuePanningWithIndexFinger(middleFingerLocation, andMiddleFinger: indexFingerLocation)
                     return
                 }
                 recentTheta = theta
-            } else if abs(recentTheta - theta) > CGFloat.pi / 2 && abs(recentTheta - theta) < CGFloat.pi * 3 / 2 {
+            } else if abs(recentTheta - theta) > CGFloat.pi / 2, abs(recentTheta - theta) < CGFloat.pi * 3 / 2 {
                 continuePanningWithIndexFinger(middleFingerLocation, andMiddleFinger: indexFingerLocation)
                 return
             } else {
