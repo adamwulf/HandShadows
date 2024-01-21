@@ -26,9 +26,9 @@ dependencies: [
 Add a HandShadowView above all of your other views, and then call its methods
 with CGPoints of gesture touch locations. Run the code for a demo of the shadows.
 
-## Demo
+## Demo App
 
-A demo is available at https://github.com/adamwulf/ios-hand-shadows
+A demo is available at https://github.com/adamwulf/HandShadowsExample
 
 ## License
 
