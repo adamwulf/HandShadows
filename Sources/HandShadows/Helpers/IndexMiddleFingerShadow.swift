@@ -7,6 +7,15 @@
 
 import UIKit
 
+private struct PathHelper {
+    let openMiddleFingerTipPath: UIBezierPath
+    let openIndexFingerTipPath: UIBezierPath
+    let closedMiddleFingerTipPath: UIBezierPath
+    let closedIndexFingerTipPath: UIBezierPath
+    let openPath: UIBezierPath
+    let closedPath: UIBezierPath
+}
+
 class IndexMiddleFingerShadow: NSObject {
     let handType: HandType
 
@@ -100,15 +109,6 @@ class IndexMiddleFingerShadow: NSObject {
         lastInterpolatedPath.apply(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
 
         return (indexFingerLocation: indexFingerLocation, middleFingerLocation: middleFingerLocation, path: lastInterpolatedPath)
-    }
-
-    private struct PathHelper {
-        let openMiddleFingerTipPath: UIBezierPath
-        let openIndexFingerTipPath: UIBezierPath
-        let closedMiddleFingerTipPath: UIBezierPath
-        let closedIndexFingerTipPath: UIBezierPath
-        let openPath: UIBezierPath
-        let closedPath: UIBezierPath
     }
 
     private static func initPaths(for frame: CGRect) -> PathHelper {

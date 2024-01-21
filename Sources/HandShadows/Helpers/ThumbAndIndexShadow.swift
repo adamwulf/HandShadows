@@ -8,6 +8,15 @@
 import PerformanceBezier
 import UIKit
 
+private struct PathHelper {
+    let openThumbTipPath: UIBezierPath
+    let openIndexFingerTipPath: UIBezierPath
+    let closedThumbTipPath: UIBezierPath
+    let closedIndexFingerTipPath: UIBezierPath
+    let openPath: UIBezierPath
+    let closedPath: UIBezierPath
+}
+
 class ThumbAndIndexShadow: NSObject {
     let handType: HandType
 
@@ -113,15 +122,6 @@ class ThumbAndIndexShadow: NSObject {
         lastInterpolatedPath.apply(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
 
         return (indexFingerLocation: indexFingerLocation, thumbLocation: thumbLocation, path: lastInterpolatedPath)
-    }
-
-    private struct PathHelper {
-        let openThumbTipPath: UIBezierPath
-        let openIndexFingerTipPath: UIBezierPath
-        let closedThumbTipPath: UIBezierPath
-        let closedIndexFingerTipPath: UIBezierPath
-        let openPath: UIBezierPath
-        let closedPath: UIBezierPath
     }
 
     private static func initPaths(for frame: CGRect) -> PathHelper {
