@@ -11,7 +11,6 @@ class HandShadow: NSObject {
     var twoFingerHelper: IndexMiddleFingerShadow
     var thumbAndIndexHelper: ThumbAndIndexShadow
 
-    var activeTouches: Set<UITouch>?
     var isPinching: Bool = false
     var isPanning: Bool = false
     private(set) var isDrawing: Bool = false
@@ -44,7 +43,7 @@ class HandShadow: NSObject {
 
     // MARK: - Panning a Page
 
-    func startPanningObject(_ obj: Any?, withTouches touches: [Any]?) {
+    func startPanningObject(_ obj: Any?, withTouches touches: [CGPoint]) {
         heldObject = obj
         isPanning = true
         layer.opacity = 0.5
@@ -52,14 +51,14 @@ class HandShadow: NSObject {
         continuePanningObject(obj, withTouches: touches)
     }
 
-    func continuePanningObject(_ obj: Any?, withTouches touches: [Any]?) {
+    func continuePanningObject(_ obj: Any?, withTouches touches: [CGPoint]) {
         if !isPanning {
             startPanningObject(obj, withTouches: touches)
         }
         if obj as AnyObject? !== heldObject as AnyObject? {
             fatalError("ShadowException: Asked to pan different object than what's held.")
         }
-        if let touches = touches, touches.count >= 2 {
+        if touches.count >= 2 {
             var indexFingerTouch = (touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero
             if !isRight && (touches.last as? NSValue)?.cgPointValue.x ?? 0 > indexFingerTouch.x {
                 indexFingerTouch = (touches.last as? NSValue)?.cgPointValue ?? CGPoint.zero
@@ -77,7 +76,6 @@ class HandShadow: NSObject {
             fatalError("ShadowException: Asked to stop holding different object than what's held.")
         }
         if isPanning {
-            activeTouches = nil
             isPanning = false
             heldObject = nil
             layer.opacity = 0
@@ -88,7 +86,7 @@ class HandShadow: NSObject {
 
     // Pinching a Page
 
-    func startPinchingObject(_ obj: Any?, withTouches touches: [Any]?) {
+    func startPinchingObject(_ obj: Any?, withTouches touches: [CGPoint]) {
         heldObject = obj
         isPinching = true
         layer.opacity = 0.5
@@ -96,14 +94,14 @@ class HandShadow: NSObject {
         continuePinchingObject(obj, withTouches: touches)
     }
 
-    func continuePinchingObject(_ obj: Any?, withTouches touches: [Any]?) {
+    func continuePinchingObject(_ obj: Any?, withTouches touches: [CGPoint]) {
         guard isPinching else {
             return
         }
         guard obj as? NSObject == heldObject as? NSObject else {
             fatalError("ShadowException: Asked to pinch different object than what's held.")
         }
-        if let touches = touches, touches.count >= 2 {
+        if touches.count >= 2 {
             var indexFingerLocation = (touches.first as? NSValue)?.cgPointValue ?? CGPoint.zero
             if let lastTouch = (touches.last as? NSValue)?.cgPointValue, lastTouch.y < indexFingerLocation.y {
                 indexFingerLocation = lastTouch
@@ -134,7 +132,6 @@ class HandShadow: NSObject {
             fatalError("ShadowException: Asked to stop holding different object than what's held.")
         }
         if isPinching {
-            activeTouches = nil
             isPinching = false
             heldObject = nil
             layer.opacity = 0
@@ -165,7 +162,6 @@ class HandShadow: NSObject {
 
     func endDrawing() {
         if isDrawing {
-            activeTouches = nil
             isDrawing = false
             if !isPanning {
                 layer.opacity = 0
