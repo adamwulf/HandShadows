@@ -44,12 +44,12 @@ class ThumbAndIndexShadow: NSObject {
         super.init()
 
         if handType.isRight {
-            flipPathAroundYAxis(path: openPath)
-            flipPathAroundYAxis(path: closedPath)
-            flipPathAroundYAxis(path: openThumbTipPath)
-            flipPathAroundYAxis(path: openIndexFingerTipPath)
-            flipPathAroundYAxis(path: closedThumbTipPath)
-            flipPathAroundYAxis(path: closedIndexFingerTipPath)
+            boundingBox.flipPathAroundMidY(openPath)
+            boundingBox.flipPathAroundMidY(closedPath)
+            boundingBox.flipPathAroundMidY(openThumbTipPath)
+            boundingBox.flipPathAroundMidY(openIndexFingerTipPath)
+            boundingBox.flipPathAroundMidY(closedThumbTipPath)
+            boundingBox.flipPathAroundMidY(closedIndexFingerTipPath)
         }
     }
 
@@ -128,7 +128,7 @@ class ThumbAndIndexShadow: NSObject {
         lastInterpolatedPath.apply(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
     }
 
-    struct PathHelper {
+    private struct PathHelper {
         let openThumbTipPath: UIBezierPath
         let openIndexFingerTipPath: UIBezierPath
         let closedThumbTipPath: UIBezierPath
@@ -137,7 +137,7 @@ class ThumbAndIndexShadow: NSObject {
         let closedPath: UIBezierPath
     }
 
-    static func initPaths(for frame: CGRect) -> PathHelper {
+    private static func initPaths(for frame: CGRect) -> PathHelper {
         let openThumbTipPath = UIBezierPath(ovalIn: CGRect(x: frame.minX + floor((frame.width - 7) * 0.75728 + 0.34) + 0.16, y: frame.minY + floor((frame.height - 7) * 0.34627 - 0.04) + 0.54, width: 7, height: 7))
         let openIndexFingerTipPath = UIBezierPath(ovalIn: CGRect(x: frame.minX + floor((frame.width - 7) * 0.48103 - 0.34) + 0.84, y: frame.minY + floor((frame.height - 7) * 0.08532 + 0.5), width: 7, height: 7))
         let closedThumbTipPath = UIBezierPath(ovalIn: CGRect(x: frame.minX + floor((frame.width - 7) * 0.35135 - 0.31) + 0.81, y: frame.minY + floor((frame.height - 7) * 0.16544 - 0.03) + 0.53, width: 7, height: 7))

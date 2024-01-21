@@ -32,14 +32,14 @@ public class HandShadowView: UIView {
 
     // MARK: - Pan
 
-    @objc public func startTwoFingerPan(with firstTouch: CGPoint, and secondTouch: CGPoint) {
+    @objc public func startTwoFingerPan(with firstPoint: CGPoint, and secondPoint: CGPoint) {
         assert(!handShadow.isActive, "shadow already active")
-        handShadow.startTwoFingerPan(with: firstTouch, and: secondTouch)
+        handShadow.startTwoFingerPan(with: firstPoint, and: secondPoint)
     }
 
-    @objc public func continueTwoFingerPan(with firstTouch: CGPoint, and secondTouch: CGPoint) {
+    @objc public func continueTwoFingerPan(with firstPoint: CGPoint, and secondPoint: CGPoint) {
         assert(handShadow.isPanning, "shadow is not panning")
-        handShadow.continueTwoFingerPan(with: firstTouch, and: secondTouch)
+        handShadow.continueTwoFingerPan(with: firstPoint, and: secondPoint)
     }
 
     @objc public func endTwoFingerPan() {
@@ -49,14 +49,14 @@ public class HandShadowView: UIView {
 
     // MARK: - Pinch
 
-    @objc public func startPinch(withTouches touches: [CGPoint]) {
+    @objc public func startPinch(with firstPoint: CGPoint, and secondPoint: CGPoint) {
         assert(!handShadow.isActive, "shadow already active")
-        handShadow.startPinch(withTouches: touches)
+        handShadow.startPinch(with: firstPoint, and: secondPoint)
     }
 
-    @objc public func continuePinch(withTouches touches: [CGPoint]) {
+    @objc public func continuePinch(with firstPoint: CGPoint, and secondPoint: CGPoint) {
         assert(handShadow.isPinching, "shadow is not pinching")
-        handShadow.continuePinch(withTouches: touches)
+        handShadow.continuePinch(with: firstPoint, and: secondPoint)
     }
 
     @objc public func endPinch() {
@@ -66,14 +66,14 @@ public class HandShadowView: UIView {
 
     // MARK: - Index Finger Pointing
 
-    @objc public func startPointing(at touch: CGPoint) {
+    @objc public func startPointing(at point: CGPoint) {
         assert(!handShadow.isActive, "shadow already active")
-        handShadow.startPointing(at: touch)
+        handShadow.startPointing(at: point)
     }
 
-    @objc public func continuePointing(at touch: CGPoint) {
+    @objc public func continuePointing(at point: CGPoint) {
         assert(handShadow.isPointing, "shadow is not pointing")
-        handShadow.continuePointing(at: touch)
+        handShadow.continuePointing(at: point)
     }
 
     @objc public func endPointing() {

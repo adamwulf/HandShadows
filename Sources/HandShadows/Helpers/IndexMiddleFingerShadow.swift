@@ -117,7 +117,7 @@ class IndexMiddleFingerShadow: NSObject {
 
     // MARK: - Private
 
-    struct PathHelper {
+    private struct PathHelper {
         let openMiddleFingerTipPath: UIBezierPath
         let openIndexFingerTipPath: UIBezierPath
         let closedMiddleFingerTipPath: UIBezierPath
@@ -126,7 +126,7 @@ class IndexMiddleFingerShadow: NSObject {
         let closedPath: UIBezierPath
     }
 
-    static func initPaths(for frame: CGRect) -> PathHelper {
+    private static func initPaths(for frame: CGRect) -> PathHelper {
         let openMiddleFingerTipPath = UIBezierPath(ovalIn: CGRect(x: frame.minX + floor((frame.width - 7) * 0.27322 + 0.03) + 0.47, y: frame.minY + floor((frame.height - 7) * 0.04833 - 0.34) + 0.84, width: 7, height: 7))
         let openIndexFingerTipPath = UIBezierPath(ovalIn: CGRect(x: frame.minX + floor((frame.width - 7) * 0.87880 - 0.43) + 0.93, y: frame.minY + floor((frame.height - 7) * 0.07405 + 0.2) + 0.3, width: 7, height: 7))
         let closedMiddleFingerTipPath = UIBezierPath(ovalIn: CGRect(x: frame.minX + floor((frame.width - 7) * 0.53012 + 0.08) + 0.42, y: frame.minY + floor((frame.height - 7) * 0.04172 - 0.28) + 0.78, width: 7, height: 7))

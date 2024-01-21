@@ -10,9 +10,13 @@ import UIKit
 
 class IndexFingerShadow: NSObject {
     let handType: HandType
-    var boundingBox: CGRect
-    let indexFingerTipPath: UIBezierPath
-    let pointerFingerPath: UIBezierPath
+
+    /// The point relative to `path` that represents the center of the tip of the index finger
+    let indexFingerLocation: CGPoint
+
+    /// A bezier path of a hand with a pointing index finger
+    /// - Note: Do not modify this path directly. Always copy the path before applying any transform or modifications
+    let path: UIBezierPath
 
     override private init() {
         fatalError("This initializer is not available")
@@ -20,29 +24,23 @@ class IndexFingerShadow: NSObject {
 
     init(for hand: HandType) {
         handType = hand
-        boundingBox = CGRect(x: 0, y: 0, width: 100, height: 227)
-        boundingBox = boundingBox.applying(CGAffineTransform(scaleX: 4, y: 4))
+        let boundingBox = CGRect(x: 0, y: 0, width: 400, height: 908)
         let paths = Self.scaledPaths(for: boundingBox.size)
-        indexFingerTipPath = paths.indexFingerTipPath
-        pointerFingerPath = paths.pointerFingerPath
-
-        super.init()
 
         if handType.isLeft {
-            flipPathAroundYAxis(pointerFingerPath)
-            flipPathAroundYAxis(indexFingerTipPath)
+            boundingBox.flipPathAroundMidY(paths.pointerFingerPath)
+            boundingBox.flipPathAroundMidY(paths.indexFingerTipPath)
         }
+
+        path = paths.pointerFingerPath
+        indexFingerLocation = paths.indexFingerTipPath.center()
+
+        super.init()
     }
 
-    var path: UIBezierPath {
-        return pointerFingerPath
-    }
+    // MARK: - Private
 
-    var locationOfIndexFingerInPathBounds: CGPoint {
-        return indexFingerTipPath.center()
-    }
-
-    static func scaledPaths(for sizeOfHand: CGSize) -> (pointerFingerPath: UIBezierPath, indexFingerTipPath: UIBezierPath) {
+    private static func scaledPaths(for sizeOfHand: CGSize) -> (pointerFingerPath: UIBezierPath, indexFingerTipPath: UIBezierPath) {
         let handFrame = CGRect(x: 0, y: 0, width: sizeOfHand.width, height: sizeOfHand.height)
 
         let pointerFingerPath = UIBezierPath()
@@ -80,11 +78,5 @@ class IndexFingerShadow: NSObject {
         let indexFingerTipPath = UIBezierPath(ovalIn: CGRect(x: handFrame.minX + floor((handFrame.width - 7) * 0.18021 - 0.06) + 0.56, y: handFrame.minY + floor((handFrame.height - 7) * 0.04176 + 0.45) + 0.05, width: 7, height: 7))
 
         return (pointerFingerPath, indexFingerTipPath)
-    }
-
-    func flipPathAroundYAxis(_ path: UIBezierPath) {
-        path.apply(CGAffineTransform(translationX: -boundingBox.size.width / 2 - boundingBox.origin.x, y: 0))
-        path.apply(CGAffineTransform(scaleX: -1, y: 1))
-        path.apply(CGAffineTransform(translationX: boundingBox.size.width / 2 + boundingBox.origin.x, y: 0))
     }
 }

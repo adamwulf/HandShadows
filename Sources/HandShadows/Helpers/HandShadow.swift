@@ -1,3 +1,10 @@
+//
+//  HandShadow.swift
+//
+//
+//  Created by Adam Wulf on 1/20/24.
+//
+
 import SwiftToolbox
 import UIKit
 
@@ -73,44 +80,40 @@ class HandShadow: NSObject {
 
     // Pinching a Page
 
-    func startPinch(withTouches touches: [CGPoint]) {
+    func startPinch(with firstPoint: CGPoint, and secondPoint: CGPoint) {
         assert(!isActive, "shadow must be inactive")
         guard !isActive else { return }
 
         isPinching = true
         layer.opacity = 0.5
         recentTheta = CGFloat.greatestFiniteMagnitude
-        continuePinch(withTouches: touches)
+        continuePinch(with: firstPoint, and: secondPoint)
     }
 
-    func continuePinch(withTouches touches: [CGPoint]) {
+    func continuePinch(with firstPoint: CGPoint, and secondPoint: CGPoint) {
         assert(isPinching, "shadow must be pinching")
         guard isPinching else { return }
 
-        if touches.count >= 2,
-           let firstTouch = touches.first,
-           let lastTouch = touches.last {
-            var indexFingerLocation = firstTouch
-            if lastTouch.y < indexFingerLocation.y {
-                indexFingerLocation = lastTouch
-            }
-            let middleFingerLocation = CGPointEqualToPoint(firstTouch, indexFingerLocation) ? lastTouch : firstTouch
-            let distance = indexFingerLocation.distance(to: middleFingerLocation)
+        var indexFingerLocation = firstPoint
+        if secondPoint.y < indexFingerLocation.y {
+            indexFingerLocation = secondPoint
+        }
+        let middleFingerLocation = CGPointEqualToPoint(firstPoint, indexFingerLocation) ? secondPoint : firstPoint
+        let distance = indexFingerLocation.distance(to: middleFingerLocation)
 
-            pinchHelper.setFingerDistance(idealDistance: distance)
-            CATransaction.preventImplicitAnimation {
-                shapeLayer.path = pinchHelper.pathForTouches().cgPath
+        pinchHelper.setFingerDistance(idealDistance: distance)
+        CATransaction.preventImplicitAnimation {
+            shapeLayer.path = pinchHelper.pathForTouches().cgPath
 
-                var currVector = CGVector(start: indexFingerLocation, end: middleFingerLocation)
-                if handType.isLeft {
-                    currVector.flip()
-                }
-                let theta = CGVector(dx: 1, dy: 0).angleBetween(currVector)
-                let offset = pinchHelper.locationOfIndexFingerInPathBounds()
-                let finalLocation = CGPoint(x: indexFingerLocation.x - offset.x, y: indexFingerLocation.y - offset.y)
-                shapeLayer.position = finalLocation
-                shapeLayer.setAffineTransform(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
+            var currVector = CGVector(start: indexFingerLocation, end: middleFingerLocation)
+            if handType.isLeft {
+                currVector.flip()
             }
+            let theta = CGVector(dx: 1, dy: 0).angleBetween(currVector)
+            let offset = pinchHelper.locationOfIndexFingerInPathBounds()
+            let finalLocation = CGPoint(x: indexFingerLocation.x - offset.x, y: indexFingerLocation.y - offset.y)
+            shapeLayer.position = finalLocation
+            shapeLayer.setAffineTransform(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
         }
     }
 
@@ -140,7 +143,7 @@ class HandShadow: NSObject {
 
         CATransaction.preventImplicitAnimation {
             shapeLayer.path = pointerFingerHelper.path.cgPath
-            let offset = pointerFingerHelper.locationOfIndexFingerInPathBounds
+            let offset = pointerFingerHelper.indexFingerLocation
             let finalLocation = CGPoint(x: point.x - offset.x, y: point.y - offset.y)
             shapeLayer.position = finalLocation
             shapeLayer.setAffineTransform(.identity)
