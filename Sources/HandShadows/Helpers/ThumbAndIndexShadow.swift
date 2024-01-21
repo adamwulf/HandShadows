@@ -10,17 +10,14 @@ import UIKit
 
 class ThumbAndIndexShadow: NSObject {
     let handType: HandType
-    var lastInterpolatedPath: UIBezierPath
-    var lastInterpolatedIndexFinger: CGPoint
 
-    var boundingBox: CGRect
-    var openPath: UIBezierPath
-    var closedPath: UIBezierPath
+    private let openPath: UIBezierPath
+    private let closedPath: UIBezierPath
 
-    var openThumbTipPath: UIBezierPath
-    var openIndexFingerTipPath: UIBezierPath
-    var closedThumbTipPath: UIBezierPath
-    var closedIndexFingerTipPath: UIBezierPath
+    private let openThumbTipPath: UIBezierPath
+    private let openIndexFingerTipPath: UIBezierPath
+    private let closedThumbTipPath: UIBezierPath
+    private let closedIndexFingerTipPath: UIBezierPath
 
     override private init() {
         fatalError("This initializer is not available")
@@ -28,55 +25,45 @@ class ThumbAndIndexShadow: NSObject {
 
     init(for hand: HandType) {
         handType = hand
-        boundingBox = CGRect(x: 0, y: 0, width: 200, height: 300)
-        boundingBox = boundingBox.applying(CGAffineTransform(scaleX: 4, y: 4))
+        let boundingBox = CGRect(x: 0, y: 0, width: 800, height: 1200)
 
         let paths = Self.initPaths(for: boundingBox)
+
+        if handType.isRight {
+            boundingBox.flipPathAroundMidY(paths.openPath)
+            boundingBox.flipPathAroundMidY(paths.closedPath)
+            boundingBox.flipPathAroundMidY(paths.openThumbTipPath)
+            boundingBox.flipPathAroundMidY(paths.openIndexFingerTipPath)
+            boundingBox.flipPathAroundMidY(paths.closedThumbTipPath)
+            boundingBox.flipPathAroundMidY(paths.closedIndexFingerTipPath)
+        }
+
         openIndexFingerTipPath = paths.openIndexFingerTipPath
         openThumbTipPath = paths.openThumbTipPath
         closedIndexFingerTipPath = paths.closedIndexFingerTipPath
         closedThumbTipPath = paths.closedThumbTipPath
         openPath = paths.openPath
         closedPath = paths.closedPath
-        lastInterpolatedPath = openPath
-        lastInterpolatedIndexFinger = openIndexFingerTipPath.center()
 
         super.init()
-
-        if handType.isRight {
-            boundingBox.flipPathAroundMidY(openPath)
-            boundingBox.flipPathAroundMidY(closedPath)
-            boundingBox.flipPathAroundMidY(openThumbTipPath)
-            boundingBox.flipPathAroundMidY(openIndexFingerTipPath)
-            boundingBox.flipPathAroundMidY(closedThumbTipPath)
-            boundingBox.flipPathAroundMidY(closedIndexFingerTipPath)
-        }
     }
 
-    func pathForTouches() -> UIBezierPath {
-        return lastInterpolatedPath
-    }
-
-    func locationOfIndexFingerInPathBounds() -> CGPoint {
-        return lastInterpolatedIndexFinger
-    }
-
-    func setFingerDistance(idealDistance: CGFloat) {
+    func setFingerDistance(idealDistance: CGFloat) -> (indexFingerLocation: CGPoint, thumbLocation: CGPoint, path: UIBezierPath) {
         let openDist = openThumbTipPath.center().distance(to: openIndexFingerTipPath.center())
         let closedDist = closedThumbTipPath.center().distance(to: closedIndexFingerTipPath.center())
         let perc = (idealDistance - closedDist) / (openDist - closedDist)
-        openTo(openPercent: perc > 1 ? 1.0 : perc)
+        return openTo(openPercent: perc > 1 ? 1.0 : perc)
     }
 
-    // MARK: - Debug
+    // MARK: - Private
 
-    func openTo(openPercent: CGFloat) {
-        lastInterpolatedPath = UIBezierPath()
+    private func openTo(openPercent: CGFloat) -> (indexFingerLocation: CGPoint, thumbLocation: CGPoint, path: UIBezierPath) {
+        let lastInterpolatedPath = UIBezierPath()
 
-        lastInterpolatedIndexFinger = CGPoint(x: openPercent * openIndexFingerTipPath.bounds.midX + (1 - openPercent) * closedIndexFingerTipPath.bounds.midX,
-                                              y: openPercent * openIndexFingerTipPath.bounds.midY + (1 - openPercent) * closedIndexFingerTipPath.bounds.midY)
-        let lastInterpolatedThumb = CGPoint(x: openPercent * openThumbTipPath.bounds.midX + (1 - openPercent) * closedThumbTipPath.bounds.midX,
-                                            y: openPercent * openThumbTipPath.bounds.midY + (1 - openPercent) * closedThumbTipPath.bounds.midY)
+        let indexFingerLocation = CGPoint(x: openPercent * openIndexFingerTipPath.bounds.midX + (1 - openPercent) * closedIndexFingerTipPath.bounds.midX,
+                                          y: openPercent * openIndexFingerTipPath.bounds.midY + (1 - openPercent) * closedIndexFingerTipPath.bounds.midY)
+        let thumbLocation = CGPoint(x: openPercent * openThumbTipPath.bounds.midX + (1 - openPercent) * closedThumbTipPath.bounds.midX,
+                                    y: openPercent * openThumbTipPath.bounds.midY + (1 - openPercent) * closedThumbTipPath.bounds.midY)
 
         for i in 0 ..< openPath.elementCount {
             let openElement = openPath.element(at: i)
@@ -108,7 +95,7 @@ class ThumbAndIndexShadow: NSObject {
         var openAngle = CGVector(start: openIndexFingerTipPath.center(), end: openThumbTipPath.center())
         var closedAngle = CGVector(start: closedIndexFingerTipPath.center(), end: closedThumbTipPath.center())
 
-        var interpolatedAngle = CGVector(start: lastInterpolatedIndexFinger, end: lastInterpolatedThumb)
+        var interpolatedAngle = CGVector(start: indexFingerLocation, end: thumbLocation)
 
         if handType.isLeft {
             openAngle.flip()
@@ -117,15 +104,15 @@ class ThumbAndIndexShadow: NSObject {
         }
 
         var theta = -interpolatedAngle.theta
-//        let openTheta = -openAngle.theta
-//        let closedTheta = -closedAngle.theta
 
         if theta.isNaN {
             theta = 0
         }
 
-        let offset = lastInterpolatedIndexFinger
+        let offset = indexFingerLocation
         lastInterpolatedPath.apply(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
+
+        return (indexFingerLocation: indexFingerLocation, thumbLocation: thumbLocation, path: lastInterpolatedPath)
     }
 
     private struct PathHelper {
@@ -234,13 +221,5 @@ class ThumbAndIndexShadow: NSObject {
         closedPath.close()
 
         return PathHelper(openThumbTipPath: openThumbTipPath, openIndexFingerTipPath: openIndexFingerTipPath, closedThumbTipPath: closedThumbTipPath, closedIndexFingerTipPath: closedIndexFingerTipPath, openPath: openPath, closedPath: closedPath)
-    }
-
-    // MARK: - CALayer Helper
-
-    func flipPathAroundYAxis(path: UIBezierPath) {
-        path.apply(CGAffineTransform(translationX: -boundingBox.size.width / 2 - boundingBox.origin.x, y: 0))
-        path.apply(CGAffineTransform(scaleX: -1, y: 1))
-        path.apply(CGAffineTransform(translationX: boundingBox.size.width / 2 + boundingBox.origin.x, y: 0))
     }
 }

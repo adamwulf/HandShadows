@@ -101,16 +101,16 @@ class HandShadow: NSObject {
         let middleFingerLocation = CGPointEqualToPoint(firstPoint, indexFingerLocation) ? secondPoint : firstPoint
         let distance = indexFingerLocation.distance(to: middleFingerLocation)
 
-        pinchHelper.setFingerDistance(idealDistance: distance)
+        let result = pinchHelper.setFingerDistance(idealDistance: distance)
         CATransaction.preventImplicitAnimation {
-            shapeLayer.path = pinchHelper.pathForTouches().cgPath
+            shapeLayer.path = result.path.cgPath
 
             var currVector = CGVector(start: indexFingerLocation, end: middleFingerLocation)
             if handType.isLeft {
                 currVector.flip()
             }
             let theta = CGVector(dx: 1, dy: 0).angleBetween(currVector)
-            let offset = pinchHelper.locationOfIndexFingerInPathBounds()
+            let offset = result.indexFingerLocation
             let finalLocation = CGPoint(x: indexFingerLocation.x - offset.x, y: indexFingerLocation.y - offset.y)
             shapeLayer.position = finalLocation
             shapeLayer.setAffineTransform(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
@@ -172,7 +172,7 @@ class HandShadow: NSObject {
             }
 
             let theta = CGVector(dx: 1, dy: 0).angleBetween(currVector)
-            let offset = result.indexFinger
+            let offset = result.indexFingerLocation
             let finalLocation = CGPoint(x: indexFingerLocation.x - offset.x, y: indexFingerLocation.y - offset.y)
 
             if recentTheta == CGFloat.greatestFiniteMagnitude {

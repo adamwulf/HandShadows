@@ -10,7 +10,6 @@ import UIKit
 class IndexMiddleFingerShadow: NSObject {
     let handType: HandType
 
-    private let boundingBox: CGRect
     private let openPath: UIBezierPath
     private let closedPath: UIBezierPath
 
@@ -25,7 +24,7 @@ class IndexMiddleFingerShadow: NSObject {
 
     init(for hand: HandType) {
         handType = hand
-        boundingBox = CGRect(x: 0, y: 0, width: 400, height: 1200)
+        let boundingBox = CGRect(x: 0, y: 0, width: 400, height: 1200)
 
         let paths = Self.initPaths(for: boundingBox)
 
@@ -48,7 +47,7 @@ class IndexMiddleFingerShadow: NSObject {
         super.init()
     }
 
-    func setFingerDistance(idealDistance: CGFloat) -> (indexFinger: CGPoint, middleFinger: CGPoint, path: UIBezierPath) {
+    func setFingerDistance(idealDistance: CGFloat) -> (indexFingerLocation: CGPoint, middleFingerLocation: CGPoint, path: UIBezierPath) {
         let idealDistance = idealDistance - 80
         let openDist = openMiddleFingerTip.distance(to: openIndexFingerTip)
         let closedDist = closedMiddleFingerTip.distance(to: closedIndexFingerTip)
@@ -58,7 +57,7 @@ class IndexMiddleFingerShadow: NSObject {
 
     // MARK: - Private
 
-    private func openTo(openPercent: CGFloat) -> (indexFinger: CGPoint, middleFinger: CGPoint, path: UIBezierPath) {
+    private func openTo(openPercent: CGFloat) -> (indexFingerLocation: CGPoint, middleFingerLocation: CGPoint, path: UIBezierPath) {
         assert(openPercent <= 1, "must be less than 1")
         let lastInterpolatedPath = UIBezierPath()
 
@@ -100,7 +99,7 @@ class IndexMiddleFingerShadow: NSObject {
         let offset = indexFingerLocation
         lastInterpolatedPath.apply(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
 
-        return (indexFinger: indexFingerLocation, middleFinger: middleFingerLocation, path: lastInterpolatedPath)
+        return (indexFingerLocation: indexFingerLocation, middleFingerLocation: middleFingerLocation, path: lastInterpolatedPath)
     }
 
     private struct PathHelper {
