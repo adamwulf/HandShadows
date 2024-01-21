@@ -34,20 +34,6 @@ public class HandShadowView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Right Bezel
-
-    @objc public func startBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
-        rightHand?.startBezelingIn(fromRight: fromRight, withTouches: touches)
-    }
-
-    @objc public func continueBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
-        rightHand?.continueBezelingIn(fromRight: fromRight, withTouches: touches)
-    }
-
-    @objc public func endBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
-        rightHand?.endBezelingIn(fromRight: fromRight, withTouches: touches)
-    }
-
     // MARK: - Pan
 
     @objc public func startPanningObject(_ obj: Any, withTouches touches: [CGPoint], forHand hand: HandType) {

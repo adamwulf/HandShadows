@@ -12,7 +12,6 @@ class HandShadow: NSObject {
     var thumbAndIndexHelper: ThumbAndIndexShadow
 
     var activeTouches: Set<UITouch>?
-    var isBezeling: Bool = false
     var isPinching: Bool = false
     var isPanning: Bool = false
     private(set) var isDrawing: Bool = false
@@ -40,59 +39,7 @@ class HandShadow: NSObject {
     }
 
     var isActive: Bool {
-        return isBezeling || isPanning || isDrawing || isPinching
-    }
-
-    // MARK: - Bezeling Pages
-
-    func startBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
-        activeTouches = Set(touches)
-        isBezeling = true
-        layer.opacity = 0.5
-        continueBezelingIn(fromRight: fromRight, withTouches: touches)
-    }
-
-    func continueBezelingIn(fromRight: Bool, withTouches touches: [UITouch]) {
-        if !isBezeling {
-            startBezelingIn(fromRight: fromRight, withTouches: touches)
-            return
-        }
-        var indexFingerTouch = touches.first
-        if !isRight && touches.last?.location(in: relativeView).x ?? 0 > indexFingerTouch?.location(in: relativeView).x ?? 0 {
-            indexFingerTouch = touches.last
-        } else if isRight && touches.last?.location(in: relativeView).x ?? 0 < indexFingerTouch?.location(in: relativeView).x ?? 0 {
-            indexFingerTouch = touches.last
-        }
-        let middleFingerTouch = touches.first == indexFingerTouch ? touches.last : touches.first
-
-        var indexFingerLocation = indexFingerTouch?.location(in: relativeView) ?? CGPoint.zero
-        var middleFingerLocation = middleFingerTouch?.location(in: relativeView) ?? CGPoint.zero
-        if touches.count == 1 {
-            if fromRight {
-                if isRight {
-                    middleFingerLocation = CGPoint(x: relativeView.bounds.size.width + 15, y: indexFingerLocation.y)
-                } else {
-                    indexFingerLocation = CGPoint(x: relativeView.bounds.size.width + 15, y: indexFingerLocation.y)
-                }
-            } else {
-                if isRight {
-                    indexFingerLocation = CGPoint(x: -15, y: indexFingerLocation.y)
-                } else {
-                    middleFingerLocation = CGPoint(x: -15, y: indexFingerLocation.y)
-                }
-            }
-        }
-        continuePanningWithIndexFinger(indexFingerLocation, andMiddleFinger: middleFingerLocation)
-    }
-
-    func endBezelingIn(fromRight _: Bool, withTouches touches: [UITouch]) {
-        if isBezeling {
-            if touches.isEmpty || activeTouches == Set(touches) {
-                activeTouches = nil
-                layer.opacity = 0
-                isBezeling = false
-            }
-        }
+        return isPanning || isDrawing || isPinching
     }
 
     // MARK: - Panning a Page
@@ -220,7 +167,7 @@ class HandShadow: NSObject {
         if isDrawing {
             activeTouches = nil
             isDrawing = false
-            if !isPanning && !isBezeling {
+            if !isPanning {
                 layer.opacity = 0
             }
         }
