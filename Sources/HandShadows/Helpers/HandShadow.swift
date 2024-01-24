@@ -69,7 +69,7 @@ class HandShadow: NSObject {
     }
 
     func endTwoFingerPan() {
-        assert(isPanning, "shadow must be panning")
+        assert(isPanning || !isActive, "shadow must be panning")
         guard isPanning else { return }
 
         isPanning = false
@@ -118,7 +118,7 @@ class HandShadow: NSObject {
     }
 
     func endPinch() {
-        assert(isPinching, "shadow must be pinching")
+        assert(isPinching || !isActive, "shadow must be pinching")
         guard isPinching else { return }
 
         isPinching = false
@@ -151,7 +151,7 @@ class HandShadow: NSObject {
     }
 
     func endPointing() {
-        assert(isPointing, "shadow must be pointing")
+        assert(isPointing || !isActive, "shadow must be pointing")
         guard isPointing else { return }
 
         isPointing = false

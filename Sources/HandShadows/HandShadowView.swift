@@ -24,6 +24,18 @@ public class HandShadowView: UIView {
         return handShadow.isActive
     }
 
+    public var isPointing: Bool {
+        return handShadow.isPointing
+    }
+
+    public var isPanning: Bool {
+        return handShadow.isPanning
+    }
+
+    public var isPinching: Bool {
+        return handShadow.isPinching
+    }
+
     @available(*, unavailable)
     override required init(frame _: CGRect) {
         fatalError("init(frame:) is unavailable")
@@ -47,7 +59,7 @@ public class HandShadowView: UIView {
     }
 
     @objc public func endTwoFingerPan() {
-        assert(handShadow.isPanning, "shadow is not panning")
+        assert(handShadow.isPanning || !handShadow.isActive, "shadow is not panning")
         handShadow.endTwoFingerPan()
     }
 
@@ -64,7 +76,7 @@ public class HandShadowView: UIView {
     }
 
     @objc public func endPinch() {
-        assert(handShadow.isPinching, "shadow is not pinching")
+        assert(handShadow.isPinching || !handShadow.isActive, "shadow is not pinching")
         handShadow.endPinch()
     }
 
@@ -81,7 +93,7 @@ public class HandShadowView: UIView {
     }
 
     @objc public func endPointing() {
-        assert(handShadow.isPointing, "shadow is not pointing")
+        assert(handShadow.isPointing || !handShadow.isActive, "shadow is not pointing")
         handShadow.endPointing()
     }
 
