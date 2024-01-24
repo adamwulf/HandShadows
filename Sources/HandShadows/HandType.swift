@@ -11,15 +11,15 @@ import Foundation
     case leftHand = 0
     case rightHand = 1
 
-    var isRight: Bool {
+    public var isRight: Bool {
         return self == .rightHand
     }
 
-    var isLeft: Bool {
+    public var isLeft: Bool {
         return self == .leftHand
     }
 
-    var stringValue: String {
+    public var stringValue: String {
         switch self {
         case .leftHand: return "left"
         case .rightHand: return "right"
