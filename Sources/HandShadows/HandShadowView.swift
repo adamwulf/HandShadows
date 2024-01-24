@@ -20,6 +20,10 @@ public class HandShadowView: UIView {
         layer.addSublayer(handShadow.layer)
     }
 
+    public var isActive: Bool {
+        return handShadow.isActive
+    }
+
     @available(*, unavailable)
     override required init(frame _: CGRect) {
         fatalError("init(frame:) is unavailable")
