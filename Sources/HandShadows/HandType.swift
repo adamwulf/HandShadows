@@ -18,4 +18,11 @@ import Foundation
     var isLeft: Bool {
         return self == .leftHand
     }
+
+    var stringValue: String {
+        switch self {
+        case .leftHand: return "left"
+        case .rightHand: return "right"
+        }
+    }
 }
