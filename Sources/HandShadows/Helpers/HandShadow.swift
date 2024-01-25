@@ -35,6 +35,8 @@ class HandShadow: NSObject {
         twoFingerPanHelper = IndexMiddleFingerShadow(for: handType)
         pinchHelper = ThumbAndIndexShadow(for: handType)
         super.init()
+
+        shapeLayer.delegate = self
     }
 
     var isActive: Bool {
@@ -191,5 +193,16 @@ class HandShadow: NSObject {
             shapeLayer.position = finalLocation
             shapeLayer.setAffineTransform(CGAffineTransform(translationX: offset.x, y: offset.y).rotated(by: theta).translatedBy(x: -offset.x, y: -offset.y))
         }
+    }
+}
+
+extension HandShadow: CALayerDelegate {
+    func action(for _: CALayer, forKey event: String) -> CAAction? {
+        if event == "opacity" {
+            let animation = CABasicAnimation(keyPath: event)
+            animation.duration = 0.1
+            return animation
+        }
+        return nil
     }
 }
