@@ -1,4 +1,4 @@
-// swift-tools-version: 5.9
+// swift-tools-version:5.7
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -11,7 +11,7 @@ let package = Package(
         .library(
             name: "HandShadows",
             targets: ["HandShadows"]
-        ),
+        )
     ],
     dependencies: [.package(url: "https://github.com/adamwulf/SwiftToolbox", branch: "main"),
                    .package(url: "https://github.com/adamwulf/PerformanceBezier", branch: "main")],
@@ -24,6 +24,6 @@ let package = Package(
         .testTarget(
             name: "HandShadowsTests",
             dependencies: ["HandShadows"]
-        ),
+        )
     ]
 )
