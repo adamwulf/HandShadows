@@ -13,7 +13,7 @@ let package = Package(
             targets: ["HandShadows"]
         )
     ],
-    dependencies: [.package(url: "https://github.com/adamwulf/SwiftToolbox", branch: "main"),
+    dependencies: [.package(url: "https://github.com/adamwulf/SwiftToolbox", branch: "fix/ios12"),
                    .package(url: "https://github.com/adamwulf/PerformanceBezier", branch: "main")],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
