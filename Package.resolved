@@ -14,7 +14,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/adamwulf/SwiftToolbox",
       "state" : {
-        "branch" : "fix/ios12",
+        "branch" : "main",
         "revision" : "99fba0c74d04ccabc71b3ecf365f43b12fe26ad6"
       }
     }
