@@ -11,10 +11,10 @@ let package = Package(
         .library(
             name: "HandShadows",
             targets: ["HandShadows"]
-        )
+        ),
     ],
     dependencies: [.package(url: "https://github.com/adamwulf/SwiftToolbox", branch: "main"),
-                   .package(url: "https://github.com/adamwulf/PerformanceBezier", branch: "main")],
+                   .package(url: "https://github.com/adamwulf/PerformanceBezier", branch: "muse")],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
@@ -24,6 +24,6 @@ let package = Package(
         .testTarget(
             name: "HandShadowsTests",
             dependencies: ["HandShadows"]
-        )
+        ),
     ]
 )

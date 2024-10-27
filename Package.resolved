@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/adamwulf/PerformanceBezier",
       "state" : {
-        "branch" : "main",
-        "revision" : "50a19e6f59adcc92d6c6956a0973b7a58ffe7925"
+        "branch" : "muse",
+        "revision" : "b3cc82221836a8ce1f0692033d58b1ff836c57f8"
       }
     },
     {
